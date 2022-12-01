@@ -146,7 +146,7 @@ def staging(args):
         [
             "docker-compose",
             "--project-name",
-            "morphodict-staging",
+            "morphodict-backend-staging",
             "-f",
             fspath(DOCKER_COMPOSE_DIR / "docker-compose.yml"),
             "-f",
