@@ -18,11 +18,11 @@ def _find_altlabel_file():
     default crk one.
     """
 
-    specific_language_altlabels = settings.BASE_DIR / "resources" / "altlabel.tsv"
+    specific_language_altlabels = settings.BASE_DIR / "res" / "altlabel.tsv"
     if specific_language_altlabels.exists():
         return specific_language_altlabels
     else:
-        return shared_res_dir / "crk.altlabel.tsv"
+        return shared_res_dir / "altlabel.tsv"
 
 
 ALTERNATE_LABELS_FILE = _find_altlabel_file()
