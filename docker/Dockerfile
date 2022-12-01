@@ -66,8 +66,7 @@ RUN python -m compileall -q .
 
 # Build the application:
 ENV NODE_ENV=production
-RUN npm run build \
- && set -eu \
+RUN set -eu \
  `# the docker image contains assets for all language pairs` \
  && for MANAGE_COMMAND in *-manage; do \
         echo ${MANAGE_COMMAND} collectstatic && \

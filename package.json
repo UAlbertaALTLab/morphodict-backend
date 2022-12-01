@@ -4,7 +4,6 @@
   "version": "1.0.0",
   "description": "Morphodict",
   "scripts": {
-    "build": "rollup -c",
     "test": "pipenv run scripts/run-cypress --no-interactive",
     "stop-only": "stop-only --folder cypress/integration",
     "reformat": "prettier --write '{frontend,cypress}/**/*.js'"

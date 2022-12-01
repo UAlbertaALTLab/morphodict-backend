@@ -122,25 +122,6 @@ jobs:
         run: git lfs install --local && git lfs fetch && git lfs checkout
       - name: 📥 Install Node dependencies
         run: npm ci
-      - name: 🛑 Halt tests if Cypress tests are marked as '.only'
-        run: npm run stop-only
-      - name: 🏗 Build frontend
-        run: npm run build
-      - name: 🌲 Run Cypress tests
-        env:
-          DEBUG: "True"
-          # NOTE: only set on the upstream repo, i.e., UAlbertaALTLab/morphodict
-          CYPRESS_RECORD_KEY: "${{ secrets.CYPRESS_RECORD_KEY }}"
-        run: |
-          # Enables uploading test runs to Cypress Dashboard:
-          if [ -n "$CYPRESS_RECORD_KEY" ] ; then export CYPRESS_OPTS="--key $CYPRESS_RECORD_KEY" ; fi
-          pipenv run ./scripts/run-cypress --no-interactive
-      - name: Archive cypress videos
-        uses: actions/upload-artifact@v2
-        with:
-          name: cypress-videos
-          path: |
-            cypress/videos
 
   build-docker-image:
     runs-on: ubuntu-latest
