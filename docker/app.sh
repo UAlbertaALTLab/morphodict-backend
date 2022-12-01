@@ -18,7 +18,7 @@ export DJANGO_SETTINGS_MODULE="${MORPHODICT_LANG_PAIR}.site.settings"
 umask 0002
 
 # uwsgi --http-socket is intended to be used behind, e.g., nginx
-exec uwsgi --http-socket :8000 \
-    --stats :9191 \
+exec uwsgi --http-socket :8001 \
+    --stats :9192 \
     --wsgi-file src/morphodict/site/wsgi.py \
     src/morphodict/site/uwsgi.ini
