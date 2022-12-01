@@ -1,0 +1,137 @@
+{% spaceless %}
+
+    {% comment %}
+    The paradigm table.
+
+    Parameters:
+      paradigm_tables: Paradigm (see CreeDictionary.paradigm.panes.Paradigm)
+
+    Example:
+
+        |             | One     | Many      |
+        | Here        | ôma     | ôhi       |
+        | There       | anima   | anihi     |
+        | Over Yonder | nêma    | nêhi      |
+
+    JavaScript hooks:
+     - .js-replaceable-paradigm: encapsulates the ENTIRE paradigm so that
+       JavaScript can replace the contents with a different paradigm.
+
+  {% endcomment %}
+
+    {% load morphodict_orth %}
+    {% load creedictionary_extras %}
+    {% load relabelling %}
+
+    <section class="definition__paradigm paradigm js-replaceable-paradigm" data-cy="paradigm">
+        {# TODO: use dynamic pane arrangements to get rid of this hacky class. #}
+        <div class="HACK-overflow-x-scroll">
+            <table class="paradigm__table">
+                {% for pane in paradigm.panes %}
+                    <tbody>
+                    {% for row in pane.tr_rows %}
+                        {% if row.is_header %}
+                            <tr>
+                                <th class="paradigm-header" colspan="{{ paradigm.max_num_columns }}"
+                                ><div class="card-header">{% relabel row.label %}</div></th>
+                            </tr>
+                        {% else %}
+                            <tr class="paradigm-row">
+                                {% for cell in row.cells %}
+                                    {% if cell.should_suppress_output %}
+                                        {% comment %} Produce NO output! {% endcomment %}
+                                    {% elif cell.is_label %}
+                                        <th scope="{{ cell.label_for }}" rowspan="{{ cell.row_span }}"
+                                            class="paradigm-label paradigm-label--{{ cell.label_for }}">
+                                            {% relabel cell.label %}
+                                        </th>
+                                    {% elif cell.is_missing %}
+                                        <td class="paradigm-cell paradigm-cell--missing">&mdash;</td>
+                                    {% elif cell.is_empty %}
+                                        <td class="paradigm-cell paradigm-cell--empty"></td>
+                                    {% else %}
+                                        <td class="paradigm-cell paradigm-cell--{% observed_or_unobserved cell.inflection %}">
+                                            <div class="card-body">
+                                            {% if show_morphemes == "everywhere" or show_morphemes == "paradigm" %}
+                                                {% if cell.morphemes %}
+                                                    {% orth cell.morphemes|join:"·" %}
+                                                {% else %}
+                                                    {% orth cell.inflection %}
+                                                {% endif %}
+                                            {% else %}
+                                                {% orth cell.inflection %}
+                                            {% endif %}
+                                            {% if cell.recording %}
+                                                &nbsp;
+                                                {% if cell.recording_speaker == "SDOL" %}🤖 {% else %} 🧑🏽‍🦱 {% endif %}
+                                                <audio preload=none id="recording-url-paradigm-{{ cell.inflection }}"
+                                                       style="display: none;">
+                                                    <source src="{{ cell.recording }}" type="audio/mp4"/>
+                                                </audio>
+                                                {% comment %}
+                              I had to add the data-inflection tag to both the svg and the <use /> tag since sometimes
+                              the button is triggered, and sometimes the <use /> tag is triggered instead
+                              {% endcomment %}
+                                                <button aria-label="Play recording"
+                                                        class="definition__icon definition-title__play-button"
+                                                        data-cy="play-recording-paradigm">
+                                                    <svg class="definition-title__play-icon" focusable="false"
+                                                         data-inflection="{{ cell.inflection }}">
+                                                        <use xlink:href="#fa-volume-up-solid"
+                                                             data-inflection="{{ cell.inflection }}"/>
+                                                    </svg>
+                                                </button>
+                                            {% endif %}
+                                            </div>
+                                        </td>
+                                    {% endif %}
+                                {% endfor %}
+                            </tr>
+                        {% endif %}
+                    {% endfor %} {# /rows #}
+                    </tbody>
+                {% endfor %} {# /paradigm.panes #}
+            </table>
+        </div>
+
+{#    <div class="row" >#}
+{#        <div class="col-sm">#}
+{#            {% for pane in pane_columns %}#}
+{#              <div class="card">#}
+{#        <Accordion style="minHeight: 4.5em; width: 100%">#}
+{#      <AccordionSummary aria-controls="panel1a-content" id="panel1a-header">#}
+{#        <div style="margin: auto; width: 100%">#}
+{#          <Typography style="width: 100%; textAlign: center">#}
+{#              {% if pane.header.label.0 %}#}
+{#              {% orth pane.header.label.0 %}#}
+{#              {% else %}#}
+{#              {% orth "Core" %}#}
+{#              {% endif %}#}
+{#          </Typography>#}
+{#          <Typography#}
+{#            style="#}
+{#              width: 100%;#}
+{#              textAlign: center;#}
+{#              fontWeight: bold",#}
+{#          >#}
+{#              &nbsp;{% orth pane.col_label.label.0 %}#}
+{#          </Typography>#}
+{#        </div>#}
+{#      </AccordionSummary>#}
+{#      <AccordionDetails>#}
+{#        <Card style="width: 100%">#}
+{#          &nbsp;#}
+{#          <table>#}
+{#            <tbody>{{ row_layouts }}</tbody>#}
+{#          </table>#}
+{#        </Card>#}
+{#      </AccordionDetails>#}
+{#    </Accordion>#}
+{#              </div>#}
+{#            {% endfor %}#}
+{#        </div>#}
+{#    </div>#}
+
+        {% include "CreeDictionary/components/paradigm-size-button.html" %}
+    </section>
+{% endspaceless %}

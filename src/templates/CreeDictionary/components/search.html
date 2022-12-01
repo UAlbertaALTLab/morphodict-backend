@@ -1,0 +1,33 @@
+{% load static %}
+<nav class="search top-bar__search">
+  <form class="search-bar search__search-bar" role="search"
+        method="get" action="{% url 'cree-dictionary-search' %}"
+        accept-charset="UTF-8"
+  >
+    <label for="search" class="search-bar__label">
+      <span class="sr-only">Search</span>
+      <input id="search" class="search-bar__input" data-cy="search"
+             type="text" required name="q"
+             placeholder="Search in {{ MORPHODICT_SOURCE_LANGUAGE_SHORT_NAME|default:MORPHODICT_SOURCE_LANGUAGE_NAME }} or English"
+             {% comment %}
+             autocorrect="off" is a Safari extension that disables...
+             autocorrect! This is necessary since autocorrect often tries to
+             turn Cree words into English words, which is no bueno.
+
+             See: https://developer.apple.com/library/archive/documentation/AppleApplications/Reference/SafariHTMLRef/Articles/Attributes.html#//apple_ref/doc/uid/TP40008058-autocorrect
+
+             {% endcomment %}
+             autocapitalize="off" autocomplete="off" autocorrect="off" spellcheck="false"
+             value="{{ query_string|default:"" }}">
+    </label>
+
+    <button class="search-bar__button" type="submit">
+      <img src="{% static 'morphodict/css/img/fa/search.svg' %}" alt="Search">
+    </button>
+  </form>
+  {% comment %}
+   TODO: Advanced search cannot be implemented until the following issue is closed:
+   - https://github.com/UAlbertaALTLab/morphodict/issues/126
+  {% endcomment %}
+</nav>
+{# vim: set ft=htmldjango et sw=2 ts=2 sts=2: #}

@@ -1,0 +1,72 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+black = ">=19.10b0"
+pytest = "==6.2.5"
+pytest-django = "==4.4.0"
+pytest-cov = "*"
+pytest-datadir = "*"
+pytest-mypy = "*"
+hypothesis = {version = "~=4.34", extras = ["django"]}
+codecov = "*"
+pysnooper = "*"
+python-levenshtein = "*"
+django-debug-toolbar = "*"
+isort = {extras = ["pyproject"],version = "*"}
+toml = "*"
+mypy = "*"
+pytest-env = "*"
+jupyterlab = "*"
+appnope = "*"
+nb_black = "*"
+pandas = "*"
+statsmodels = "*"
+pandas-stubs = "*"
+pytest-pythonpath = "*"
+sphinx = "*"
+myst-parser = "*"
+
+[packages]
+colorama = "~=0.4"
+coverage = "*"
+cree-sro-syllabics = ">=2020.6.23"
+pytz = "==2019.2"
+Django = "~=3.2"
+typing-extensions = "~=3.7"
+attrs = "~=19.1"
+django-js-reverse = "~=0.9"
+secure = "*"
+snowballstemmer = "*"
+dawg = "~=0.8"
+environs = {extras = ["django"], version = "*"}
+hfst-optimized-lookup = "*"
+tqdm = "*"
+whitenoise = "*"
+foma = {subdirectory = "foma/python", git = "https://github.com/andrewdotn/foma"}
+uwsgi = "*"
+gensim = "*"
+more-itertools = "~=8.7.0"
+types-requests = "*"
+requests = "*"
+paradigm-panes = "*"
+django-cors-headers = "*"
+djangorestframework = "*"
+
+[scripts]
+# unit tests
+test = "pytest --mypy src"
+runserver_for_tests = "env USE_TEST_DB=true ./crkeng-manage runserver"
+# format
+format = "black src"
+# building the test db takes about half a minute
+ensuretestdb = "env USE_TEST_DB=true ./crkeng-manage ensuretestdb"
+
+[requires]
+python_version = "3.9"
+
+[pipenv]
+# this allows "black>=19.10b0" to work
+allow_prereleases = true

@@ -1,0 +1,2366 @@
+@charset "UTF-8";
+
+/*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
+
+/* Document
+   ========================================================================== */
+
+/**
+ * 1. Correct the line height in all browsers.
+ * 2. Prevent adjustments of font size after orientation changes in iOS.
+ */
+
+html {
+    line-height: 1.15; /* 1 */
+    -webkit-text-size-adjust: 100%; /* 2 */
+}
+
+/* Sections
+   ========================================================================== */
+
+/**
+ * Remove the margin in all browsers.
+ */
+
+body {
+    margin: 0;
+}
+
+/**
+ * Render the `main` element consistently in IE.
+ */
+
+main {
+    display: block;
+}
+
+/**
+ * Correct the font size and margin on `h1` elements within `section` and
+ * `article` contexts in Chrome, Firefox, and Safari.
+ */
+
+h1 {
+    font-size: 2em;
+    margin: 0.67em 0;
+}
+
+/* Grouping content
+   ========================================================================== */
+
+/**
+ * 1. Add the correct box sizing in Firefox.
+ * 2. Show the overflow in Edge and IE.
+ */
+
+hr {
+    box-sizing: content-box; /* 1 */
+    height: 0; /* 1 */
+    overflow: visible; /* 2 */
+}
+
+/**
+ * 1. Correct the inheritance and scaling of font size in all browsers.
+ * 2. Correct the odd `em` font sizing in all browsers.
+ */
+
+pre {
+    font-family: monospace, monospace; /* 1 */
+    font-size: 1em; /* 2 */
+}
+
+/* Text-level semantics
+   ========================================================================== */
+
+/**
+ * Remove the gray background on active links in IE 10.
+ */
+
+a {
+    background-color: transparent;
+}
+
+/**
+ * 1. Remove the bottom border in Chrome 57-
+ * 2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.
+ */
+
+abbr[title] {
+    border-bottom: none; /* 1 */
+    text-decoration: underline; /* 2 */
+    text-decoration: underline dotted; /* 2 */
+}
+
+/**
+ * Add the correct font weight in Chrome, Edge, and Safari.
+ */
+
+b,
+strong {
+    font-weight: bolder;
+}
+
+/**
+ * 1. Correct the inheritance and scaling of font size in all browsers.
+ * 2. Correct the odd `em` font sizing in all browsers.
+ */
+
+code,
+kbd,
+samp {
+    font-family: monospace, monospace; /* 1 */
+    font-size: 1em; /* 2 */
+}
+
+/**
+ * Add the correct font size in all browsers.
+ */
+
+small {
+    font-size: 80%;
+}
+
+/**
+ * Prevent `sub` and `sup` elements from affecting the line height in
+ * all browsers.
+ */
+
+sub,
+sup {
+    font-size: 75%;
+    line-height: 0;
+    position: relative;
+    vertical-align: baseline;
+}
+
+sub {
+    bottom: -0.25em;
+}
+
+sup {
+    top: -0.5em;
+}
+
+/* Embedded content
+   ========================================================================== */
+
+/**
+ * Remove the border on images inside links in IE 10.
+ */
+
+img {
+    border-style: none;
+}
+
+/* Forms
+   ========================================================================== */
+
+/**
+ * 1. Change the font styles in all browsers.
+ * 2. Remove the margin in Firefox and Safari.
+ */
+
+button,
+input,
+optgroup,
+select,
+textarea {
+    font-family: inherit; /* 1 */
+    font-size: 100%; /* 1 */
+    line-height: 1.15; /* 1 */
+    margin: 0; /* 2 */
+}
+
+/**
+ * Show the overflow in IE.
+ * 1. Show the overflow in Edge.
+ */
+
+button,
+input { /* 1 */
+    overflow: visible;
+}
+
+/**
+ * Remove the inheritance of text transform in Edge, Firefox, and IE.
+ * 1. Remove the inheritance of text transform in Firefox.
+ */
+
+button,
+select { /* 1 */
+    text-transform: none;
+}
+
+/**
+ * Correct the inability to style clickable types in iOS and Safari.
+ */
+
+button,
+[type="button"],
+[type="reset"],
+[type="submit"] {
+    -webkit-appearance: button;
+}
+
+/**
+ * Remove the inner border and padding in Firefox.
+ */
+
+button::-moz-focus-inner,
+[type="button"]::-moz-focus-inner,
+[type="reset"]::-moz-focus-inner,
+[type="submit"]::-moz-focus-inner {
+    border-style: none;
+    padding: 0;
+}
+
+/**
+ * Restore the focus styles unset by the previous rule.
+ */
+
+button:-moz-focusring,
+[type="button"]:-moz-focusring,
+[type="reset"]:-moz-focusring,
+[type="submit"]:-moz-focusring {
+    outline: 1px dotted ButtonText;
+}
+
+/**
+ * Correct the padding in Firefox.
+ */
+
+fieldset {
+    padding: 0.35em 0.75em 0.625em;
+}
+
+/**
+ * 1. Correct the text wrapping in Edge and IE.
+ * 2. Correct the color inheritance from `fieldset` elements in IE.
+ * 3. Remove the padding so developers are not caught out when they zero out
+ *    `fieldset` elements in all browsers.
+ */
+
+legend {
+    box-sizing: border-box; /* 1 */
+    color: inherit; /* 2 */
+    display: table; /* 1 */
+    max-width: 100%; /* 1 */
+    padding: 0; /* 3 */
+    white-space: normal; /* 1 */
+}
+
+/**
+ * Add the correct vertical alignment in Chrome, Firefox, and Opera.
+ */
+
+progress {
+    vertical-align: baseline;
+}
+
+/**
+ * Remove the default vertical scrollbar in IE 10+.
+ */
+
+textarea {
+    overflow: auto;
+}
+
+/**
+ * 1. Add the correct box sizing in IE 10.
+ * 2. Remove the padding in IE 10.
+ */
+
+[type="checkbox"],
+[type="radio"] {
+    box-sizing: border-box; /* 1 */
+    padding: 0; /* 2 */
+}
+
+/**
+ * Correct the cursor style of increment and decrement buttons in Chrome.
+ */
+
+[type="number"]::-webkit-inner-spin-button,
+[type="number"]::-webkit-outer-spin-button {
+    height: auto;
+}
+
+/**
+ * 1. Correct the odd appearance in Chrome and Safari.
+ * 2. Correct the outline style in Safari.
+ */
+
+[type="search"] {
+    -webkit-appearance: textfield; /* 1 */
+    outline-offset: -2px; /* 2 */
+}
+
+/**
+ * Remove the inner padding in Chrome and Safari on macOS.
+ */
+
+[type="search"]::-webkit-search-decoration {
+    -webkit-appearance: none;
+}
+
+/**
+ * 1. Correct the inability to style clickable types in iOS and Safari.
+ * 2. Change font properties to `inherit` in Safari.
+ */
+
+::-webkit-file-upload-button {
+    -webkit-appearance: button; /* 1 */
+    font: inherit; /* 2 */
+}
+
+/* Interactive
+   ========================================================================== */
+
+/*
+ * Add the correct display in Edge, IE 10+, and Firefox.
+ */
+
+details {
+    display: block;
+}
+
+/*
+ * Add the correct display in all browsers.
+ */
+
+summary {
+    display: list-item;
+}
+
+/* Misc
+   ========================================================================== */
+
+/**
+ * Add the correct display in IE 10+.
+ */
+
+template {
+    display: none;
+}
+
+/**
+ * Add the correct display in IE 10.
+ */
+
+[hidden] {
+    display: none;
+}
+
+/*
+ * Noto Sans Canadian Aboriginal (Canadian Aboriginal) http://www.google.com/fonts/earlyaccess
+ */
+
+@font-face {
+  font-family: 'Noto Sans Canadian Aboriginal';
+  font-style: normal;
+  font-weight: 400;
+  src: url(//fonts.gstatic.com/ea/notosanscanadianaboriginal/v1/NotoSansCanadianAboriginal-Regular.eot);
+  src: url(//fonts.gstatic.com/ea/notosanscanadianaboriginal/v1/NotoSansCanadianAboriginal-Regular.eot?#iefix) format('embedded-opentype'),
+       url(//fonts.gstatic.com/ea/notosanscanadianaboriginal/v1/NotoSansCanadianAboriginal-Regular.woff2) format('woff2'),
+       url(//fonts.gstatic.com/ea/notosanscanadianaboriginal/v1/NotoSansCanadianAboriginal-Regular.woff) format('woff'),
+       url(//fonts.gstatic.com/ea/notosanscanadianaboriginal/v1/NotoSansCanadianAboriginal-Regular.ttf) format('truetype');
+}
+
+/**
+ * Variables used for itwêwina.
+ *
+ * Change colours and fonts here!
+ */
+
+:root {
+  /* Positioning and sizes */
+  --page-gutter:               1rem; /* Space on either side of the viewport. */
+  --header-stripe-width:        8px; /* Width of the "stripe" to the left of the title. */
+  --small-pad:               .25rem;
+  --medium-gap:             .375rem;
+  --gap:                      .5rem;
+  --search-focus-outline-size:  4px; /* How far the focus colour should expand. */
+  --footer-link-gap:           2rem; /* How far link sections in the footer should be. */
+  --option-control-width:      2rem; /* How wide an option control (like ☑️  or 🔘) should be. */
+
+  /* Responsive sizes */
+  /* Diane went to great effort to figure out these exact pixel values ¯\_(ツ)_/¯ */
+  --desktop-search-bar-width: 827px;
+  --tablet-search-bar-width:  561px;
+
+  /* Colors */
+  --app-bg-color:           #F5F5F5; /* Background color of the entire application. */
+  --app-body-color:         #000000; /* Color of body text. */
+  --app-title-color:        #A20010; /* Color of the "itwêwina" title. */
+  --bad-outcome-bg-color:   #E3A7AF; /* A light red (not quite pink) background */
+  --bad-outcome-color:      #1A090D; /* A dark red text colour */
+  --bad-outcome-shadow:     rgba(206, 77, 77, 0.2);
+  --box-bg-color:           #FFFDFD; /* Background color of "boxes" */
+  --cite-text-color:        #182457; /* Color of dictionary citation element. */
+  --cite-text-popup-color:  var(--cite-text-color); /* Color of dictionary citation element. */
+  --embossed-highlight:     #e0e0e0;
+  --footer-bg-color:        #832020;
+  --footer-text-color:      #FFFFFF;
+  --footer-link-hover-color: #FFC0C0;
+  --header-stripe-color:    var(--app-title-color); /* Color of the "stripe" to the left of the title. */
+  --link-action-color:      #A568DB; /* A link that implies an immediate action. */
+  --link-active-color:      #0E6790; /* Currently active link. */
+  /* Triad based on #95211E */
+  --link-color:             #1685DE; /* Regular links */
+  --link-hover-color:       #95211E; /* Hover over a link. */
+  --link-visited-color:     #941686; /* Visited link */
+  --menu-selected-color:    var(--box-bg-color);
+  --menu-selected-bg-color: #0072C8;
+  --menu-hover-bg-color:    #DEE4F9; /* A dark background to contrast highlighted menu items. */
+  --menu-hover-color:       inherit;
+  --paradigm-border-color:  #828A95; /* Color of the paradigm border and button. */
+  --paradigm-button-color-alt:  #5A6FCC; /* ... when hovered or active */
+  --paradigm-button-color:  #283C95; /* Color of the paradigm "show more" button. */
+  --placeholder-text-color: #949494; /* The placeholder should be faint, but visible. */
+  --play-button-color:      #286995; /* The play button in a head (definition-title). */
+  --popup-bg-color:         #ffffff; /* Color of popup/tooltip background. */
+  --popup-color:            #000000; /* Color of popup/tooltip text. */
+  --prose-heading-color:    #A20010;
+  --prose-title-color:      #6D000B; /* For BIG section titles. */
+  --search-border-color:    #979797; /* Color of the search bar's (unfocused) border */
+  --search-focus-color:     #1C9DFE; /* Color of the search bar when focused */
+  --soft-hr-color:          #CCCCCC; /* Make the <hr> less harsh */
+  --deemphasized-text-color:#444444; /* Text that should be de-emphasized. */
+
+  /* special way of changing svg fill color when svg is embedded in <img> */
+  /* to change the color. Generate a "filter" attribute with the desired color code*/
+  /* https://codepen.io/sosuke/pen/Pjoqqp */
+  --blue-filter: invert(20%) sepia(20%) saturate(7344%) hue-rotate(220deg) brightness(90%) contrast(93%);
+
+  /* Font sizes */
+  --branding-font-size:             1.50em; /* the title, e.g., "itwêwina" */
+  --branding-subtitle-font-size:    0.75em; /* the subtitle, e.g., "Plains Cree Dictionary" */
+  --cite-text-font-size:            0.50em;
+  --definition-title-size:          2.00em;
+  --elaboration-size:               1.25em;
+  --footer-font-size:               0.85em;
+  --preverb-breakdown-size:         1.50em;
+  --prominent-font-size:            1.50em; /* For text that should be prominent! */
+  --prose-heading-font-size:        1.25em;
+  --prose-section-title-font-size:  1.33em;
+  --root-font-size:                 1.00em;
+  --search-result-font-size:        1.33em;
+  --toggle-box-large-font-size:     1.14em;
+  --tooltip-icon-size:              1.75rem; /* size of the ℹ️  button or 🔊 button */
+  /* Font families */
+  --syllabics-fonts:
+    Gadugi,                             /* Windows 10 */
+    'Aboriginal Sans',                  /* From languagegeek.com */
+    'Noto Sans Canadian Aboriginal';    /* Fallback: ChromeOS/Chomebook and other platforms. */
+  --body-font-family: 'Open Sans', var(--syllabics-fonts), sans-serif;
+  --heading-font-family: var(--body-font-family);
+  /* Font weights */
+  --body-font-weight:           400; /* Make sure these weights line up with the Google fonts! */
+  --link-font-weight:           700; /* TODO: I don't like this. 700 is too bold. */
+  --strong-font-weight:         700;
+
+  /* Border radius */
+  --search-input-border-radius: 15px;
+  --border-radius:               4px;
+
+  /* Breakpoints */
+  --min-phone-width:    320px;  /* e.g., iPhone SE */
+  --min-tablet-width:   768px;  /* e.g., iPad Mini */
+  --min-desktop-width: 1366px;  /* e.g., 13" laptop */
+
+  /* Other constants */
+  --stripe-effect-width: 20px;
+  --stripe-effect-quarter-sqrt: 7.0710678119px; /* width of a single stripe in the gradient is ¼√(width) */
+}
+
+/* adapted from https://popper.js.org/docs/v2/tutorial/ */
+
+/*
+ * How to use: Create `icon` element and `popup` element in html
+ * `popup` needs to be the direct next sibling of `icon` and has class tooltip
+ *
+ * .tooltip class in this file decides how the popup looks like
+ *
+ * tooltip.js attaches all the event handlers
+ */
+
+.tooltip {
+  display: none;
+  position: absolute;
+
+  padding: 13px;
+  border-radius: 4px;
+  border: solid 1px rgba(209, 209, 209, 0.33);
+
+  background: var(--popup-bg-color);
+  color: var(--popup-color);
+
+  font-size: 1rem;
+  font-weight: var(--body-font-weight);
+
+  box-shadow: 4px 4px 8px 2px rgba(145, 145, 145, 0.23);
+  z-index: 1;
+}
+
+.tooltip[data-show] {
+  display: inline-block;
+}
+
+.tooltip__arrow,
+.tooltip__arrow::before {
+  position: absolute;
+
+  width: 8px;
+  height: 8px;
+
+  z-index: -1;
+}
+
+.tooltip__arrow::before {
+  content: '';
+
+  border: solid 1px rgba(209, 209, 209, 0.33);
+
+  transform: rotate(45deg);
+  background: var(--popup-bg-color);
+}
+
+.tooltip[data-popper-placement^='top'] > .tooltip__arrow {
+  bottom: -4px;
+}
+
+.tooltip[data-popper-placement^='top'] > .tooltip__arrow::before {
+  border-top: 0;
+  border-left: 0;
+}
+
+.tooltip[data-popper-placement^='bottom'] > .tooltip__arrow {
+  top: -4px;
+}
+
+.tooltip[data-popper-placement^='bottom'] > .tooltip__arrow::before {
+  border-right: 0;
+  border-bottom: 0;
+}
+
+.tooltip[data-popper-placement^='left'] > .tooltip__arrow {
+  right: -4px;
+}
+
+.tooltip[data-popper-placement^='left'] > .tooltip__arrow::before {
+  border-top: 0;
+  border-right: 0;
+}
+
+.tooltip[data-popper-placement^='right'] > .tooltip__arrow {
+  left: -4px;
+}
+
+.tooltip[data-popper-placement^='right'] > .tooltip__arrow::before {
+  border-bottom: 0;
+  border-left: 0;
+}
+
+/* Links to features we have not implemented yet ¯\_(ツ)_/¯ */
+
+.feature-unavailable {
+  display: none;
+}
+
+/**
+ * ELEMENT sr-only
+ *
+ * Let something be part of the accessiblity tree without showing it to
+ * screens and print.
+ */
+
+.sr-only {
+  position: absolute;
+
+  width: 1px;
+  height: 1px;
+
+  overflow: hidden;
+  clip: rect(1px, 1px, 1px, 1px);
+  -webkit-clip-path: inset(1px 1px 1px 1px);
+  clip-path: inset(1px 1px 1px 1px);
+  pointer-events: none;
+}
+
+/**
+ * Makes a <button> look like a link.
+ */
+
+.unbutton {
+  border: 0;
+  padding: 0;
+
+  text-align: inherit;
+
+  color: inherit;
+  background: transparent;
+
+  cursor: pointer;
+}
+
+.link {
+  text-decoration: underline;
+}
+
+/**
+ * Place this on a <ul> or <ol> to get rid of the bullets and weird
+ * indentation.
+ */
+
+.unbullet {
+  margin: 0;
+  padding: 0;
+
+  list-style: none;
+}
+
+/**
+ * Fill the width of the container.
+ */
+
+.fill-width {
+  width: 100%;
+}
+
+/**
+ * .close-on-click-away
+ *
+ * Creates an area behind <details> pop-up that, when clicked/touched, will
+ * inadvertently toggle the menu away.
+ */
+
+.close-on-click-away[open] > summary::before {
+  content: " ";
+
+  /* Position: fills FULL AREA of the screen */
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  /* Display & Box model */
+  display: block;
+
+  /* Color */
+  background: transparent;
+
+  /* Other */
+  cursor: default;
+}
+
+/**
+ * Don't use this class.
+ *
+ * Instead, find a better way to wrap content in whatever this class is
+ * applied to :/
+ */
+
+.HACK-overflow-x-scroll {
+  padding: 0;
+  margin: 0;
+  border: 0;
+
+  overflow-x: scroll;
+}
+
+/**
+ * ELEMENT title
+ *
+ * The title that describes the setting.
+ */
+
+.setting__title {
+  margin-block-end: var(--small-pad);
+}
+
+/**
+ * ELEMENT note
+ *
+ * The note that provides a little description about what the setting affects.
+ */
+
+.setting__note {
+  margin-block-start: var(--small-pad);
+
+  font-size: smaller;
+
+  color: var(--deemphasized-text-color);
+}
+
+/**
+ * BLOCK option
+ *
+ * A single option for a setting.
+ */
+
+.option {
+  margin-inline: 1em;
+}
+
+.option__label {
+  display: flex;
+  flex-flow: row no-wrap;
+
+  font-weight: var(--strong-font-weight);
+
+  cursor: pointer;
+}
+
+.option__control {
+  flex: 0 auto;
+  width: var(--option-control-width);
+
+  align-self: center;
+}
+
+.option__label-text {
+  flex: 1;
+}
+
+.option__description {
+  display: block;
+
+  margin-block-start: 0.5em;
+  margin-inline-start: var(--option-control-width);
+
+  font-size: smaller;
+
+  color: var(--deemphasized-text-color);
+}
+
+.action-bar {
+  display: flex;
+  flex-direction: row;
+
+  margin-block-start: 2rem;
+
+  justify-content: flex-end;
+}
+
+/**
+ * BLOCK toast
+ *
+ * A minimally intrusive notification pop-up that indicates some state change.
+ *
+ * Expected to be a <dialog> element.
+ */
+
+.toast {
+  --toast-height: 4em;
+  --position-away-from-screen: 2rem;
+
+  position: fixed;
+
+  left: var(--position-away-from-screen);
+  right: var(--position-away-from-screen);
+  bottom: var(--position-away-from-screen);
+  width: calc(100vw - 2 * var(--position-away-from-screen));
+  max-height: var(--toast-height);
+  margin: 0;
+  padding: 1rem;
+
+  border: 0;
+  border-radius: 4px;
+
+  color: white;
+  background-color: black;
+  box-shadow: 1px 1px 16px rgba(0, 0, 0, 0.8);
+
+  transition-property: opacity, transform;
+  transition-duration: 200ms;
+  transition-timing-function: ease-in-out;
+}
+
+/**
+ * MODIFIER off-screen
+ *
+ * Places the toast off-screen.
+ */
+
+.toast--off-screen {
+  opacity: 0;
+  transform: translateY(calc(var(--position-away-from-screen) + var(--toast-height)));
+}
+
+/**
+ * MODIFIER success
+ *
+ * The message indicates that something succeeded.
+ */
+
+.toast--success {
+  background-color: #178A4D;
+}
+
+/**
+ * MODIFIER failure
+ *
+ * The message indicates that something failed.
+ */
+
+.toast--failure {
+  background-color: #C42411;
+}
+
+/**
+ * ELEMENT message
+ *
+ * The actual text shown as part of the toast.
+ */
+
+.toast__message {
+  margin-block: 0;
+  text-align: start;
+}
+
+/**
+ * Preliminary styles for the application.
+ *
+ * This uses the BEM methodology:
+ * http://getbem.com/naming/
+ */
+
+/**
+ * When selecting text on the page, use the branding color as the background,
+ * to make selecting things on this page unique!
+ */
+
+::selection {
+  color: #FFF;
+  background-color: var(--app-title-color);
+}
+
+/* See: https://css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice/ */
+
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+/**
+ * Use this template to make your own BEM rule:
+ */
+
+.block, .block__element, .block--modifier {
+  /* Positioning */
+  /* Display & Box Model */
+  /* Color */
+  /* Text */
+  /* Other */
+}
+
+/*********************************** APP ***********************************/
+
+/**
+ * Set up the root font for the entire page.
+ */
+
+:root {
+  font-style: normal;
+  font-weight: var(--body-font-weight);
+  font-size: var(--root-font-size);
+  line-height: normal;
+  font-family: var(--body-font-family);
+}
+
+/**
+ * BLOCK app
+ *
+ * A block containing the ENTIRE application.
+ */
+
+.app {
+  /* Display & Box Model */
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+
+  /* Color */
+  color: var(--app-body-color);
+  background: var(--app-bg-color);
+}
+
+/**
+ * Link styles for the application.
+ */
+
+.app a { font-weight: var(--link-font-weight) }
+
+.app a:link { color: var(--link-color) }
+
+.app a:visited { color: var(--link-visited-color) }
+
+.app a:hover { color: var(--link-hover-color) }
+
+.app a:active { color: var(--link-active-color) }
+
+/**
+ * ELEMENT app__header
+ *
+ * The header for the entire application.
+ */
+
+.app__header {
+  /* Display & Box Model */
+  width: 100vw;
+  margin: 0 0 .75rem;
+}
+
+/**
+ * ELEMENT app__content
+ *
+ * The element containing the main content on display in the application.
+ * The contents of this element are expected to change as the user interacts
+ * with the application.
+ */
+
+.app__content {
+  flex: 1;
+  margin-top: var(--medium-gap);
+}
+
+/**
+ * ELEMENT app__footer
+ *
+ * The footer for the entire application.
+ */
+
+.app__footer {
+  width: 100vw;
+  margin: 1rem 0 0;
+}
+
+/**
+ * ELEMENT app__pane
+ *
+ * Any division of the application that creates a "pane".
+ *
+ * The header and footer are exceptions to this.
+ */
+
+.app__pane {
+  padding: 0 var(--page-gutter);
+}
+
+/* On larger screens, change to a margin: auto (to horizontally
+ * center)/max-width scheme. */
+
+@media (min-width: 768px) {
+  .app__pane {
+    padding: 0 0;
+    margin: auto;
+    width: var(--tablet-search-bar-width);
+  }
+}
+
+@media (min-width: 960px) {
+  .app__pane {
+    width: var(--desktop-search-bar-width);
+  }
+}
+
+/********************************* TOP BAR *********************************/
+
+/**
+ * BLOCK top-bar
+ *
+ * A bar that runs across the top of the application.
+ */
+
+.top-bar {
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto;
+  grid-template-areas:
+   "logo nav"
+   "search search";
+
+  padding: 1rem var(--page-gutter) 0;
+}
+
+/**
+ * ELEMENT top-bar__logo
+ *
+ * Where the title (itwêwina -- Plains Cree Dictionary) goes.
+ */
+
+.top-bar__logo {
+  grid-area: logo;
+}
+
+/**
+ * ELEMENT top-bar__search
+ *
+ * Where the search bar.
+ */
+
+.top-bar__search {
+  grid-area: search;
+}
+
+/**
+ * ELEMENT top-bar__nav
+ *
+ * Where the navigation (e.g., language selector) goes.
+ */
+
+.top-bar__nav {
+  grid-area: nav;
+
+  text-align: right; /* So that it's flush with the right side of the page. */
+
+  padding-right: var(--small-pad);
+}
+
+/**
+ * The top-bar collapses both the logo, the language picker, AND the search
+ * bar all into one long line.
+ */
+
+@media (min-width: 960px) {
+  .top-bar {
+    grid-template-columns: 200px auto 200px;
+    grid-template-areas: "logo search nav";
+  }
+}
+
+/********************************* BRANDING *********************************/
+
+/**
+ * BLOCK branding
+ *
+ * Displays the title and subtitle/tagline of the application.
+ */
+
+/**
+ * ELEMENT
+ *
+ * A heading that makes up the branding.
+ */
+
+.branding__heading {
+  margin: 0 auto;
+}
+
+/* Make the links in the heading look consistent, regardless of its state: */
+
+.branding a:link,
+.branding a:hover,
+.branding a:hover,
+.branding a:visited,
+.branding a:active {
+  color: inherit;
+  text-decoration: none;
+}
+
+.branding__logo {
+  display: flex;
+  flex-direction: row;
+}
+
+/**
+ * ELEMENT branding__image
+ *
+ * The teepee SVG image.
+ */
+
+.branding__image {
+  max-height: 3rem;
+  margin-right: 1rem;
+}
+
+/**
+ * ELEMENT branding__title
+ *
+ * Contains the primary title of the application.
+ * e.g., "itwêwina"
+ */
+
+.branding__title {
+  /* Color */
+  color: var(--app-title-color);
+
+  /* Text */
+  font-weight: 700;
+  font-size: var(--branding-font-size);
+  line-height: normal;
+  font-family: var(--heading-font-family);
+}
+
+/**
+ * ELEMENT branding__subtitle
+ *
+ * Contains the subtitle or tagline of the application.
+ */
+
+.branding__subtitle {
+  width: max-content;
+
+  /* Text */
+  font-weight: var(--body-font-weight);
+  font-size: var(--branding-subtitle-font-size);;
+}
+
+/********************************** SEARCH **********************************/
+
+/**
+ * BLOCK search
+ *
+ * The main search panel.
+ */
+
+/**
+ * BLOCK search__search-bar
+ *
+ * Contains the search bar.
+ */
+
+.search__search-bar {
+  margin: var(--gap) auto;
+  max-width: calc(100vw - 2 * var(--page-gutter));
+}
+
+@media (min-width: 768px) {
+  .search__search-bar {
+    max-width: var(--tablet-search-bar-width);
+  }
+}
+
+/**
+ * The top-bar collapses both the logo, the language picker, AND the search
+ * bar all into one long line.
+ */
+
+@media (min-width: 960px) {
+  .search__search-bar {
+    max-width: var(--desktop-search-bar-width);
+  }
+}
+
+/**
+ * ELEMENT advanced search.
+ *
+ * Shows options for advance search.
+ */
+
+.search__advanced  {
+  /* Text */
+  text-align: right;
+}
+
+/**
+ * BLOCK search-bar
+ *
+ * Contains the input and controls to input a search query.
+ */
+
+.search-bar {
+  /* Positioning */
+  position: relative;
+  /* Display & Box Model */
+  width: 100%;
+  /* Text */
+  font-size: var(--prominent-font-size);
+}
+
+/**
+ * ELEMENT search-bar__label
+ *
+ * The <label> that WRAPS the <input> and label text proper.
+ */
+
+.search-bar__label {
+  /* Display & Box Model */
+  display: inline-block;
+  width: 100%;
+}
+
+/**
+ * ELEMENT search-bar__input
+ *
+ * The actual input element that the user types the query into.
+ */
+
+.search-bar__input {
+  /* Display & Box Model */
+  padding: var(--small-pad) 1rem;
+  padding-right: 1rem;
+  border: solid 1px var(--search-border-color);
+  width: 100%;
+
+  /* Text */
+  text-overflow: ellipsis;
+  line-height: 1.25; /* anything smaller clips descenders (e.g. 'gjp') in Chrome :/ */
+
+  /* Other */
+  border-radius: var(--search-input-border-radius);
+  /* Has a nice animation when the search bar receives focus. */
+  box-shadow: 0 0 0 transparent;
+  transition: box-shadow .125s;
+}
+
+/**
+ * How to display the placeholder when text has yet to be entered in the
+ * search input:
+ */
+
+.search-bar__input:placeholder-shown {
+  /* Color */
+  color: var(--placeholder-text-color);
+
+  /* Text */
+  font-style: italic;
+  font-weight: var(--body-font-weight);
+}
+
+/**
+ * Make it abundantly clear that the search input has focus.
+ */
+
+.search-bar__input:focus {
+  box-shadow: 0 0 0 1px white,
+              0 0 0 var(--search-focus-outline-size) var(--search-focus-color);
+}
+
+/**
+ * ELEMENT search-bar__button
+ *
+ * The button to press to execute the search.
+ */
+
+.search-bar__button {
+  position: absolute;
+  right: 0;
+
+  display: inline-block;
+  height: 100%;
+  width: 2em;
+  border: 0;
+
+  background: transparent;
+
+  cursor: pointer;
+}
+
+.search-bar__button > img {
+  margin-top: .125em;
+  height: 1.125em;
+}
+
+/**
+ * Make the search icon look unusable when the user has not typed any query.
+ */
+
+.search-bar:invalid .search-bar__button {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/****************************** SEARCH RESULTS ******************************/
+
+.search-results__results {
+  padding: 0;
+
+  list-style: none;
+}
+
+.search-results__result {
+  margin-top: 19px;
+}
+
+.search-results__result:first-of-type {
+  margin-top: 0;
+}
+
+/******************************** DEFINITION ********************************/
+
+.definition-title {
+  font-size: var(--definition-title-size);
+  margin: 0;
+}
+
+.definition-title__title {
+  display: inline;
+  font-size: inherit;
+}
+
+.definition-title__inflectional-class {
+  font-style: italic;
+  font-size: 0.66em;
+}
+
+.definition__matched-head {
+  /* Text */
+  font-style: normal;
+  font-weight: var(--strong-font-weight);
+}
+
+.definition__icons {
+  display: inline;
+}
+
+.definition-title__tooltip-text{
+  font-size: 0.5em;
+  font-weight: normal;
+}
+
+.definition-title__tooltip-icon{
+  display: inline-block;
+}
+
+.definition-title__tooltip-icon > img {
+  width: var(--tooltip-icon-size);
+  filter: var(--blue-filter); /* blue color */
+
+  vertical-align: middle;
+}
+
+.definition-title__tooltip-icon:focus,
+.definition-title__tooltip-icon:focus-within {
+  outline: 3px solid var(--search-focus-color);
+}
+
+.definition__elaboration {
+  margin: var(--small-gap) 0 0;
+
+  font-size: var(--elaboration-size);
+}
+
+.definition__reference-to-lemma {
+  font-style: italic;
+}
+
+/**
+ * The actual SVG for the 🔊 icon and the speaker playback/external link buttons
+ */
+
+.definition-title__play-icon,
+.speaker-playback-action-button {
+  width: 100%;
+  height: var(--tooltip-icon-size);
+
+  overflow: hidden;
+}
+
+.elaboration__row {
+  /* There's normally TOO MUCH MARGIN for these, so get rid of it: */
+  margin-block: 0;
+}
+
+.elaboration__ic-row {
+  /* make the font a lil' lighter */
+  color: var(--deemphasized-text-color);
+}
+
+/**
+ * ELEMENT play-button
+ *
+ * Should be a button that looks like a link.
+ */
+
+.definition-title__play-button,
+.multiple-recordings__action-button {
+  /* Reset the button appearance: */
+  width: 1em;
+  padding: 0;
+  border: 0;
+  margin: 0;
+
+  /* Inline properties: */
+  vertical-align: middle;
+
+  /* Color: */
+  color: var(--play-button-color);
+  background: transparent;
+
+  /* Make it look like a link. */
+  cursor: pointer;
+
+  /* Subtle transition when hovering. */
+  transition: 0.1s filter;
+  filter: brightness(100%);
+}
+
+.definition-title__play-button:hover {
+  /* Make the button lighter when hovered. */
+  filter: brightness(150%);
+}
+
+.definition__recordings {
+  font-style: italic;
+}
+
+.definition__recordings--not-loaded {
+  display: none;
+}
+
+.recordings-list__item {
+  list-style: upper-roman;
+  margin-bottom: var(--small-pad);
+}
+
+.recordings-list__item:hover {
+  cursor: pointer;
+}
+
+/**
+ * ELEMENT speaker-play-button
+ *
+ * Makes the SVG of the speaker-playback look like a button.
+ */
+
+.multiple-recordings__action-button {
+  margin-left: 0.5em;
+}
+
+a.multiple-recordings__action-button {
+  font-weight: var(--body-font-weight);
+  font-style: italic;
+}
+
+/**
+ * BLOCK wordclass
+ */
+
+.wordclass {
+  /* Text */
+  font-style: normal;
+  font-weight: var(--body-font-weight);
+}
+
+/**
+ * MODIFIER described
+ *
+ * This wordclass is described by a tooltip
+ */
+
+.wordclass--described {
+  text-decoration: underline dotted;
+
+  cursor: help;
+}
+
+/**
+ * ELEMENT inflectional-class
+ *
+ * The fully-written inflectional class.
+ */
+
+.wordclass__inflectional-class {
+  font-size: smaller;
+}
+
+/*************************** LINGUISTIC BREAKDOWN ***************************/
+
+/**
+ * BLOCK linguistic-breakdown
+ *
+ * Contains linguistic information about a wordform.
+ */
+
+/**
+ * ELEMENT linguistic-breakdown__stem
+ *
+ * The stem of the word that is then inflected.
+ */
+
+.linguistic-breakdown__stem {
+  margin: 0;
+}
+
+/**
+ * ELEMENT list
+ *
+ * The list that describes each morphosyntactic feature (tag).
+ */
+
+.linguistic-breakdown__list {
+  padding-left: 3em;
+
+  /* Create a hanging indent: */
+  text-indent: -1em;
+
+  list-style: none;
+}
+
+/**
+ * BLOCK cleave-inflection-from-lemma
+ *
+ * Separates the info for the matched wordform/inflection
+ * from the defined lemma.
+ *
+ * It's an <hr>!
+ */
+
+.cleave-inflection-from-lemma {
+  margin-top: var(--gap);
+  color: var(--soft-hr-color);
+}
+
+.meanings {
+  /* Display & Box model */
+  padding: 0;
+  margin-top: 1rem; /* give it a little breathing room. */
+
+  /* Text */
+  font-size: var(--prominent-font-size);
+
+  /* Other */
+  list-style-position: inside;
+}
+
+.meanings--search-result {
+  /* Display & Box model */
+  padding: 0 .5em;
+
+  /* Text */
+  font-size: var(--search-result-font-size);
+}
+
+.preverb-breakdown {
+  padding: 0;
+  list-style: none;
+  font-size: var(--preverb-breakdown-size);
+}
+
+.preverb-breakdown__tooltip-icon {
+  display: inline;
+  position: relative;
+}
+
+.preverb-breakdown__tooltip-icon > img {
+  width: var(--tooltip-icon-size);
+
+  /* vertically center the question mark*/
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  /* end vertical centering */
+
+  left: 0.2em;  /* space out the question mark */
+  filter: var(--blue-filter); /* blue color */
+}
+
+/**
+ * Occurs inside a tooltip. Get rid of its extra margin!
+ */
+
+.preverb-breakdown__preverb-definition {
+  margin: 0;
+}
+
+.preverb-breakdown__preverb-definition-text {
+  white-space: pre-line;
+}
+
+/********************************* PARADIGM *********************************/
+
+.paradigm {
+  /* Display & Box model */
+  border: solid 1px var(--paradigm-border-color);
+
+  /* Color */
+  background: var(--box-bg-color);
+
+  /* Other */
+  border-radius: var(--border-radius);
+}
+
+.paradigm__table {
+  /* Display & Box model */
+  margin: 0 auto 15px;
+  max-width: calc(100% - 2 * 22px); /* Have an 'inner margin' of 22px; */
+
+  /* Text */
+  line-height: 1.5;
+
+  /* Other */
+  border-spacing: 2em 0.5rem;
+}
+
+.paradigm__size-toggle-button {
+  /* Display & Box model */
+  display: block;
+  width: 100%;
+  border: 0;
+  padding-top: var(--small-pad);
+  padding-bottom: var(--border-radius);
+
+  /* Color */
+  color: #FFF;
+  background-color: var(--paradigm-button-color);
+
+  /* Text */
+  text-align: center;
+  font-weight: inherit;
+  line-height: 1.5;
+
+  /* Hack to make the rounded border look like it belongs to the parent. If we
+   * don't make the radius a bit tighter, this border protrudes in a weird
+   * way. */
+  --tighter-br: calc(var(--border-radius) - 2px);
+  border-radius: 0 0 var(--tighter-br) var(--tighter-br);
+
+  cursor: pointer;
+}
+
+.paradigm__size-toggle-button:hover,
+.paradigm__size-toggle-button:focus {
+  background-color: var(--paradigm-button-color-alt);
+}
+
+.paradigm__size-toggle-button--loading {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    var(--paradigm-button-color),
+    var(--paradigm-button-color) var(--stripe-effect-quarter-sqrt),
+    var(--paradigm-button-color-alt) var(--stripe-effect-quarter-sqrt),
+    var(--paradigm-button-color-alt) calc(2 * var(--stripe-effect-quarter-sqrt))
+  );
+  background-size: var(--stripe-effect-width) var(--stripe-effect-width);;
+
+  animation: paradigm-button-slider 0.5s linear infinite;
+}
+
+@keyframes paradigm-button-slider {
+    0% { background-position-x: 0 }
+    100% { background-position-x: var(--stripe-effect-width); }
+}
+
+.paradigm__size-toggle-plus-minus {
+  font-weight: var(--strong-font-weight);
+}
+
+.paradigm__panel-description {
+  text-align: left;
+}
+
+/* TODO: remove name "paradigm-title" when only pane-based layouts are used */
+
+.paradigm-title,
+.paradigm-header {
+  text-align: center;
+  font-style: italic;
+  font-weight: var(--body-font-weight);
+}
+
+.paradigm-label {
+  text-align: left;
+  font-weight: var(--body-font-weight);
+}
+
+.paradigm-label--row {
+  font-style: italic;
+}
+
+.paradigm-label--col {
+  font-weight: bold;
+
+  /* Sometimes the label is too dang wide, so just hide it. */
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+}
+
+.paradigm-cell {
+  font-weight: var(--body-font-weight);
+}
+
+.paradigm-cell--observed{
+  font-weight: var(--strong-font-weight);
+}
+
+.paradigm-cell--no-analysis{
+  background-color: lightgray;
+}
+
+.paradigm-label--row, .paradigm-cell {
+  vertical-align: top; /* When a label applies to multiple wordforms */
+}
+
+/********************************** PROSE **********************************/
+
+/**
+ * BLOCK prose
+ *
+ * A big hunk of readable text.
+ */
+
+.prose__heading, .prose__section-title {
+  font-weight: var(--strong-font-weight);
+  font-family: var(--body-font-family);
+}
+
+.prose__heading {
+  margin: var(--gap) 0 0;
+
+  font-size: var(--prose-heading-font-size);
+
+  color: var(--prose-heading-color);
+}
+
+.prose__section-title {
+  /* Reset margin. */
+  margin: 0;
+
+  font-size: var(--prose-section-title-font-size);
+
+  color: var(--prose-title-color);
+}
+
+/* this is anti-BEM, but like, it's body text ¯\_(ツ)_/¯ */
+
+.prose p {
+  margin-top: var(--small-pad);
+  margin-bottom: 0;
+}
+
+/* also anti-BEM ¯\_(ツ)_/¯ */
+
+.prose p [lang],
+.prose__heading:not(.no-italics) [lang] {
+  font-style: italic;
+}
+
+/**************************** APP FOOTER ****************************/
+
+/**
+ * BLOCK footer
+ *
+ * The footer at the bottom of the app.
+ */
+
+.footer {
+  /* Display & Box Model */
+  display: grid;
+  padding: 1rem var(--page-gutter) var(--page-gutter);
+
+  /* Font */
+  font-size: var(--footer-font-size);
+
+  /* Color */
+  color: var(--footer-text-color);
+  background-image: url(img/footer-1366w.jpg);
+  background-position: top center;
+  background-color: var(--footer-bg-color);
+  box-shadow: inset 0 4px 4px rgba(0, 0, 0, 0.1);
+
+  /* Grid */
+  grid-template-columns: 1fr;
+  grid-template-rows: auto;
+  grid-template-areas:
+   "basic"
+   "advanced"
+   "copyright";
+}
+
+.footer a:link,
+.footer a:visited,
+.footer .link:link,
+.footer .link:visited {
+  color: var(--footer-text-color);
+}
+
+.footer a:hover,
+.footer .link:hover {
+  color: var(--footer-link-hover-color);
+}
+
+.footer__copyright {
+  margin-top: 1rem;
+
+  grid-area: copyright;
+}
+
+.footer__basic-links {
+  grid-area: basic;
+}
+
+.footer__advanced-links {
+  grid-area: advanced;
+}
+
+.footer__links {
+  margin: 0;
+  padding: 0;
+
+  /* Put a lot of spacing in between links on mobile, to make them easier to
+   * press. */
+  line-height: 2;
+
+  list-style: none;
+}
+
+.footer__link:first-of-type {
+  margin-left: 0;
+}
+
+.footer__link {
+  font-weight: var(--strong-font-weight);
+}
+
+.footer__option-header {
+  font-size: inherit;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+/**
+ * When the screen gets wide enough, we can display the three footer sections
+ * horizontally.
+ */
+
+@media (min-width: 768px) {
+  .footer {
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-areas: "basic copyright advanced";
+  }
+
+  .footer__basic-links {
+    /* align against the viewport border */
+    text-align: start;
+  }
+
+  .footer__links {
+    /* Assume that on wider displays, users do not have to touch the button
+     * (can use a mouse or keyboard). */
+    line-height: normal;
+  }
+
+  .footer__copyright {
+    margin: 0;
+
+    text-align: center;
+
+    /* Place at BOTTOM of the bar */
+    align-self: flex-end;
+  }
+
+  .footer__advanced-links {
+    /* align against the viewport border */
+    text-align: end;
+  }
+}
+
+/**
+ * BLOCK copyright
+ *
+ * One line of copyright text.
+ */
+
+.copyright__line {
+  margin: 0;
+  margin-bottom: var(--gap);
+}
+
+.copyright__line:last-of-type {
+  /* Remove superfluous margin for the last line of copyright. */
+  margin-bottom: 0;
+}
+
+/**
+ * BLOCK partner-logos
+ *
+ * Contains logos, primarily in the footer.
+ */
+
+.partner-logos {
+  /* Display & Box Model */
+  color: var(--prose-title-color);
+  display: grid;
+  width: 100%;
+  margin-top: var(--small-pad);
+
+  /* Grid */
+  grid-template-columns: 33% 33% 33%;
+  grid-template-rows: repeat(3, 1fr);
+  justify-items: stretch;
+  align-items: center;
+}
+
+/**
+ * ELEMENT partner-logos__logo
+ *
+ * One particular logo.
+ */
+
+.partner-logos__logo {
+  /* Display & Box Model */
+  margin: var(--small-pad) .5rem;
+
+  /* Text */
+  text-align: center;
+}
+
+/**
+ * Modifier for wide logos (e.g., NRC/SSHRC)
+ */
+
+.partner-logos__logo--full-width {
+  grid-column: 1 / span 3;
+}
+
+.partner-logos__logo:hover {
+  background-color: rgba(50% 50% 50% / 50%);
+}
+
+.partner-logos__logo > img {
+  max-width: 100%;
+  max-height: 8rem;
+  vertical-align: middle;
+}
+
+/****************************** UTILITY CLASSES *****************************/
+
+.toggle-box__toggle {
+  /* Display & Box Model */
+  display: block;
+
+  /* Text */
+  font-weight: var(--strong-font-weight);
+  text-decoration: underline;
+
+  /* Color */
+  color: #000;
+
+  /* Other */
+  cursor: pointer;
+  overflow: hidden; /* Don't affect the layout if the toggle icon overflows its box. */
+}
+
+.toggle-box__toggle::-webkit-details-marker {
+  display: none;
+}
+
+.toggle-box__toggle::after {
+  /* The little toggle arrow */
+  content: url("img/fa/chevron-circle-down.svg");
+
+  display: inline-block;
+  width: 0.75rem;
+  margin-left: var(--small-pad);
+
+  vertical-align: middle;
+
+  transition: transform .25s;
+  /* make the little arrow appear to the point right */
+  transform: rotate(-90deg);
+}
+
+.toggle-box[open] > .toggle-box__toggle::after {
+  /* make the little arrow appear to point down */
+  transform: rotate(0);
+}
+
+/**
+ * Makes the toggle look like a link.
+ */
+
+.toggle-box--link-like > .toggle-box__toggle {
+  color: var(--link-action-color);
+}
+
+/**
+ * MODIFIER large
+ *
+ * A slightly larger toggle-box.
+ */
+
+.toggle-box--large > .toggle-box__toggle {
+  font-size: var(--toggle-box-large-font-size);
+}
+
+/**
+ * MODIFIER with-menu
+ *
+ * Makes it so that the menu can be absolutely positioned.
+ */
+
+.toggle-box--with-menu {
+  position: relative;
+}
+
+.toggle-box__menu {
+  position: absolute;
+  right: 0;
+  z-index: 100;
+}
+
+/*********************************** MENU ***********************************/
+
+/* TODO: Steal from GitHub's settings page for making an accessible menu! */
+
+/* e.g., https://github.com/eddieantonio/proto-itwewina/settings */
+
+/* See also: https://www.w3.org/TR/wai-aria-practices/examples/menu-button/menu-button-links.html */
+
+.menu {
+  min-width: 24ch;
+  border: solid 1px rgba(209, 209, 209, 0.33);
+
+  font-size: 1.2em;
+  text-align: left;
+
+  background-color: var(--box-bg-color);
+  box-shadow: 4px 4px 8px 0 rgba(74, 74, 74, 0.24);
+
+  border-radius: var(--border-radius);
+}
+
+.menu__header {
+  padding: .5rem;
+  margin: .5rem 0 0;
+
+  font-size: 100%;
+  font-weight: var(--strong-font-weight);
+}
+
+.menu__choices {
+  list-style: none;
+}
+
+.menu__category, .menu__choices {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.menu-choice__label {
+  display: block;
+  padding: 1rem;
+}
+
+.menu-choice:hover {
+  color: var(--menu-hover-color);
+  background-color: var(--menu-hover-bg-color);
+}
+
+a.menu-choice__label:link,
+a.menu-choice__label:visited,
+a.menu-choice__label:hover,
+a.menu-choice__label:active {
+  color: inherit;
+  text-decoration: none;
+}
+
+.menu-choice--selected {
+  font-weight: var(--strong-font-weight);
+
+  color: var(--menu-selected-color);
+  background-color: var(--menu-selected-bg-color);
+}
+
+.menu__separator {
+  height: 1px;
+  margin: .5rem .5em;
+  border: 0;
+
+  /* A horizontal gradient that is darkest in the middle: */
+  background-image: linear-gradient(to right, rgb(0 0 0 / 0), var(--soft-hr-color), rgb(0 0 0 /0));
+}
+
+/********************************* MENU BAR *********************************/
+
+/**
+ * BLOCK: menu-bar
+ *
+ * Display a whole bunch of options in a horizontal menu bar.
+ */
+
+.menu-bar {
+  display: flex;
+  flex-direction: row;
+}
+
+/**
+ * ELEMENT
+ *
+ * One option in the menu bar.
+ */
+
+.menu-bar__item {
+  width: max-content;
+  flex: 0 auto;
+}
+
+/**
+ * MODIFIER align-end
+ *
+ * Have all the elements on the end of block.
+ * For left-to-right scripts (e.g., English, Cree), this means the elements
+ * will be right aligned.
+ */
+
+.menu-bar--align-end {
+  justify-content: flex-end;
+}
+
+/******************************** DROP DOWN *********************************/
+
+.dropdown {
+  position: relative;
+}
+
+.dropdown--align-end:dir(ltr) .dropdown__menu {
+  right: 0;
+}
+
+.dropdown--align-end:dir(rtl) .dropdown__menu {
+  left: 0;
+}
+
+.dropdown__label {
+  cursor: pointer;
+}
+
+.dropdown__menu {
+  position: absolute;
+  z-index: 1;
+}
+
+/*********************************** BOX ************************************/
+
+/**
+ * BLOCK box
+ *
+ * A panel that stands out from its background, as if it's in a box!
+ */
+
+.box {
+  padding: var(--medium-gap) var(--page-gutter);
+  padding-bottom: 1rem;
+
+  background-color: var(--box-bg-color);
+
+  box-shadow: 0 1px 1px 0 rgba(129, 127, 127, 0.5);
+}
+
+.box--rounded {
+  border-radius: var(--border-radius);
+}
+
+/**
+ * MODIFIER spaced
+ *
+ * Add a little margin AFTER the box.
+ */
+
+.box--spaced {
+  margin-bottom: 16px;
+}
+
+/**
+ * MODIFIER bad-outcome
+ *
+ * When displaying that something went wrong.
+ */
+
+.box--bad-outcome {
+  color: var(--bad-outcome-color);
+  background-color: var(--bad-outcome-bg-color);
+  text-shadow: 1px 1px 0 var(--embossed-highlight),
+               2px 2px 2px var(--bad-outcome-shadow);
+}
+
+/******************************** ABOUT PAGE ********************************/
+
+/**
+ * ELEMENT link
+ *
+ * A link in the about page should have a heavy font weight.
+ */
+
+.about__link {
+  font-weight: var(--strong-font-weight);
+}
+
+.about__citation {
+  font-style: italic;
+}
+
+/***************************** SKIP TO CONTENT *****************************/
+
+.skip-to-content {
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+
+  font-size: larger;
+
+  background-color: white;
+}
+
+.skip-to-content:focus {
+  clip: auto;
+  z-index: 100;
+  width: auto;
+  height: auto;
+}
+
+@media screen, print {
+  .skip-to-content {
+    clip: rect(1px, 1px, 1px, 1px);
+  }
+}
+
+/***************************** SEARCH PROGRESS *****************************/
+
+.search-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+
+  display: block;
+  width: 100vw;
+  height: 1rem;
+  border: 0;
+
+  color: var(--app-title-color);
+  background-color: var(--footer-text-color);
+
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 250ms;
+}
+
+.search-progress--loading {
+  opacity: 1;
+  visibility: visible;
+}
+
+.search-progress--error {
+  animation: pulse 2s ease infinite alternate;
+}
+
+@keyframes pulse {
+  from {
+    opacity: 0.25
+  }
+  to {
+    opactiy: 1;
+  }
+}
+
+/******************************* INLINE MARKUP ******************************/
+
+/**
+ * BLOCK cite-dict
+ *
+ * A block that cites a dictionary source.
+ */
+
+.cite-dict {
+  /* Color */
+  color: var(--cite-text-color);
+  /* Text */
+  font-size: var(--cite-text-font-size);
+  font-style: normal;
+  font-weight: var(--strong-font-weight);
+  vertical-align: middle;
+}
+
+.cite-dict--popup{
+  /* Color */
+  color: var(--cite-text-popup-color);
+  margin-left: 0.5rem;
+}
+
+/**
+ * BLOCK
+ *
+ * A title of a citation source.
+ */
+
+.source-title {
+  font-style: italic;
+}
+
+/**
+ * BLOCK explainer
+ */
+
+.explainer {
+  font-weight: var(--strong-font-weight);
+}
+
+/**
+ * BLOCK query
+ *
+ * For showing the user query on the page.
+ */
+
+.query {
+  font-style: italic;
+  quotes: "«" "»";
+}
+
+/**
+ * Show the quotes to indicate that this is verbatim.
+ */
+
+.query::before { content: open-quote; }
+
+.query::after { content: close-quote; }
+
+/**
+ * .external-link
+ *
+ * Links that go to an outside website, or open in a new tab.
+ */
+
+.external-link, a[target=_blank][rel=noopener]::after {
+  content: url("img/fa/external-link-alt-solid.svg");
+
+  display: inline-block;
+  width: .75em;
+  margin-left: .25em;
+}
+
+/**
+ * Intentionally non-BEM styles to help us remove use of target=_blank without
+ * [rel=noopner].
+ *
+ * See: https://web.dev/external-anchors-use-rel-noopener/
+ */
+
+a[target=_blank]:not([rel~=noopener]) {
+  color: magenta;
+  background: black;
+  outline: magenta;
+
+  font-family: Comic Sans MS;
+  text-decoration: line-through;
+  text-transform: uppercase;
+  font-size: 2em;
+
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/**
+ * Non-BEM style. Since the markup in the .legend block will be written by
+ * hand, there's not guarentee classes will be used, so apply this CSS
+ * liberally.
+ */
+
+.legend q {
+  font-style: italic;
+}
+
+.legend q > dfn {
+  font-weight: var(--strong-font-weight);
+}

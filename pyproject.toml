@@ -1,0 +1,38 @@
+[tool.isort]
+# Match what Black will do:
+multi_line_output = 3
+line_length = 88
+
+skip = [
+    "migrations",
+    "node_modules",
+]
+
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+addopts = "--doctest-modules --ignore=src/mobile.py"
+
+# Where “to search for tests when no files or directories are given.” Saves
+# test collection time since all our python code is in src.
+testpaths = "src"
+
+# Allow unicode in test nodeids. Useful for words like wâpamêw. If pytest
+# behaves oddly, remove this option before seeking community support.
+disable_test_id_escaping_and_forfeit_all_rights_to_community_support = true
+
+env = [
+    "USE_TEST_DB=true"
+]
+
+# pytest-django
+DJANGO_SETTINGS_MODULE = "crkeng.site.settings"
+
+# The default pytest-django behaviour is to (1) look for a `manage.py`
+# somewhere and (2) add the directory that contains it to `sys.path`.
+#
+# We only want our top-level python directory on `sys.path`, to prevent
+# partial imports (`import bar` when the full package name is `foo.bar`)
+# from working by accident.
+django_find_project = false
+python_paths = "src"

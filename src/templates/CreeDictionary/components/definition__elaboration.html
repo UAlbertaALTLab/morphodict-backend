@@ -1,0 +1,93 @@
+{% spaceless %}
+
+    {% comment %}
+    ## .definition__elaboration ##
+
+    Parameters:
+      lemma: SerializedWordform
+      verbose: bool
+
+    The line below the lemma that describes the wordclass and the inflectional
+    category.
+
+    Example:
+
+      🧑🏽➡️🧑🏽— /like nipâw/
+            ,-------^--------.
+            | verb (VAI)     |
+            `-------^--------'
+
+
+    In linguistic mode, the emoji is replaced with the full inflectional class.
+
+      vowel-final transitive animate verb — /like nipâw/
+            ,-------^--------.
+            | verb (VAI)     |
+            `-------^--------'
+
+  {% endcomment %}
+
+    {% load creedictionary_extras %}
+    {% load relabelling %}
+    {% load morphodict_orth %}
+
+    {# Second line of the header: the elaboration #}
+    <div class="definition__elaboration" data-cy="elaboration">
+
+        {% with ic=lemma.inflectional_category_plain_english emoji=lemma.wordclass_emoji id=request|unique_id %}
+            {% if show_ic != "no" %}
+                {{ lemma.inflectional_category }}
+            {% endif %}
+            {% if display_options.mode == 'linguistic' %}
+                {% if lemma.show_emoji %}
+                    <span class="wordclass" data-cy="word-class">
+                      <span class="wordclass__emoji">{{ emoji }} &nbsp;</span>
+                  </span>
+                {% endif %}
+                <span class="wordclass__inflectional-class  wordclass--described" data-has-tooltip tabindex="0"
+                      aria-describedby="tooltip:{{ id }}"> {{ lemma.inflectional_category_linguistic }} ({{ lemma.inflectional_category }})</span>
+                <div id="tooltip:{{ id }}" class="tooltip" role="tooltip">
+                    {% relabel_plain_english lemma.inflectional_category %}
+                    - {% relabel_source lemma.inflectional_category %}
+                    <div class="tooltip__arrow" data-popper-arrow></div>
+                </div>
+
+                {% include "CreeDictionary/components/lexical-breakdown.html" %}
+            {% endif %}
+
+            {% if display_options.mode == 'english' %}
+                {% if lemma.show_emoji %}
+                    <span class="wordclass" data-cy="word-class">
+                      <span class="wordclass__emoji">{{ emoji }} &nbsp;</span>
+                  </span>
+                {% endif %}
+                <span class="wordclass__inflectional-class  wordclass--described" data-has-tooltip tabindex="0"
+                      aria-describedby="tooltip:{{ id }}"> {% relabel_plain_english lemma.inflectional_category %} </span>
+                <div id="tooltip:{{ id }}" class="tooltip" role="tooltip">
+                    {{ lemma.inflectional_category_linguistic }} ({{ lemma.inflectional_category }})
+                    - {% relabel_source lemma.inflectional_category %}
+                    <div class="tooltip__arrow" data-popper-arrow></div>
+                </div>
+
+                {% include "CreeDictionary/components/lexical-breakdown.html" %}
+            {% endif %}
+
+            {% if display_options.mode == 'source_language' %}
+                {% if lemma.show_emoji %}
+                    <span class="wordclass" data-cy="word-class">
+                      <span class="wordclass__emoji">{{ emoji }} &nbsp;</span>
+                  </span>
+                {% endif %}
+                <span class="wordclass__inflectional-class  wordclass--described" data-has-tooltip tabindex="0"
+                      aria-describedby="tooltip:{{ id }}"> {% relabel_source lemma.inflectional_category %} </span>
+                <div id="tooltip:{{ id }}" class="tooltip" role="tooltip">
+                    {{ lemma.inflectional_category_linguistic }} ({{ lemma.inflectional_category }})
+                    - {% relabel_plain_english lemma.inflectional_category %}
+                    <div class="tooltip__arrow" data-popper-arrow></div>
+                </div>
+
+                {% include "CreeDictionary/components/lexical-breakdown.html" %}
+            {% endif %}
+        {% endwith %}
+    </div>
+{% endspaceless %}

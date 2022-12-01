@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/static/css/main.3030e3b3.css",
+    "main.js": "/static/js/main.2d7e04d3.js",
+    "static/js/787.0a4f405c.chunk.js": "/static/js/787.0a4f405c.chunk.js",
+    "static/media/fnu-logo.png": "/static/media/fnu-logo.d5337043a979d7e31d5d.png",
+    "static/media/footer-1366w.jpg": "/static/media/footer-1366w.1b560138ad68b21ae02c.jpg",
+    "static/media/sshrc-crsh-logo.svg": "/static/media/sshrc-crsh-logo.7962cf88b353cd97b01d.svg",
+    "static/media/nrc-cnrc-logo.svg": "/static/media/nrc-cnrc-logo.8cd3255904742b603746.svg",
+    "static/media/mesc-logo.svg": "/static/media/mesc-logo.ecf4991bf78b9769a296.svg",
+    "static/media/uofa-logo.svg": "/static/media/uofa-logo.e768f4a9bf557721a662.svg",
+    "index.html": "/index.html",
+    "static/media/chevron-circle-down.svg": "/static/media/chevron-circle-down.5bf2b2315fada90086bf.svg",
+    "main.3030e3b3.css.map": "/static/css/main.3030e3b3.css.map",
+    "main.2d7e04d3.js.map": "/static/js/main.2d7e04d3.js.map",
+    "787.0a4f405c.chunk.js.map": "/static/js/787.0a4f405c.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.3030e3b3.css",
+    "static/js/main.2d7e04d3.js"
+  ]
+}

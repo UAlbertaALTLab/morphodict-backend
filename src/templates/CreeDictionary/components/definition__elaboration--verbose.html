@@ -1,0 +1,31 @@
+{% spaceless %}
+  {% comment %}
+    ## .definition__elaboration--verbose ##
+
+    Parameters:
+      wordclass: str — wordclass
+      ic_short: str — short form of the inflectional category
+      ic_linguistic: str — the full description of the inflectional category
+      emoji: str -- An emoji str representing the wordclass. Useful for Algonquian languages.
+
+    The "elaboration" of a defined head. This contains word class,
+    inflectional category, and other information about the head itself.
+
+    It's verbose because it contains A LOT of information — more than you'd
+    find on the search page, for instance.
+
+    Example:
+
+      🧑🏽➡️🧑🏽— like wîcihêw
+      VTA-1: transitive animate verb – class 1: regular
+
+  {% endcomment %}
+
+  {% load creedictionary_extras %}
+
+{#  {% if ic_short %}#}
+    <p class="elaboration__row elaboration__ic-row">
+    <small> {{ ic_short }}{% if ic_linguistic %}: {{ ic_linguistic }} {% endif %}</small>
+    </p>
+{#  {% endif %}#}
+{% endspaceless %}
