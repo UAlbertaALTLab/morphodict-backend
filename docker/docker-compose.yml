@@ -13,16 +13,16 @@ services:
     image: ghcr.io/ualbertaaltlab/itwewina.altlab.app:latest
     command: /app/app.sh crkeng
     ports:
-      - "8001:8001" # http
-      - "9000:9192" # uWSGI stats
+      - "8003:8001" # http
+      - "9003:9192" # uWSGI stats
     volumes:
       - "./.env:/app/.env"
 
       # LFS mounts
       - "../src/morphodict/lexicon/resources/vector_models/:/app/src/morphodict/lexicon/resources/vector_models/:ro"
       - "../src/crkeng/resources/fst:/app/src/crkeng/resources/fst:ro"
-      - "../src/CreeDictionary/res/fst/:/app/src/CreeDictionary/res/fst/:ro"
-      - "../src/CreeDictionary/res/:/app/src/CreeDictionary/res/:ro"
+      - "../src/crkeng/res/fst/:/app/src/crkeng/res/fst/:ro"
+      - "../src/crkeng/res/:/app/src/crkeng/res/:ro"
       - "../src/crkeng/resources/dictionary/:/app/src/crkeng/resources/dictionary/:ro"
 
       - "/data_local/application-data/crkeng/vector_models:/app/src/crkeng/resources/vector_models/"
@@ -44,8 +44,8 @@ services:
       # LFS mounts
       - "../src/morphodict/lexicon/resources/vector_models/:/app/src/morphodict/lexicon/resources/vector_models/:ro"
       - "../src/cwdeng/resources/fst:/app/src/cwdeng/resources/fst:ro"
-      - "../src/CreeDictionary/res/fst/:/app/src/CreeDictionary/res/fst/:ro"
-      - "../src/CreeDictionary/res/:/app/src/CreeDictionary/res/:ro"
+      - "../src/cwdeng/res/fst/:/app/src/cwdeng/res/fst/:ro"
+      - "../src/cwdeng/res/:/app/src/cwdeng/res/:ro"
       - "../src/cwdeng/resources/dictionary/:/app/src/cwdeng/resources/dictionary/:ro"
 
       - "/data_local/application-data/cwdeng/vector_models:/app/src/cwdeng/resources/vector_models/"
@@ -67,8 +67,8 @@ services:
       # LFS mounts
       - "../src/morphodict/lexicon/resources/vector_models/:/app/src/morphodict/lexicon/resources/vector_models/:ro"
       - "../src/srseng/resources/fst:/app/src/srseng/resources/fst:ro"
-      - "../src/CreeDictionary/res/fst/:/app/src/CreeDictionary/res/fst/:ro"
-      - "../src/CreeDictionary/res/:/app/src/CreeDictionary/res/:ro"
+      - "../src/srseng/res/fst/:/app/src/srseng/res/fst/:ro"
+      - "../src/srseng/res/:/app/src/srseng/res/:ro"
       - "../src/srseng/resources/dictionary/:/app/src/srseng/resources/dictionary/:ro"
 
       - "/data_local/application-data/srseng/vector_models:/app/src/srseng/resources/vector_models/"
@@ -90,8 +90,8 @@ services:
       # LFS mounts
       - "../src/morphodict/lexicon/resources/vector_models/:/app/src/morphodict/lexicon/resources/vector_models/:ro"
       - "../src/arpeng/resources/fst:/app/src/arpeng/resources/fst:ro"
-      - "../src/CreeDictionary/res/fst/:/app/src/CreeDictionary/res/fst/:ro"
-      - "../src/CreeDictionary/res/:/app/src/CreeDictionary/res/:ro"
+      - "../src/arpeng/res/fst/:/app/src/arpeng/res/fst/:ro"
+      - "../src/arpeng/res/:/app/src/arpeng/res/:ro"
       - "../src/arpeng/resources/dictionary/:/app/src/arpeng/resources/dictionary/:ro"
 
       - "/data_local/application-data/arpeng/vector_models:/app/src/arpeng/resources/vector_models/"
@@ -113,8 +113,8 @@ services:
       # LFS mounts
       - "../src/morphodict/lexicon/resources/vector_models/:/app/src/morphodict/lexicon/resources/vector_models/:ro"
       - "../src/hdneng/resources/fst:/app/src/hdneng/resources/fst:ro"
-      - "../src/CreeDictionary/res/fst/:/app/src/CreeDictionary/res/fst/:ro"
-      - "../src/CreeDictionary/res/:/app/src/CreeDictionary/res/:ro"
+      - "../src/hdneng/res/fst/:/app/src/hdneng/res/fst/:ro"
+      - "../src/hdneng/res/:/app/src/hdneng/res/:ro"
       - "../src/hdneng/resources/dictionary/:/app/src/hdneng/resources/dictionary/:ro"
 
       - "/data_local/application-data/hdneng/vector_models:/app/src/hdneng/resources/vector_models/"

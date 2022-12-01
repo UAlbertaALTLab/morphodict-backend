@@ -22,7 +22,7 @@ services:
       context: ..
       dockerfile: docker/Dockerfile
     # The tag that will automatically be applied on build:
-    image: morphodict:dev
+    image: morphodict-backend:dev
 
     volumes:
       - "./.env:/app/.env"
@@ -38,7 +38,7 @@ services:
       context: ..
       dockerfile: docker/Dockerfile
     # The tag that will automatically be applied on build:
-    image: morphodict:dev
+    image: morphodict-backend:dev
 
     volumes:
       - "./.env:/app/.env"
@@ -54,7 +54,7 @@ services:
       context: ..
       dockerfile: docker/Dockerfile
     # The tag that will automatically be applied on build:
-    image: morphodict:dev
+    image: morphodict-backend:dev
 
     volumes:
       - "./.env:/app/.env"
@@ -70,7 +70,7 @@ services:
       context: ..
       dockerfile: docker/Dockerfile
     # The tag that will automatically be applied on build:
-    image: morphodict:dev
+    image: morphodict-backend:dev
 
     volumes:
       - "./.env:/app/.env"
@@ -86,7 +86,7 @@ services:
       context: ..
       dockerfile: docker/Dockerfile
     # The tag that will automatically be applied on build:
-    image: morphodict:dev
+    image: morphodict-backend:dev
 
     volumes:
       - "./.env:/app/.env"

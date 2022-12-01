@@ -17,8 +17,8 @@ class App:
             "morphodict/lexicon/resources/vector_models/",
             f"{self.name}/resources/fst",
             # Holds phrase-translation FSTs
-            "CreeDictionary/res/fst/",
-            "CreeDictionary/res/",
+            f"{self.name}/res/fst/",
+            f"{self.name}/res/",
             # Not actually an LFS thing, but this is where production dictionary
             # files get stored so they can be imported.
             f"{self.name}/resources/dictionary/",
