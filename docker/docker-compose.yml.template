@@ -12,8 +12,8 @@ services:
     image: ghcr.io/ualbertaaltlab/itwewina.altlab.app:latest
     command: /app/app.sh {{ app.name }}
     ports:
-      - "{{ app.port }}:8000" # http
-      - "{{ app.uwsgi_stats_port }}:9191" # uWSGI stats
+      - "{{ app.port }}:8001" # http
+      - "{{ app.uwsgi_stats_port }}:9192" # uWSGI stats
     volumes:
       - "./.env:/app/.env"
 
