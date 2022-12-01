@@ -1,0 +1,34 @@
+#!/usr/bin/env python3
+
+# This script is called by the deploy.altlab.dev webhook
+
+import os
+from argparse import ArgumentParser
+from pathlib import Path
+from subprocess import check_call
+
+
+def main():
+    parser = ArgumentParser()
+    parser.add_argument("--verbose", action="store_true")
+    args = parser.parse_args()
+
+    def call(*call_args):
+        if args.verbose:
+            print(call_args)
+        check_call(*call_args)
+
+    os.chdir(Path(__file__).parent)
+
+    call(["git", "pull"])
+
+    # The rest of the deploy is separated out into a different script that is
+    # only loaded *after* the git pull. Otherwise we’d be running some old
+    # version of the script from a commit that is not the one being deployed.
+    import inner_deploy
+
+    inner_deploy.run(call=call)
+
+
+if __name__ == "__main__":
+    main()
