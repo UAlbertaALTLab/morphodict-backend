@@ -52,6 +52,7 @@ logger = logging.getLogger(__name__)
 # It excludes the clause or line (could be a function/class/if else block) from coverage
 # it should be used on the view functions that are well covered by integration tests
 
+
 @staff_member_required()
 def fst_tool(request):
     context = {}
@@ -121,7 +122,11 @@ def google_site_verification(request):
     )
 
 
-@api_view(['GET', ])
+@api_view(
+    [
+        "GET",
+    ]
+)
 def word_details_api(request, slug: str):
     """
     Head word detail page. Will render a paradigm, if applicable. Fallback to search
@@ -151,7 +156,7 @@ def word_details_api(request, slug: str):
         lemma,
         animate_emoji=AnimateEmoji.current_value_from_request(request),
         show_emoji=ShowEmoji.current_value_from_request(request),
-        dict_source=get_dict_source(request)
+        dict_source=get_dict_source(request),
     )
     wordform = wordform_morphemes(wordform)
     wordform = wordform_orth(wordform)
@@ -167,7 +172,9 @@ def word_details_api(request, slug: str):
         paradigm_manager = default_paradigm_manager()
         pane_generator = paradigm_panes.PaneGenerator()
         pane_generator.set_layouts_dir(settings.LAYOUTS_DIR)
-        pane_generator.set_fst_filepath(FST_DIR / settings.STRICT_GENERATOR_FST_FILENAME)
+        pane_generator.set_fst_filepath(
+            FST_DIR / settings.STRICT_GENERATOR_FST_FILENAME
+        )
         try:
             paradigm_sizes = list(paradigm_manager.sizes_of(paradigm))
         except ParadigmDoesNotExistError:
@@ -198,14 +205,14 @@ def word_details_api(request, slug: str):
             "paradigm": paradigm,
             "paradigm_size": paradigm_size,
             "paradigm_sizes": paradigm_sizes,
-            "recordings": recordings
+            "recordings": recordings,
         }
     }
 
     return Response(content)
 
 
-@api_view(['GET'])
+@api_view(["GET"])
 def search_api(request):
     """
     homepage with optional initial search results to display
@@ -240,7 +247,7 @@ def search_api(request):
         word_search_form=request.data.get("name"),
         query_string=query_string,
         search_results=search_results,
-        did_search=did_search
+        did_search=did_search,
     )
 
     context["show_dict_source_setting"] = settings.SHOW_DICT_SOURCE_SETTING
@@ -249,14 +256,24 @@ def search_api(request):
             search_run.verbose_messages, indent=2, ensure_ascii=False
         )
 
-    context["search_results"] = fetch_single_recording(context["search_results"], request)
+    context["search_results"] = fetch_single_recording(
+        context["search_results"], request
+    )
 
     for result in context["search_results"]:
         result["wordform_text"] = wordform_orth_text(result["wordform_text"])
-        result["lemma_wordform"]["wordform_text"] = wordform_orth_text(result["lemma_wordform"]["text"])
-        result["lemma_wordform"]["inflectional_category_relabelled"] = relabelInflectionalCategory(result["lemma_wordform"]["inflectional_category"])
-        if ("relabelled_fst_analysis" in result):
-            result["relabelled_fst_analysis"] = relabelFSTAnalysis(result["relabelled_fst_analysis"])
+        result["lemma_wordform"]["wordform_text"] = wordform_orth_text(
+            result["lemma_wordform"]["text"]
+        )
+        result["lemma_wordform"][
+            "inflectional_category_relabelled"
+        ] = relabelInflectionalCategory(
+            result["lemma_wordform"]["inflectional_category"]
+        )
+        if "relabelled_fst_analysis" in result:
+            result["relabelled_fst_analysis"] = relabelFSTAnalysis(
+                result["relabelled_fst_analysis"]
+            )
 
     return Response(context)
 
@@ -284,7 +301,7 @@ def get_pane_layouts(request, paradigm):
                 continue
             elif num_of_columns == 0:
                 num_of_columns = len(row["cells"])
-                pane_columns_buffer = ['' for i in range(num_of_columns)]
+                pane_columns_buffer = ["" for i in range(num_of_columns)]
                 for i in range(0, num_of_columns):
                     pane_columns_buffer[i] = {
                         "header": header,
@@ -296,20 +313,32 @@ def get_pane_layouts(request, paradigm):
             row_label = row["cells"][0]
             column_index = 0
             for k in range(0, len(row["cells"])):
-                if (row["cells"][k]["is_label"] and row["cells"][k]["label_for"] == "col"):
+                if (
+                    row["cells"][k]["is_label"]
+                    and row["cells"][k]["label_for"] == "col"
+                ):
                     pane_columns_buffer[column_index]["col_label"] = row["cells"][k]
                     column_index += 1
                 elif not row["cells"][k]["should_suppress_output"]:
                     pane_columns_buffer[column_index]["labels"].append(row_label)
                     row_resolved_inflection = row["cells"][k]
 
-                    if not row["cells"][k]["is_missing"] and row["cells"][k]["is_inflection"]:
+                    if (
+                        not row["cells"][k]["is_missing"]
+                        and row["cells"][k]["is_inflection"]
+                    ):
                         if type in row["cells"][k]["inflection"]:
-                            row_resolved_inflection["inflection"] = row["cells"][k]["inflection"][type]
+                            row_resolved_inflection["inflection"] = row["cells"][k][
+                                "inflection"
+                            ][type]
                         else:
-                            row_resolved_inflection["inflection"] = row["cells"][k]["inflection"]
+                            row_resolved_inflection["inflection"] = row["cells"][k][
+                                "inflection"
+                            ]
 
-                        pane_columns_buffer[column_index]["cells"].append(row_resolved_inflection)
+                        pane_columns_buffer[column_index]["cells"].append(
+                            row_resolved_inflection
+                        )
                         column_index += 1
                     else:
                         # multiple wordforms
@@ -331,13 +360,13 @@ def get_row_labels(pane):
     defaultLabel = "ENGLISH"
     labels = {}
 
-    defaultHeader = "Core";
+    defaultHeader = "Core"
 
-    header = pane["header"];
-    col_label = pane["col_label"];
-    rows = [];
+    header = pane["header"]
+    col_label = pane["col_label"]
+    rows = []
     for i in range(0, len(pane["cells"])):
-        rows.append([pane["labels"][i], pane["cells"][i]]);
+        rows.append([pane["labels"][i], pane["cells"][i]])
 
     return rows
 
@@ -357,11 +386,14 @@ def fetch_single_recording(results, request):
 
     for result in results:
         if result["wordform_text"] in matched_recordings:
-            result["recording"] = matched_recordings[result["wordform_text"]]["recording_url"]
+            result["recording"] = matched_recordings[result["wordform_text"]][
+                "recording_url"
+            ]
         else:
             result["recording"] = ""
 
     return results
+
 
 def relabelInflectionalCategory(ic):
     with open(Path(settings.RESOURCES_DIR / "altlabel.tsv")) as f:
@@ -372,7 +404,12 @@ def relabelInflectionalCategory(ic):
     ling_short = labels.linguistic_short.get_longest(ic)
     plain_english = labels.english.get_longest(ic)
     source_language = labels.source_language.get_longest(ic)
-    ret = {"linguistic_long": ling_long, "linguistic_short": ling_short, "plain_english": plain_english, "source_language": source_language}
+    ret = {
+        "linguistic_long": ling_long,
+        "linguistic_short": ling_short,
+        "plain_english": plain_english,
+        "source_language": source_language,
+    }
     return ret
 
 
@@ -388,7 +425,7 @@ def relabelFSTAnalysis(analysis):
             "linguistic_long": analysis["label"],
             "linguistic_short": analysis["label"],
             "plain_english": analysis["label"],
-            "source_language": analysis["label"]
+            "source_language": analysis["label"],
         }
 
     for item in analysis:
@@ -403,5 +440,5 @@ def relabelFSTAnalysis(analysis):
         "linguistic_long": ling_long,
         "linguistic_short": ling_short,
         "plain_english": english,
-        "source_language": source_language
+        "source_language": source_language,
     }
