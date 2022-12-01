@@ -593,24 +593,24 @@ def to_list_of_fst_tags(raw_tags: Iterable[str]) -> list[FSTTag]:
 
 def wordform_orth_text(wordform):
     """
-        Modifies a serialized wordform object. The text and inflectional_catagory_plain_english fields are modifed to
-        contain a dictionary containing all orthographic representations of their text given in Standard Roman Orthography.
+    Modifies a serialized wordform object. The text and inflectional_catagory_plain_english fields are modifed to
+    contain a dictionary containing all orthographic representations of their text given in Standard Roman Orthography.
 
-        e.g.,
+    e.g.,
 
-            'wâpamêw'
+        'wâpamêw'
 
-        becomes:
+    becomes:
 
-            {
-                "Latn": "wâpamêw",
-                "Latn-x-macron": "wāpamēw",
-                "Cans": "ᐚᐸᒣᐤ"
-            }
+        {
+            "Latn": "wâpamêw",
+            "Latn-x-macron": "wāpamēw",
+            "Cans": "ᐚᐸᒣᐤ"
+        }
 
-        :param wordform:
-        :return:
-        """
+    :param wordform:
+    :return:
+    """
     try:
         ret_wordform = {}
         for code in ORTHOGRAPHY.available:

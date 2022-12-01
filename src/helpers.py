@@ -1,4 +1,5 @@
 from __future__ import annotations
+
 #!/usr/bin/env python3
 # -*- coding: UTF-8 -*-
 from hfst_optimized_lookup import Analysis
@@ -80,7 +81,9 @@ def paradigm_for(wordform: Wordform, paradigm_size: str) -> Optional[Paradigm]:
     :param paradigm_size:
     :return:
     """
-    fst_dir = settings.BASE_DIR / "resources" / "fst" / settings.STRICT_GENERATOR_FST_FILENAME
+    fst_dir = (
+        settings.BASE_DIR / "resources" / "fst" / settings.STRICT_GENERATOR_FST_FILENAME
+    )
     layout_dir = shared_res_dir / "layouts"
     site_specific_layout_dir = settings.BASE_DIR / "resources" / "layouts"
     if site_specific_layout_dir.exists():
@@ -135,7 +138,10 @@ def wordform_orth(wordform):
             for code in ORTHOGRAPHY.available
         }
         ret_wordform["inflectional_category_plain_english"] = {
-            code: "like: " + ORTHOGRAPHY.converter[code](wordform["inflectional_category_plain_english"][6:])
+            code: "like: "
+            + ORTHOGRAPHY.converter[code](
+                wordform["inflectional_category_plain_english"][6:]
+            )
             for code in ORTHOGRAPHY.available
         }
 
@@ -154,24 +160,24 @@ def wordform_orth(wordform):
 
 def wordform_orth_text(wordform):
     """
-        Modifies a serialized wordform object. The text and inflectional_catagory_plain_english fields are modifed to
-        contain a dictionary containing all orthographic representations of their text given in Standard Roman Orthography.
+    Modifies a serialized wordform object. The text and inflectional_catagory_plain_english fields are modifed to
+    contain a dictionary containing all orthographic representations of their text given in Standard Roman Orthography.
 
-        e.g.,
+    e.g.,
 
-            'wâpamêw'
+        'wâpamêw'
 
-        becomes:
+    becomes:
 
-            {
-                "Latn": "wâpamêw",
-                "Latn-x-macron": "wāpamēw",
-                "Cans": "ᐚᐸᒣᐤ"
-            }
+        {
+            "Latn": "wâpamêw",
+            "Latn-x-macron": "wāpamēw",
+            "Cans": "ᐚᐸᒣᐤ"
+        }
 
-        :param wordform:
-        :return:
-        """
+    :param wordform:
+    :return:
+    """
     try:
         ret_wordform = {}
         for code in ORTHOGRAPHY.available:
@@ -225,8 +231,7 @@ def orth(word):
     """
     try:
         return {
-            code: ORTHOGRAPHY.converter[code](word)
-            for code in ORTHOGRAPHY.available
+            code: ORTHOGRAPHY.converter[code](word) for code in ORTHOGRAPHY.available
         }
     except TypeError:
         return {"Latn": word}
@@ -238,7 +243,7 @@ def orth(word):
 def divide_chunks(terms, size):
     # looping till length l
     for i in range(0, len(terms), size):
-        yield terms[i: i + size]
+        yield terms[i : i + size]
 
 
 def inflect_paradigm(paradigm):
