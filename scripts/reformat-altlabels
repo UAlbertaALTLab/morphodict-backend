@@ -12,18 +12,17 @@ from pathlib import Path
 
 # Figure out shared_res_dir
 top_dir = Path(__file__).parent.parent
-add_to_path = top_dir / "src" / "CreeDictionary"
+add_to_path = top_dir / "src" / "crkeng"
+print(add_to_path)
 assert add_to_path.is_dir()
 sys.path.insert(0, str(add_to_path))
-shared_res_dir = __import__("utils").shared_res_dir
 
 
 if __name__ == "__main__":
     default_files = [
         os.path.relpath(p, os.getcwd())
         for p in [
-            shared_res_dir / "crk.altlabel.tsv",
-            *(top_dir.glob("src/*/resources/altlabel.tsv")),
+            *(top_dir.glob("src/*/res/altlabel.tsv")),
         ]
     ]
 

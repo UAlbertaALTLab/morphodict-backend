@@ -9,12 +9,12 @@ services:
     restart: always
     # Specify hostname to make it clearer which container is active when
     # using docker to get a shell in the container.
-    hostname: crkeng-container
+    hostname: crkeng-backend-container
     image: ghcr.io/ualbertaaltlab/itwewina.altlab.app:latest
     command: /app/app.sh crkeng
     ports:
-      - "8011:8000" # http
-      - "9011:9191" # uWSGI stats
+      - "8000:8001" # http
+      - "9000:9192" # uWSGI stats
     volumes:
       - "./.env:/app/.env"
 
@@ -32,12 +32,12 @@ services:
     restart: always
     # Specify hostname to make it clearer which container is active when
     # using docker to get a shell in the container.
-    hostname: cwdeng-container
+    hostname: cwdeng-backend-container
     image: ghcr.io/ualbertaaltlab/itwewina.altlab.app:latest
     command: /app/app.sh cwdeng
     ports:
-      - "8012:8000" # http
-      - "9012:9191" # uWSGI stats
+      - "8005:8001" # http
+      - "9005:9192" # uWSGI stats
     volumes:
       - "./.env:/app/.env"
 
@@ -55,12 +55,12 @@ services:
     restart: always
     # Specify hostname to make it clearer which container is active when
     # using docker to get a shell in the container.
-    hostname: srseng-container
+    hostname: srseng-backend-container
     image: ghcr.io/ualbertaaltlab/itwewina.altlab.app:latest
     command: /app/app.sh srseng
     ports:
-      - "8013:8000" # http
-      - "9013:9191" # uWSGI stats
+      - "8009:8001" # http
+      - "9009:9192" # uWSGI stats
     volumes:
       - "./.env:/app/.env"
 
@@ -78,12 +78,12 @@ services:
     restart: always
     # Specify hostname to make it clearer which container is active when
     # using docker to get a shell in the container.
-    hostname: arpeng-container
+    hostname: arpeng-backend-container
     image: ghcr.io/ualbertaaltlab/itwewina.altlab.app:latest
     command: /app/app.sh arpeng
     ports:
-      - "8014:8000" # http
-      - "9014:9191" # uWSGI stats
+      - "8007:8001" # http
+      - "9007:9192" # uWSGI stats
     volumes:
       - "./.env:/app/.env"
 
@@ -101,12 +101,12 @@ services:
     restart: always
     # Specify hostname to make it clearer which container is active when
     # using docker to get a shell in the container.
-    hostname: hdneng-container
+    hostname: hdneng-backend-container
     image: ghcr.io/ualbertaaltlab/itwewina.altlab.app:latest
     command: /app/app.sh hdneng
     ports:
-      - "8015:8000" # http
-      - "9015:9191" # uWSGI stats
+      - "8010:8001" # http
+      - "9010:9192" # uWSGI stats
     volumes:
       - "./.env:/app/.env"
 
