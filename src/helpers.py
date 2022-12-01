@@ -6,7 +6,7 @@ from hfst_optimized_lookup import Analysis
 from analysis import RichAnalysis, rich_analyze_strict
 
 """
-Utilities that depend on the CreeDictionary Django application.
+Helper functions for the views file.
 """
 
 from urllib.parse import ParseResult, urlencode, urlunparse
@@ -59,8 +59,6 @@ def get_dict_source(request):
     """
     Returns a dictionary source given a request.
 
-    If a paradigm cannot be found, None is returned
-
     :param request:
     :return:
     """
@@ -92,8 +90,6 @@ def paradigm_for(wordform: Wordform, paradigm_size: str) -> Optional[Paradigm]:
     pg.set_layouts_dir(layout_dir)
     pg.set_fst_filepath(fst_dir)
 
-    manager = default_paradigm_manager()
-
     if name := wordform.paradigm:
         fst_lemma = wordform.lemma.text
 
@@ -109,64 +105,6 @@ def paradigm_for(wordform: Wordform, paradigm_size: str) -> Optional[Paradigm]:
         )
 
     return None
-
-
-def get_recordings_from_paradigm(paradigm, request):
-    """
-    Returns a recordings given a paradigm and request.
-
-    :param paradigm:
-    :param request:
-    :return:
-    """
-    if request.COOKIES.get("paradigm_audio") == "no":
-        return paradigm
-
-    query_terms = []
-    matched_recordings = {}
-    speech_db_eq = settings.SPEECH_DB_EQ
-    url = f"https://speech-db.altlab.app/{speech_db_eq}/api/bulk_search"
-    synth_url = "https://speech-db.altlab.app/synth/api/bulk_search"
-
-    for pane in paradigm["panes"]:
-        for row in pane["tr_rows"]:
-            if not row["is_header"]:
-                for cell in row["cells"]:
-                    if cell["is_inflection"] and not cell["is_missing"]:
-                        query_terms.append(cell["inflection"])
-
-    for search_terms in divide_chunks(query_terms, 30):
-        matched_recordings.update(get_recordings_from_url(search_terms, synth_url))
-        matched_recordings.update(get_recordings_from_url(search_terms, url))
-
-    for pane in paradigm["panes"]:
-        for row in pane["tr_rows"]:
-            if not row["is_header"]:
-                for cell in row["cells"]:
-                    if cell["is_inflection"] and not cell["is_missing"]:
-                        if cell["inflection"] in matched_recordings:
-                            cell["recording"] = matched_recordings[cell["inflection"]]
-
-    return paradigm
-
-
-def get_recordings_from_url(search_terms, url):
-    """
-    Iterate through the recordings and chooses the matched recordings. Returns recordings given search terms and url.
-
-    :param search_terms:
-    :param string:
-    :return:
-    """
-    matched_recordings = {}
-    query_params = [("q", term) for term in search_terms]
-    response = requests.get(url + "?" + urllib.parse.urlencode(query_params))
-    recordings = response.json()
-
-    for recording in recordings["matched_recordings"]:
-        matched_recordings[recording["wordform"]] = recording["recording_url"]
-
-    return matched_recordings
 
 
 # Consider moving function the contents of this function to presentation.serialize_wordform
@@ -247,7 +185,6 @@ def wordform_orth_text(wordform):
 
 def wordform_morphemes(wordform):
     morphemes = {}
-    print("WORDFORM", wordform)
     raw_analysis = wordform["raw_analysis"]
     if not raw_analysis:
         raw_analysis = Analysis((), wordform["text"], ())
@@ -329,3 +266,100 @@ def inflect_paradigm(paradigm):
                         cell["wordform_text"] = wordform_orth_text(cell["inflection"])
 
     return paradigm
+
+
+def should_include_auto_definitions(request):
+    return False if request.COOKIES.get("auto_translate_defs") == "no" else True
+
+
+def should_inflect_phrases(request):
+    return False if request.COOKIES.get("inflect_english_phrase") == "no" else True
+
+
+def get_recordings_from_paradigm(paradigm, request):
+
+    if request.COOKIES.get("paradigm_audio") == "no":
+        return paradigm
+
+    query_terms = []
+    matched_recordings = {}
+    if source := request.COOKIES.get("audio_source"):
+        if source != "both":
+            speech_db_eq = [remove_diacritics(source)]
+        else:
+            speech_db_eq = settings.SPEECH_DB_EQ
+    else:
+        speech_db_eq = settings.SPEECH_DB_EQ
+    if speech_db_eq == ["_"]:
+        return paradigm
+
+    if request.COOKIES.get("synthesized_audio_in_paradigm") == "yes":
+        speech_db_eq.insert(0, "synth")
+
+    for pane in paradigm["panes"]:
+        for row in pane["tr_rows"]:
+            if not row["is_header"]:
+                for cell in row["cells"]:
+                    if "inflection" in cell:
+                        query_terms.append(cell["inflection"])
+
+    for search_terms in divide_chunks(query_terms, 30):
+        for source in speech_db_eq:
+            url = f"https://speech-db.altlab.app/{source}/api/bulk_search"
+            matched_recordings.update(get_recordings_from_url(search_terms, url))
+
+    for pane in paradigm["panes"]:
+        for row in pane["tr_rows"]:
+            if not row["is_header"]:
+                for cell in row["cells"]:
+                    if "inflection" in cell:
+                        if cell["inflection"] in matched_recordings:
+                            cell["recording"] = matched_recordings[cell["inflection"]]
+
+    return paradigm
+
+
+def get_recordings_from_url(search_terms, url):
+    matched_recordings = {}
+    query_params = [("q", term) for term in search_terms]
+    response = requests.get(url + "?" + urllib.parse.urlencode(query_params))
+    if response.status_code == 200:
+        recordings = response.json()
+
+        for recording in recordings["matched_recordings"]:
+            entry = macron_to_circumflex(recording["wordform"])
+            matched_recordings[entry] = {}
+            matched_recordings[entry]["recording_url"] = recording["recording_url"]
+            matched_recordings[entry]["speaker"] = recording["speaker"]
+
+    return matched_recordings
+
+
+def get_recordings_from_url_with_speaker_info(search_terms, url):
+    query_params = [("q", term) for term in search_terms]
+    response = requests.get(url + "?" + urllib.parse.urlencode(query_params))
+    if response.status_code == 200:
+        recordings = response.json()
+        return recordings["matched_recordings"]
+    else:
+        return []
+
+
+def macron_to_circumflex(item):
+    """
+    >>> macron_to_circumflex("wāpamēw")
+    'wâpamêw'
+    """
+    item = item.translate(str.maketrans("ēīōā", "êîôâ"))
+    return item
+
+
+def remove_diacritics(item):
+    """
+    >>> remove_diacritics("mōswacīhk")
+    'moswacihk'
+    >>> remove_diacritics("maskwacîs")
+    'maskwacis'
+    """
+    item = item.translate(str.maketrans("ēīōāêîôâ", "eioaeioa"))
+    return item

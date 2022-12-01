@@ -113,7 +113,7 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
-                "......context_processors.display_options",
+                "context_processors.display_options",
                 "lexicon.context_processors.morphodict_settings",
                 "morphodict.preference.context_processors.preferences",
             ]
@@ -180,7 +180,7 @@ GOOGLE_SITE_VERIFICATION = "91c4e691b449e7e3"
 if DEBUG:
     ALLOWED_HOSTS = ["*"]
 else:  # pragma: no cover
-    ALLOWED_HOSTS = [HOSTNAME, "localhost"]
+    ALLOWED_HOSTS = [HOSTNAME, "localhost", "127.0.0.1"]
 
 
 # Database

@@ -113,7 +113,7 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
-                "...context_processors.display_options",
+                "context_processors.display_options",
                 "lexicon.context_processors.morphodict_settings",
                 "morphodict.preference.context_processors.preferences",
             ]
@@ -180,7 +180,7 @@ GOOGLE_SITE_VERIFICATION = "91c4e691b449e7e3"
 if DEBUG:
     ALLOWED_HOSTS = ["*"]
 else:  # pragma: no cover
-    ALLOWED_HOSTS = [HOSTNAME, "localhost"]
+    ALLOWED_HOSTS = [HOSTNAME, "localhost", "127.0.0.1"]
 
 
 # Database
@@ -376,8 +376,8 @@ RELAXED_ANALYZER_FST_FILENAME = "analyser-gt-desc.hfstol"
 STRICT_GENERATOR_FST_FILENAME = "generator-gt-norm.hfstol"
 
 # Default path for layouts directory
-LAYOUTS_DIR = BASE_DIR / "resources" / "layouts"
-RESOURCES_DIR = BASE_DIR / "resources"
+LAYOUTS_DIR = BASE_DIR / "res" / "layouts"
+RESOURCES_DIR = BASE_DIR / "res"
 
 # Show a big banner at the top warning that the dictionary is a work in
 # progress. Set this to false once it’s gone through a reasonable amount of
