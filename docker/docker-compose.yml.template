@@ -9,7 +9,7 @@ services:
     # Specify hostname to make it clearer which container is active when
     # using docker to get a shell in the container.
     hostname: {{ app.name }}-backend-container
-    image: {{ app.name }}_api
+    image: morphodict-backend/{{ app.name }}
     command: /app/app.sh {{ app.name }}
     ports:
       - "{{ app.port }}:8001" # http
