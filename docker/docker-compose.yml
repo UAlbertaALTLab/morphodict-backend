@@ -7,6 +7,7 @@ version: "3"
 services:
   crkeng:
     restart: always
+    build: .
     # Specify hostname to make it clearer which container is active when
     # using docker to get a shell in the container.
     hostname: crkeng-backend-container
@@ -29,6 +30,7 @@ services:
       - "/data_local/application-data/crkeng/search_quality:/app/src/crkeng/CreeDictionary/search_quality/"
   cwdeng:
     restart: always
+    build: .
     # Specify hostname to make it clearer which container is active when
     # using docker to get a shell in the container.
     hostname: cwdeng-backend-container
@@ -51,6 +53,7 @@ services:
       - "/data_local/application-data/cwdeng/search_quality:/app/src/cwdeng/CreeDictionary/search_quality/"
   srseng:
     restart: always
+    build: .
     # Specify hostname to make it clearer which container is active when
     # using docker to get a shell in the container.
     hostname: srseng-backend-container
@@ -73,6 +76,7 @@ services:
       - "/data_local/application-data/srseng/search_quality:/app/src/srseng/CreeDictionary/search_quality/"
   arpeng:
     restart: always
+    build: .
     # Specify hostname to make it clearer which container is active when
     # using docker to get a shell in the container.
     hostname: arpeng-backend-container
@@ -95,6 +99,7 @@ services:
       - "/data_local/application-data/arpeng/search_quality:/app/src/arpeng/CreeDictionary/search_quality/"
   hdneng:
     restart: always
+    build: .
     # Specify hostname to make it clearer which container is active when
     # using docker to get a shell in the container.
     hostname: hdneng-backend-container

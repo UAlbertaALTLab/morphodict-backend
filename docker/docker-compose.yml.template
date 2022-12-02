@@ -6,6 +6,7 @@ services:
   {% for app in apps %}
   {{ app.name }}:
     restart: always
+    build: .
     # Specify hostname to make it clearer which container is active when
     # using docker to get a shell in the container.
     hostname: {{ app.name }}-backend-container
