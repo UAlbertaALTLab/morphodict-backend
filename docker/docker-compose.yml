@@ -10,7 +10,7 @@ services:
     # Specify hostname to make it clearer which container is active when
     # using docker to get a shell in the container.
     hostname: crkeng-backend-container
-    image: ubuntu
+    image: crkeng_api
     command: /app/app.sh crkeng
     ports:
       - "8003:8001" # http
@@ -33,7 +33,7 @@ services:
     # Specify hostname to make it clearer which container is active when
     # using docker to get a shell in the container.
     hostname: cwdeng-backend-container
-    image: ubuntu
+    image: cwdeng_api
     command: /app/app.sh cwdeng
     ports:
       - "8005:8001" # http
@@ -56,7 +56,7 @@ services:
     # Specify hostname to make it clearer which container is active when
     # using docker to get a shell in the container.
     hostname: srseng-backend-container
-    image: ubuntu
+    image: srseng_api
     command: /app/app.sh srseng
     ports:
       - "8009:8001" # http
@@ -79,7 +79,7 @@ services:
     # Specify hostname to make it clearer which container is active when
     # using docker to get a shell in the container.
     hostname: arpeng-backend-container
-    image: ubuntu
+    image: arpeng_api
     command: /app/app.sh arpeng
     ports:
       - "8007:8001" # http
@@ -102,7 +102,7 @@ services:
     # Specify hostname to make it clearer which container is active when
     # using docker to get a shell in the container.
     hostname: hdneng-backend-container
-    image: ubuntu
+    image: hdneng_api
     command: /app/app.sh hdneng
     ports:
       - "8010:8001" # http
