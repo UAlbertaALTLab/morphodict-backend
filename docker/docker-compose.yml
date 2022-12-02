@@ -8,6 +8,7 @@ services:
   crkeng:
     restart: always
     build: ..
+    dockerfile: docker/Dockerfile
     # Specify hostname to make it clearer which container is active when
     # using docker to get a shell in the container.
     hostname: crkeng-backend-container
@@ -31,6 +32,7 @@ services:
   cwdeng:
     restart: always
     build: ..
+    dockerfile: docker/Dockerfile
     # Specify hostname to make it clearer which container is active when
     # using docker to get a shell in the container.
     hostname: cwdeng-backend-container
@@ -54,6 +56,7 @@ services:
   srseng:
     restart: always
     build: ..
+    dockerfile: docker/Dockerfile
     # Specify hostname to make it clearer which container is active when
     # using docker to get a shell in the container.
     hostname: srseng-backend-container
@@ -77,6 +80,7 @@ services:
   arpeng:
     restart: always
     build: ..
+    dockerfile: docker/Dockerfile
     # Specify hostname to make it clearer which container is active when
     # using docker to get a shell in the container.
     hostname: arpeng-backend-container
@@ -100,6 +104,7 @@ services:
   hdneng:
     restart: always
     build: ..
+    dockerfile: docker/Dockerfile
     # Specify hostname to make it clearer which container is active when
     # using docker to get a shell in the container.
     hostname: hdneng-backend-container
