@@ -66,6 +66,7 @@ RUN python -m compileall -q .
 
 # Build the application:
 ENV NODE_ENV=production
+RUN mkdir /app/generated && mkdir /app/generated/frontend
 RUN set -eu \
  `# the docker image contains assets for all language pairs` \
  && for MANAGE_COMMAND in *-manage; do \
