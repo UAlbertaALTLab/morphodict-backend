@@ -4,7 +4,7 @@ version: "3"
 
 services:
   {% for app in apps %}
-  {{ app.name }}-backend:
+  {{ app.name }}:
     restart: always
     build:
       context: ..
