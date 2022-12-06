@@ -13,7 +13,7 @@ services:
     # Specify hostname to make it clearer which container is active when
     # using docker to get a shell in the container.
     hostname: crkeng-backend-container
-    command: /app/app.sh crkeng
+    command: /app/app.sh crkeng-backend
     ports:
       - "8003:8001" # http
       - "9003:9192" # uWSGI stats
@@ -38,7 +38,7 @@ services:
     # Specify hostname to make it clearer which container is active when
     # using docker to get a shell in the container.
     hostname: cwdeng-backend-container
-    command: /app/app.sh cwdeng
+    command: /app/app.sh cwdeng-backend
     ports:
       - "8005:8001" # http
       - "9005:9192" # uWSGI stats
@@ -63,7 +63,7 @@ services:
     # Specify hostname to make it clearer which container is active when
     # using docker to get a shell in the container.
     hostname: srseng-backend-container
-    command: /app/app.sh srseng
+    command: /app/app.sh srseng-backend
     ports:
       - "8009:8001" # http
       - "9009:9192" # uWSGI stats
@@ -88,7 +88,7 @@ services:
     # Specify hostname to make it clearer which container is active when
     # using docker to get a shell in the container.
     hostname: arpeng-backend-container
-    command: /app/app.sh arpeng
+    command: /app/app.sh arpeng-backend
     ports:
       - "8007:8001" # http
       - "9007:9192" # uWSGI stats
@@ -113,7 +113,7 @@ services:
     # Specify hostname to make it clearer which container is active when
     # using docker to get a shell in the container.
     hostname: hdneng-backend-container
-    command: /app/app.sh hdneng
+    command: /app/app.sh hdneng-backend
     ports:
       - "8010:8001" # http
       - "9010:9192" # uWSGI stats
