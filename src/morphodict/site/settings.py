@@ -180,7 +180,7 @@ GOOGLE_SITE_VERIFICATION = "91c4e691b449e7e3"
 if DEBUG:
     ALLOWED_HOSTS = ["*"]
 else:  # pragma: no cover
-    ALLOWED_HOSTS = [HOSTNAME, "localhost", "127.0.0.1", "api.itwewina.altlab.dev"]
+    ALLOWED_HOSTS = [HOSTNAME, "localhost", "127.0.0.1"]
 
 
 # Database
