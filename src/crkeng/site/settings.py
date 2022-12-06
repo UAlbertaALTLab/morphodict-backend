@@ -20,10 +20,8 @@ from morphodict.settings import *
 
 # Where this application should be deployed:
 PRODUCTION_HOST = "api.itwewina.altlab.dev"
-PRODUCTION_FRONTEND = "itwewina.altlab.dev"
 
 ALLOWED_HOSTS.append(PRODUCTION_HOST)
-CORS_ALLOWED_ORIGINS.appen(PRODUCTION_FRONTEND)
 
 INSTALLED_APPS.insert(0, "crkeng.app")
 
