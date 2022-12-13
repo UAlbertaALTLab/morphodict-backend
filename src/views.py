@@ -265,11 +265,12 @@ def search_api(request):
         result["lemma_wordform"]["wordform_text"] = wordform_orth_text(
             result["lemma_wordform"]["text"]
         )
-        result["lemma_wordform"][
-            "inflectional_category_relabelled"
-        ] = relabelInflectionalCategory(
-            result["lemma_wordform"]["inflectional_category"]
-        )
+        if "inflectional_category" in result["lemma_wordform"]:
+            result["lemma_wordform"][
+                "inflectional_category_relabelled"
+            ] = relabelInflectionalCategory(
+                result["lemma_wordform"]["inflectional_category"]
+            )
         if "relabelled_fst_analysis" in result:
             result["relabelled_fst_analysis"] = relabelFSTAnalysis(
                 result["relabelled_fst_analysis"]
