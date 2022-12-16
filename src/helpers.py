@@ -81,9 +81,7 @@ def paradigm_for(wordform: Wordform, paradigm_size: str) -> Optional[Paradigm]:
     :param paradigm_size:
     :return:
     """
-    fst_dir = (
-        settings.BASE_DIR / "res" / "fst" / settings.STRICT_GENERATOR_FST_FILENAME
-    )
+    fst_dir = settings.BASE_DIR / "res" / "fst" / settings.STRICT_GENERATOR_FST_FILENAME
     layout_dir = shared_res_dir / "layouts"
     site_specific_layout_dir = settings.BASE_DIR / "res" / "layouts"
     if site_specific_layout_dir.exists():
