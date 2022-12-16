@@ -168,7 +168,7 @@ def word_details_api(request, slug: str):
             recordings.extend(matched_recs)
 
     if paradigm is not None:
-        FST_DIR = settings.BASE_DIR / "resources" / "fst"
+        FST_DIR = settings.BASE_DIR / "res" / "fst"
         paradigm_manager = default_paradigm_manager()
         pane_generator = paradigm_panes.PaneGenerator()
         pane_generator.set_layouts_dir(settings.LAYOUTS_DIR)
