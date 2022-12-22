@@ -85,35 +85,6 @@ def fst_tool(request):
     return render(request, "CreeDictionary/fst-tool.html", context)
 
 
-def create_context_for_index_template(mode: IndexPageMode, **kwargs) -> Dict[str, Any]:
-    """
-    Creates the context vars for anything using the CreeDictionary/index.html template.
-    """
-
-    context: Dict[str, Any]
-
-    if mode in ("home-page", "info-page"):
-        context = {"should_hide_prose": False, "displaying_paradigm": False}
-    elif mode == "search-page":
-        context = {"should_hide_prose": True, "displaying_paradigm": False}
-    elif mode == "word-detail":
-        context = {"should_hide_prose": True, "displaying_paradigm": True}
-        assert "lemma_id" in kwargs, "word detail page requires lemma_id"
-    else:
-        raise AssertionError("should never happen")
-    # Note: there will NEVER be a case where should_hide_prose=False
-    # and displaying_paradigm=True -- that means show an info (like home, about,
-    # contact us, etc. AND show a word paradigm at the same time
-
-    context.update(kwargs)
-
-    # Templates require query_string and did_search pair:
-    context.setdefault("query_string", "")
-    context.setdefault("did_search", False)
-
-    return context
-
-
 def google_site_verification(request):
     code = settings.GOOGLE_SITE_VERIFICATION
     return HttpResponse(
@@ -277,99 +248,6 @@ def search_api(request):
             )
 
     return Response(context)
-
-
-def get_pane_layouts(request, paradigm):
-    panes = paradigm["panes"]
-
-    settings = json.load(request.localStorage.getItem("settings"))
-    type = "Latn"
-    if settings.latn_x_macron:
-        type = "Latn-x-macron"
-    if settings.syllabics:
-        type = "Cans"
-
-    # parsing the paradigm
-    pane_columns = []
-    for pane in panes:
-        rows = pane["tr_rows"]
-        num_of_columns = 0
-        pane_columns_buffer = None
-        header = None
-        for row in rows:
-            if row["is_header"]:
-                header = row
-                continue
-            elif num_of_columns == 0:
-                num_of_columns = len(row["cells"])
-                pane_columns_buffer = ["" for i in range(num_of_columns)]
-                for i in range(0, num_of_columns):
-                    pane_columns_buffer[i] = {
-                        "header": header,
-                        "col_label": None,
-                        "labels": [],
-                        "cells": [],
-                    }
-
-            row_label = row["cells"][0]
-            column_index = 0
-            for k in range(0, len(row["cells"])):
-                if (
-                    row["cells"][k]["is_label"]
-                    and row["cells"][k]["label_for"] == "col"
-                ):
-                    pane_columns_buffer[column_index]["col_label"] = row["cells"][k]
-                    column_index += 1
-                elif not row["cells"][k]["should_suppress_output"]:
-                    pane_columns_buffer[column_index]["labels"].append(row_label)
-                    row_resolved_inflection = row["cells"][k]
-
-                    if (
-                        not row["cells"][k]["is_missing"]
-                        and row["cells"][k]["is_inflection"]
-                    ):
-                        if type in row["cells"][k]["inflection"]:
-                            row_resolved_inflection["inflection"] = row["cells"][k][
-                                "inflection"
-                            ][type]
-                        else:
-                            row_resolved_inflection["inflection"] = row["cells"][k][
-                                "inflection"
-                            ]
-
-                        pane_columns_buffer[column_index]["cells"].append(
-                            row_resolved_inflection
-                        )
-                        column_index += 1
-                    else:
-                        # multiple wordforms
-                        row_label = row["cells"][k]
-                        column_index = 0
-        pane_columns.extend([i for i in pane_columns_buffer])
-
-    # panes_columns_slice = []
-    # num_per_column = pane_columns.length / columns;
-    # for (let i = 0; i < columns; i++) {
-    #     panes_columns_slice.push(
-    #         pane_columns.slice(i * num_per_column, (i + 1) * num_per_column)
-    #     );
-    # }
-    return pane_columns
-
-
-def get_row_labels(pane):
-    defaultLabel = "ENGLISH"
-    labels = {}
-
-    defaultHeader = "Core"
-
-    header = pane["header"]
-    col_label = pane["col_label"]
-    rows = []
-    for i in range(0, len(pane["cells"])):
-        rows.append([pane["labels"][i], pane["cells"][i]])
-
-    return rows
 
 
 def fetch_single_recording(results, request):
