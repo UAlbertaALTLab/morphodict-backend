@@ -13,7 +13,7 @@ logger = logging.getLogger(__name__)
 shared_vector_model_dir = MORPHODICT_LEXICON_RESOURCE_DIR / "vector_models"
 
 
-language_specific_vector_model_dir = settings.BASE_DIR / "resources" / "vector_models"
+language_specific_vector_model_dir = settings.BASE_DIR / "res" / "vector_models"
 
 
 # Bump this value when changing the format used to store the keys, so that

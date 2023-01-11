@@ -14,14 +14,14 @@ class App:
         """Large files that are mounted from the local git lfs checkout,
         instead of being built into the container."""
         return [
-            "morphodict/lexicon/resources/vector_models/",
-            f"{self.name}/resources/fst",
+            "morphodict/lexicon/res/vector_models/",
+            f"{self.name}/res/fst",
             # Holds phrase-translation FSTs
             f"{self.name}/res/fst/",
             f"{self.name}/res/",
             # Not actually an LFS thing, but this is where production dictionary
             # files get stored so they can be imported.
-            f"{self.name}/resources/dictionary/",
+            f"{self.name}/res/dictionary/",
         ]
 
     def prod_data_dir(self):
@@ -32,7 +32,7 @@ class App:
 
     def data_mounts(self):
         return [
-            DataMount(self, "resources/vector_models/"),
+            DataMount(self, "res/vector_models/"),
             DataMount(self, "db/"),
             DataMount(self, "CreeDictionary/search_quality/"),
         ]

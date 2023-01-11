@@ -4,7 +4,7 @@ from django.conf import settings
 
 from .helpers import get_morphodict_language_pair
 
-DICTIONARY_RESOURCE_DIR = settings.BASE_DIR / "resources" / "dictionary"
+DICTIONARY_RESOURCE_DIR = settings.BASE_DIR / "res" / "dictionary"
 
 DEFAULT_FULL_IMPORTJSON_FILE = DICTIONARY_RESOURCE_DIR / (
     f"{get_morphodict_language_pair()}_dictionary.importjson"
@@ -19,4 +19,4 @@ DEFAULT_IMPORTJSON_FILE = (
     else DEFAULT_FULL_IMPORTJSON_FILE
 )
 
-MORPHODICT_LEXICON_RESOURCE_DIR = Path(__file__).parent / "resources"
+MORPHODICT_LEXICON_RESOURCE_DIR = Path(__file__).parent / "res"

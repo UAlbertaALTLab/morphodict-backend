@@ -252,7 +252,7 @@ setup hasn’t been done yet.
     or try
 
         docker/helper.py manage arpeng importjsondict \
-            src/arpeng/resources/dictionary/arpeng_test_db.importjson
+            src/arpeng/res/dictionary/arpeng_test_db.importjson
 
     if you only want the test dictionary for now. Note that the specified
     path must be inside the container, and be specified relative to the git

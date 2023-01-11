@@ -66,5 +66,5 @@ class Command(BaseCommand):
             mode=0o755,
         )
 
-        fst_dir = new_site_dir / "resources" / "fst"
+        fst_dir = new_site_dir / "res" / "fst"
         fst_dir.mkdir(exist_ok=True, parents=True)

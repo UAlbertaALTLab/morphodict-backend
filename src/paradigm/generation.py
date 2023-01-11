@@ -25,7 +25,7 @@ def default_paradigm_manager() -> ParadigmManager:
 
     layout_dir = shared_res_dir / "layouts"
 
-    site_specific_layout_dir = settings.BASE_DIR / "resources" / "layouts"
+    site_specific_layout_dir = settings.BASE_DIR / "res" / "layouts"
     if site_specific_layout_dir.exists():
         layout_dir = site_specific_layout_dir
 

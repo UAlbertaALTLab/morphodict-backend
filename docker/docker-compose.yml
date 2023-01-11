@@ -21,13 +21,13 @@ services:
       - "./.env:/app/.env"
 
       # LFS mounts
-      - "../src/morphodict/lexicon/resources/vector_models/:/app/src/morphodict/lexicon/resources/vector_models/:ro"
-      - "../src/crkeng/resources/fst:/app/src/crkeng/resources/fst:ro"
+      - "../src/morphodict/lexicon/res/vector_models/:/app/src/morphodict/lexicon/res/vector_models/:ro"
+      - "../src/crkeng/res/fst:/app/src/crkeng/res/fst:ro"
       - "../src/crkeng/res/fst/:/app/src/crkeng/res/fst/:ro"
       - "../src/crkeng/res/:/app/src/crkeng/res/:ro"
-      - "../src/crkeng/resources/dictionary/:/app/src/crkeng/resources/dictionary/:ro"
+      - "../src/crkeng/res/dictionary/:/app/src/crkeng/res/dictionary/:ro"
 
-      - "/data_local/application-data/crkeng/vector_models:/app/src/crkeng/resources/vector_models/"
+      - "/data_local/application-data/crkeng/vector_models:/app/src/crkeng/res/vector_models/"
       - "/data_local/application-data/crkeng/db:/app/src/crkeng/db/"
       - "/data_local/application-data/crkeng/search_quality:/app/src/crkeng/CreeDictionary/search_quality/"
   cwdeng:
@@ -46,13 +46,13 @@ services:
       - "./.env:/app/.env"
 
       # LFS mounts
-      - "../src/morphodict/lexicon/resources/vector_models/:/app/src/morphodict/lexicon/resources/vector_models/:ro"
-      - "../src/cwdeng/resources/fst:/app/src/cwdeng/resources/fst:ro"
+      - "../src/morphodict/lexicon/res/vector_models/:/app/src/morphodict/lexicon/res/vector_models/:ro"
+      - "../src/cwdeng/res/fst:/app/src/cwdeng/res/fst:ro"
       - "../src/cwdeng/res/fst/:/app/src/cwdeng/res/fst/:ro"
       - "../src/cwdeng/res/:/app/src/cwdeng/res/:ro"
-      - "../src/cwdeng/resources/dictionary/:/app/src/cwdeng/resources/dictionary/:ro"
+      - "../src/cwdeng/res/dictionary/:/app/src/cwdeng/res/dictionary/:ro"
 
-      - "/data_local/application-data/cwdeng/vector_models:/app/src/cwdeng/resources/vector_models/"
+      - "/data_local/application-data/cwdeng/vector_models:/app/src/cwdeng/res/vector_models/"
       - "/data_local/application-data/cwdeng/db:/app/src/cwdeng/db/"
       - "/data_local/application-data/cwdeng/search_quality:/app/src/cwdeng/CreeDictionary/search_quality/"
   srseng:
@@ -71,13 +71,13 @@ services:
       - "./.env:/app/.env"
 
       # LFS mounts
-      - "../src/morphodict/lexicon/resources/vector_models/:/app/src/morphodict/lexicon/resources/vector_models/:ro"
-      - "../src/srseng/resources/fst:/app/src/srseng/resources/fst:ro"
+      - "../src/morphodict/lexicon/res/vector_models/:/app/src/morphodict/lexicon/res/vector_models/:ro"
+      - "../src/srseng/res/fst:/app/src/srseng/res/fst:ro"
       - "../src/srseng/res/fst/:/app/src/srseng/res/fst/:ro"
       - "../src/srseng/res/:/app/src/srseng/res/:ro"
-      - "../src/srseng/resources/dictionary/:/app/src/srseng/resources/dictionary/:ro"
+      - "../src/srseng/res/dictionary/:/app/src/srseng/res/dictionary/:ro"
 
-      - "/data_local/application-data/srseng/vector_models:/app/src/srseng/resources/vector_models/"
+      - "/data_local/application-data/srseng/vector_models:/app/src/srseng/res/vector_models/"
       - "/data_local/application-data/srseng/db:/app/src/srseng/db/"
       - "/data_local/application-data/srseng/search_quality:/app/src/srseng/CreeDictionary/search_quality/"
   arpeng:
@@ -96,13 +96,13 @@ services:
       - "./.env:/app/.env"
 
       # LFS mounts
-      - "../src/morphodict/lexicon/resources/vector_models/:/app/src/morphodict/lexicon/resources/vector_models/:ro"
-      - "../src/arpeng/resources/fst:/app/src/arpeng/resources/fst:ro"
+      - "../src/morphodict/lexicon/res/vector_models/:/app/src/morphodict/lexicon/res/vector_models/:ro"
+      - "../src/arpeng/res/fst:/app/src/arpeng/res/fst:ro"
       - "../src/arpeng/res/fst/:/app/src/arpeng/res/fst/:ro"
       - "../src/arpeng/res/:/app/src/arpeng/res/:ro"
-      - "../src/arpeng/resources/dictionary/:/app/src/arpeng/resources/dictionary/:ro"
+      - "../src/arpeng/res/dictionary/:/app/src/arpeng/res/dictionary/:ro"
 
-      - "/data_local/application-data/arpeng/vector_models:/app/src/arpeng/resources/vector_models/"
+      - "/data_local/application-data/arpeng/vector_models:/app/src/arpeng/res/vector_models/"
       - "/data_local/application-data/arpeng/db:/app/src/arpeng/db/"
       - "/data_local/application-data/arpeng/search_quality:/app/src/arpeng/CreeDictionary/search_quality/"
   hdneng:
@@ -121,12 +121,12 @@ services:
       - "./.env:/app/.env"
 
       # LFS mounts
-      - "../src/morphodict/lexicon/resources/vector_models/:/app/src/morphodict/lexicon/resources/vector_models/:ro"
-      - "../src/hdneng/resources/fst:/app/src/hdneng/resources/fst:ro"
+      - "../src/morphodict/lexicon/res/vector_models/:/app/src/morphodict/lexicon/res/vector_models/:ro"
+      - "../src/hdneng/res/fst:/app/src/hdneng/res/fst:ro"
       - "../src/hdneng/res/fst/:/app/src/hdneng/res/fst/:ro"
       - "../src/hdneng/res/:/app/src/hdneng/res/:ro"
-      - "../src/hdneng/resources/dictionary/:/app/src/hdneng/resources/dictionary/:ro"
+      - "../src/hdneng/res/dictionary/:/app/src/hdneng/res/dictionary/:ro"
 
-      - "/data_local/application-data/hdneng/vector_models:/app/src/hdneng/resources/vector_models/"
+      - "/data_local/application-data/hdneng/vector_models:/app/src/hdneng/res/vector_models/"
       - "/data_local/application-data/hdneng/db:/app/src/hdneng/db/"
       - "/data_local/application-data/hdneng/search_quality:/app/src/hdneng/CreeDictionary/search_quality/"

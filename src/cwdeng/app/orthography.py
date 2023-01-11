@@ -9,7 +9,7 @@ logger = logging.getLogger(__name__)
 @cache
 def cmro_transcriptor():
     return TransducerFile(
-        settings.BASE_DIR / "resources" / "fst" / "default-to-cmro.hfstol"
+        settings.BASE_DIR / "res" / "fst" / "default-to-cmro.hfstol"
     )
 
 

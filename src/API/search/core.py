@@ -107,6 +107,7 @@ class SearchRun:
             show_emoji=show_emoji,
             dict_source=dict_source,
         )
+        print("YOU WANT THIS ONE: ", results)
         serialized = [r.serialize() for r in results]
 
         def has_definition(r):
