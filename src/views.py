@@ -204,7 +204,9 @@ def search_api(request):
     if query_string:
         search_run = search_with_affixes(
             query_string,
-            rw_index, rw_domain, wn_synset,
+            rw_index,
+            rw_domain,
+            wn_synset,
             include_auto_definitions=include_auto_definitions,
         )
         search_results = search_run.serialized_presentation_results(
@@ -213,7 +215,13 @@ def search_api(request):
         )
         did_search = True
     elif rw_index or rw_domain or wn_synset:
-        search_run = search_with_affixes(query_string, rw_index, rw_domain, wn_synset, include_auto_definitions=include_auto_definitions)
+        search_run = search_with_affixes(
+            query_string,
+            rw_index,
+            rw_domain,
+            wn_synset,
+            include_auto_definitions=include_auto_definitions,
+        )
         search_results = search_run.serialized_presentation_results(
             display_mode=DisplayMode.current_value_from_request(request),
             dict_source=dict_source,

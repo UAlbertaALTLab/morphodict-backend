@@ -43,7 +43,7 @@ def search(
         rw_index=rw_index,
         rw_domain=rw_domain,
         wn_synset=wn_synset,
-        include_auto_definitions=include_auto_definitions
+        include_auto_definitions=include_auto_definitions,
     )
     initial_query_terms = search_run.query.query_terms[:]
 

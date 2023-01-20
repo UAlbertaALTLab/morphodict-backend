@@ -32,7 +32,7 @@ def fetch_results(search_run: core.SearchRun):
     fst_analyses = set(rich_analyze_relaxed(search_run.internal_query))
     print([a.tuple for a in fst_analyses])
 
-    if (fst_analyses):
+    if fst_analyses:
         db_matches = list(
             Wordform.objects.filter(raw_analysis__in=[a.tuple for a in fst_analyses])
         )
@@ -46,7 +46,6 @@ def fetch_results(search_run: core.SearchRun):
             filters.append(Q(wn_synsets__contains=search_run.wn_synset))
         print(filters)
         db_matches = list(Wordform.objects.filter(reduce(operator.or_, filters)))
-
 
     for wf in db_matches:
         search_run.add_result(

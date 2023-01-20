@@ -2,7 +2,12 @@ from .runner import search
 
 
 def search_with_affixes(
-    query: str,  rw_index: str, rw_domain: str, wn_synset: str, include_auto_definitions=False, inflect_english_phrases=False
+    query: str,
+    rw_index: str,
+    rw_domain: str,
+    wn_synset: str,
+    include_auto_definitions=False,
+    inflect_english_phrases=False,
 ):
     """
     Search for wordforms matching:
