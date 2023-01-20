@@ -16,6 +16,8 @@ from lexicon.models import Wordform, SourceLanguageKeyword
 from lexicon.util import to_source_language_keyword
 from . import core
 from .api_types import Result
+from functools import reduce
+import operator
 
 logger = logging.getLogger(__name__)
 
@@ -30,9 +32,21 @@ def fetch_results(search_run: core.SearchRun):
     fst_analyses = set(rich_analyze_relaxed(search_run.internal_query))
     print([a.tuple for a in fst_analyses])
 
-    db_matches = list(
-        Wordform.objects.filter(raw_analysis__in=[a.tuple for a in fst_analyses])
-    )
+    if (fst_analyses):
+        db_matches = list(
+            Wordform.objects.filter(raw_analysis__in=[a.tuple for a in fst_analyses])
+        )
+    else:
+        filters = []
+        if search_run.rw_domain:
+            filters.append(Q(rw_domains__contains=search_run.rw_domain))
+        if search_run.rw_index:
+            filters.append(Q(rw_indices__contains=search_run.rw_index))
+        if search_run.wn_synset:
+            filters.append(Q(wn_synsets__contains=search_run.wn_synset))
+        print(filters)
+        db_matches = list(Wordform.objects.filter(reduce(operator.or_, filters)))
+
 
     for wf in db_matches:
         search_run.add_result(

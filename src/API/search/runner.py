@@ -25,6 +25,9 @@ CREE_LONG_VOWEL = re.compile("[êîôâēīōā]")
 def search(
     *,
     query: str,
+    rw_index: str,
+    rw_domain: str,
+    wn_synset: str,
     include_affixes=True,
     include_auto_definitions=False,
     inflect_english_phrases=False
@@ -36,7 +39,11 @@ def search(
     which order, to build up results in a SearchRun.
     """
     search_run = SearchRun(
-        query=query, include_auto_definitions=include_auto_definitions
+        query=query,
+        rw_index=rw_index,
+        rw_domain=rw_domain,
+        wn_synset=wn_synset,
+        include_auto_definitions=include_auto_definitions
     )
     initial_query_terms = search_run.query.query_terms[:]
 

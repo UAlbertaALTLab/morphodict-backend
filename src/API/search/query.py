@@ -44,7 +44,10 @@ class Query:
     def __init__(self, query_string):
         self.raw_query_string = query_string
 
-        query_string = treat_query(query_string)
+        if query_string:
+            query_string = treat_query(query_string)
+        else:
+            query_string = ""
 
         self.query_terms = []
 

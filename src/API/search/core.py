@@ -24,8 +24,14 @@ class SearchRun:
     and to add results to the result collection for future ranking.
     """
 
-    def __init__(self, query: str, include_auto_definitions=None):
+    def __init__(self, query: str,
+        rw_index: str,
+        rw_domain: str,
+        wn_synset: str, include_auto_definitions=None):
         self.query = Query(query)
+        self.rw_index = rw_index
+        self.rw_domain = rw_domain
+        self.wn_synset = wn_synset
         self.include_auto_definitions = first_non_none_value(
             self.query.auto, include_auto_definitions, default=False
         )
