@@ -46,7 +46,6 @@ def fetch_results(search_run: core.SearchRun):
         print(filters)
         db_matches = list(Wordform.objects.filter(reduce(operator.or_, filters)))
 
-
     for wf in db_matches:
         search_run.add_result(
             Result(
