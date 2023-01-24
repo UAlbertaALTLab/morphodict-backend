@@ -21,6 +21,7 @@ MAX_TEXT_LENGTH = 200
 
 logger = logging.getLogger(__name__)
 
+
 class WordformLemmaManager(models.Manager):
     """We are essentially always going to want the lemma
 
@@ -119,7 +120,7 @@ class Wordform(models.Model):
         null=True,
         help_text="""
         RapidWords domains for an entry, separated by a semicolon
-        """
+        """,
     )
 
     rw_indices = models.CharField(
@@ -128,7 +129,7 @@ class Wordform(models.Model):
         null=True,
         help_text="""
             RapidWords indices for an entry, separated by a semicolon
-            """
+            """,
     )
 
     wn_synsets = models.CharField(
@@ -137,7 +138,7 @@ class Wordform(models.Model):
         null=True,
         help_text="""
             WordNet synsets for an entry, separated by a semicolon
-            """
+            """,
     )
 
     import_hash = models.CharField(
