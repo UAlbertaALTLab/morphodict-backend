@@ -49,3 +49,32 @@ files. You'll also need a dictionary, ask whoever is setting you up to
 get you started with one. Please inform Jolene <jcpoulin@ualberta.ca> if 
 there are any other dependencies that you need but aren't available through 
 LFS or by asking the person helping you.
+
+
+## Usage
+There's one public API endpoint you can use with four options for searching. 
+
+### name
+Accessed by typing the following: 
+`api.itwewina.altlab.dev/api/search/?name=<search_term>` where <search_term> 
+is a word in Plains Cree or in English.
+
+Returns a JSON object.
+
+### rw_index
+Accessed by typing the following: `api.itwewina.altlab.dev/api/search/?rw_index=<index>`
+ where <index> is a string of numbers, such as `1.2.2` or `1.6`. Returns 
+all objects with a RapidWords index that equals or contains the index provided 
+as a JSON object.
+
+### rw_domain
+Accessed by typing the following: 
+`api.itwewina.altlab.dev/api/search/?rw_domain=<domain>` where domain is a string. 
+Returns all objects where the RapidWords class is or contains the domain provided. 
+Return type is JSON.
+
+### wn_synset
+Accessed by typing the following: 
+`api.itwewina.altlab.dev/api/search/?wn_synset=<synset>` where <synset> is a string. 
+Returns all objects where the WordNet synsets contains or matches the string provided. 
+Return type is JSON.
