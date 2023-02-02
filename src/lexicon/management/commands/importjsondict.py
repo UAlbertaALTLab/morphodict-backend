@@ -335,7 +335,7 @@ class Import:
                 slug=entry["slug"],
                 rw_domains="; ".join(entry["rw_domains"]),
                 rw_indices="; ".join(entry["rw_indices"]),
-                wn_synsets="; ".join(entry["wn_synsets"]),
+                wn_synsets_string="; ".join(entry["wn_synsets"]),
                 is_lemma=True,
                 linguist_info=entry.get("linguistInfo", {}),
                 import_hash=freshness_check.importjson_hash_for_slug(entry["slug"]),
