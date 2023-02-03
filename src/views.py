@@ -198,19 +198,11 @@ def semantic_api(request):
         if not rw:
             return Response(context)
 
-        hyponyms = rw.hyponyms
-        # for h1 in rw.hyponyms.all():
-        #     hyponyms.append(f"{h1.index} {h1.domain}")
-
-        hypernyms = rw.hypernyms
-        # for h2 in rw.hypernyms.all():
-        #     hypernyms.append(f"{h2.index} {h2.domain}")
-
         context["class"] = f"{rw.index} {rw.domain}"
         context["index"] = rw.index
         context["domain"] = rw.domain
-        context["hypernyms"] = hypernyms
-        context["hyponyms"] = hyponyms
+        context["hypernyms"] = rw.hypernyms
+        context["hyponyms"] = rw.hyponyms
 
     return Response(context)
 
