@@ -38,6 +38,7 @@ urlpatterns = [
     path(
         "api/search/", views.search_api, name="cree-dictionary-search"
     ),  # word_search returns wordforms as json
+    path("api/rapidwords/", views.semantic_api, name="semantic-search"),
     path(
         "api/word/<str:slug>/",
         views.word_details_api,

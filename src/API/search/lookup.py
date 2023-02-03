@@ -43,7 +43,6 @@ def fetch_results(search_run: core.SearchRun):
             filters.append(Q(rw_indices__contains=search_run.rw_index))
         if search_run.wn_synset:
             filters.append(Q(wn_synsets__contains=search_run.wn_synset))
-        print(filters)
         db_matches = list(Wordform.objects.filter(reduce(operator.or_, filters)))
 
     for wf in db_matches:

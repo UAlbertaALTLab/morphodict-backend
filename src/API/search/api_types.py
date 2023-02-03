@@ -220,9 +220,8 @@ class Result:
     glossary_count: Optional[int] = None
     lemma_freq: Optional[int] = None
 
-    rw_domains: Optional[str] = None
-    rw_indices: Optional[str] = None
     wn_synsets: Optional[str] = None
+    rw_classes: Optional[list] = None
 
     #: Was anything in the query a target-language match for this result?
     did_match_target_language: Optional[bool] = None

@@ -36,7 +36,7 @@ from phrase_translate.translate import (
     eng_verb_entry_to_inflected_phrase_fst,
 )
 from crkeng.app.preferences import DisplayMode, AnimateEmoji, ShowEmoji
-from lexicon.models import Wordform
+from lexicon.models import Wordform, RapidWords
 
 from paradigm.manager import ParadigmDoesNotExistError
 from paradigm.panes import Paradigm
@@ -182,6 +182,31 @@ def word_details_api(request, slug: str):
 
     return Response(content)
 
+@api_view(["GET"])
+def semantic_api(request):
+    """
+    search endpoint for the semantic fields
+    """
+    query = request.GET.get("q")
+    context = dict()
+    if query:
+        context["query"] = query
+        if '.' in query:
+            rw = RapidWords.objects.get(index=query)
+        else:
+            rw = RapidWords.objects.get(domain=query)
+        if not rw:
+            return Response(context)
+
+        context["class"] = f"{rw.index} {rw.domain}"
+        context["index"] = rw.index
+        context["domain"] = rw.domain
+        context["hypernyms"] = rw.hypernyms
+        context["hyponyms"] = rw.hyponyms
+
+    return Response(context)
+
+
 
 @api_view(["GET"])
 def search_api(request):
@@ -192,7 +217,6 @@ def search_api(request):
     :return:
     """
     query_string = request.GET.get("name")
-    print(query_string)
     rw_index = request.GET.get("rw_index")
     rw_domain = request.GET.get("rw_domain")
     wn_synset = request.GET.get("wn_synset")
@@ -201,20 +225,7 @@ def search_api(request):
     include_auto_definitions = request.user.is_authenticated
     context = dict()
 
-    if query_string:
-        search_run = search_with_affixes(
-            query_string,
-            rw_index,
-            rw_domain,
-            wn_synset,
-            include_auto_definitions=include_auto_definitions,
-        )
-        search_results = search_run.serialized_presentation_results(
-            display_mode=DisplayMode.current_value_from_request(request),
-            dict_source=dict_source,
-        )
-        did_search = True
-    elif rw_index or rw_domain or wn_synset:
+    if query_string or rw_index or rw_domain or wn_synset:
         search_run = search_with_affixes(
             query_string,
             rw_index,
@@ -327,7 +338,6 @@ def relabelFSTAnalysis(analysis):
 
     for item in analysis:
         tags = item["tags"]
-        print("TAGS:", tags)
         ling_long.append(labels.linguistic_long.get_longest(tags))
         ling_short.append(labels.linguistic_short.get_longest(tags))
         source_language.append(labels.source_language.get_longest(tags))

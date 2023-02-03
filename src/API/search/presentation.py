@@ -114,7 +114,6 @@ class PresentationResult:
         dict_source=None,
     ):
         self._result = result
-        print("YOU WAN THIS ONE: ", result)
         self._search_run = search_run
         self._relabeller = {
             "english": read_labels().english,
@@ -191,6 +190,13 @@ class PresentationResult:
         self.friendly_linguistic_breakdown_tail = replace_user_friendly_tags(
             to_list_of_fst_tags(self.linguistic_breakdown_tail)
         )
+        if self._result.rw_classes:
+            # self.rw_classes = [f"{cl.index} {cl.domain}" for cl in self._result.rw_classes]
+            self.rw_classes = self._result.rw_classes.objects.all().serialize()
+        else:
+            self.rw_classes = []
+
+        print(self.rw_classes)
 
     def serialize(self) -> SerializedPresentationResult:
         ret: SerializedPresentationResult = {
@@ -211,9 +217,8 @@ class PresentationResult:
                 dict_source=self.dict_source,
             ),
             "lexical_info": self.lexical_info,
-            "rw_domains": self._result.rw_domains,
-            "rw_indices": self._result.rw_indices,
             "wn_synsets": self._result.wn_synsets,
+            "rw_classes": self.rw_classes,
             "preverbs": self.preverbs,
             "friendly_linguistic_breakdown_head": self.friendly_linguistic_breakdown_head,
             "friendly_linguistic_breakdown_tail": self.friendly_linguistic_breakdown_tail,
@@ -359,7 +364,8 @@ def serialize_wordform(
         if key not in result:
             result[key] = wordform.linguist_info[key]
 
-    print("RESULT:", result)
+    result["rw_classes"] = wordform.rw_classes
+
     return result
 
 

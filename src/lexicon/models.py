@@ -47,6 +47,50 @@ class DiacriticPreservingJsonEncoder(DjangoJSONEncoder):
         super().__init__(*args, **kwargs)
 
 
+class RapidWords(models.Model):
+    domain = models.CharField(
+        max_length=2048,
+        null=False,
+        help_text="The domain of this class"
+    )
+
+    index = models.CharField(
+        max_length=64,
+        null=False,
+        help_text="The index of this class",
+        unique=True
+    )
+
+    hypernyms = models.CharField(
+        max_length=1024,
+        null=True,
+        blank=True,
+        help_text="A string list of hypernym indexes and domains"
+    )
+
+    hyponyms = models.CharField(
+        max_length=1024,
+        null=True,
+        blank=True,
+        help_text="A string list of hyponyms indexes and domains"
+    )
+
+    def __str__(self):
+        return f"{self.index} {self.domain}"
+
+    def __repr__(self):
+        return f"{self.index} {self.domain}"
+
+    def serialize(self) -> SerializedRapidWordsClass:
+        """
+        :return: json parsable format
+        """
+        return {
+            "domain": self.domain,
+            "index": self.index
+        }
+
+
 class Wordform(models.Model):
     # Queries always do .select_related("lemma"):
     objects = WordformLemmaManager()
@@ -114,13 +158,15 @@ class Wordform(models.Model):
         """,
     )
 
+    rw_classes = models.ManyToManyField(RapidWords)
+
     rw_domains = models.CharField(
         max_length=2048,
         blank=True,
         null=True,
         help_text="""
-        RapidWords domains for an entry, separated by a semicolon
-        """,
+                RapidWords domains for an entry, separated by a semicolon
+                """
     )
 
     rw_indices = models.CharField(
@@ -128,8 +174,8 @@ class Wordform(models.Model):
         blank=True,
         null=True,
         help_text="""
-            RapidWords indices for an entry, separated by a semicolon
-            """,
+                    RapidWords indices for an entry, separated by a semicolon
+                    """
     )
 
     wn_synsets = models.CharField(
@@ -137,8 +183,8 @@ class Wordform(models.Model):
         blank=True,
         null=True,
         help_text="""
-            WordNet synsets for an entry, separated by a semicolon
-            """,
+                    WordNet synsets for an entry, separated by a semicolon
+                    """
     )
 
     import_hash = models.CharField(

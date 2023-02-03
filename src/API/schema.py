@@ -14,6 +14,11 @@ class SerializedDefinition(TypedDict):
     is_auto_translation: bool
 
 
+class SerializedRapidWordsClass(TypedDict):
+    domain: str
+    index: str
+
+
 class SerializedWordform(TypedDict):
     id: int
     text: str
@@ -32,9 +37,14 @@ class SerializedWordform(TypedDict):
     inflectional_category_linguistic: str
     wordclass_emoji: str
     wordclass: str
+    rw_indices: str
+    rw_domains: str
+    wn_synset: str
 
     # ---- foreign keys ----
     definitions: List[SerializedDefinition]
+    rw_classes: List[SerializedRapidWordsClass]
+
 
 
 class SerializedLinguisticTag(TypedDict):

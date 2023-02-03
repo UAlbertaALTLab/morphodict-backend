@@ -8,3 +8,5 @@ __pycache__
 *.sqlite3
 collected-static
 *_dictionary.importjson
+
+RW_12345.txt
