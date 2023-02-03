@@ -57,11 +57,23 @@ class RapidWords(models.Model):
     index = models.CharField(
         max_length=64,
         null=False,
-        help_text="The index of this class"
+        help_text="The index of this class",
+        unique=True
     )
 
-    hypernyms = models.ManyToManyField("self")
-    hyponyms = models.ManyToManyField("self")
+    hypernyms = models.CharField(
+        max_length=1024,
+        null=True,
+        blank=True,
+        help_text="A string list of hypernym indexes and domains"
+    )
+
+    hyponyms = models.CharField(
+        max_length=1024,
+        null=True,
+        blank=True,
+        help_text="A string list of hyponyms indexes and domains"
+    )
 
     def __str__(self):
         return f"{self.index} {self.domain}"
@@ -69,22 +81,14 @@ class RapidWords(models.Model):
     def __repr__(self):
         return f"{self.index} {self.domain}"
 
-
-class WordNet(models.Model):
-    synset = models.CharField(
-        max_length=2048,
-        null=False,
-        help_text="WordNet synset classification"
-    )
-
-    hypernyms = models.ManyToManyField("self")
-    hyponyms = models.ManyToManyField("self")
-
-    def __str__(self):
-        return f"{self.synset}"
-
-    def __repr__(self):
-        return f"{self.synset}"
+    def serialize(self) -> SerializedRapidWordsClass:
+        """
+        :return: json parsable format
+        """
+        return {
+            "domain": self.domain,
+            "index": self.index
+        }
 
 
 class Wordform(models.Model):
@@ -155,7 +159,6 @@ class Wordform(models.Model):
     )
 
     rw_classes = models.ManyToManyField(RapidWords)
-    wn_synsets = models.ManyToManyField(WordNet)
 
     rw_domains = models.CharField(
         max_length=2048,
@@ -175,7 +178,7 @@ class Wordform(models.Model):
                     """
     )
 
-    wn_synsets_string = models.CharField(
+    wn_synsets = models.CharField(
         max_length=2048,
         blank=True,
         null=True,

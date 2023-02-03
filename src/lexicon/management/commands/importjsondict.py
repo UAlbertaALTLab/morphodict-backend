@@ -33,6 +33,7 @@ from lexicon.models import (
     TargetLanguageKeyword,
     SourceLanguageKeyword,
     ImportStamp,
+    RapidWords
 )
 from lexicon.util import to_source_language_keyword
 
@@ -327,15 +328,30 @@ class Import:
             elif (analysis := entry.get("analysis")) is not None:
                 fst_lemma = analysis[1]
 
+            if "rw_domains" in entry:
+                rw_domains = "; ".join(entry["rw_domains"])
+            else:
+                rw_domains = ""
+
+            if "rw_indices" in entry:
+                rw_indices_string = "; ".join(entry["rw_indices"])
+            else:
+                rw_indices_string = ""
+
+            if "wn_synsets" in entry:
+                wn_synsets = "; ".join(entry["wn_synsets"])
+            else:
+                wn_synsets = ""
+
             wf = Wordform(
                 text=entry["head"],
                 raw_analysis=entry.get("analysis", None),
                 fst_lemma=fst_lemma,
                 paradigm=entry.get("paradigm", None),
                 slug=entry["slug"],
-                rw_domains="; ".join(entry["rw_domains"]),
-                rw_indices="; ".join(entry["rw_indices"]),
-                wn_synsets_string="; ".join(entry["wn_synsets"]),
+                rw_domains=rw_domains,
+                rw_indices=rw_indices_string,
+                wn_synsets=wn_synsets,
                 is_lemma=True,
                 linguist_info=entry.get("linguistInfo", {}),
                 import_hash=freshness_check.importjson_hash_for_slug(entry["slug"]),
