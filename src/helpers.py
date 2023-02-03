@@ -280,7 +280,6 @@ def should_inflect_phrases(request):
 
 
 def get_recordings_from_paradigm(paradigm, request):
-
     if request.COOKIES.get("paradigm_audio") == "no":
         return paradigm
 

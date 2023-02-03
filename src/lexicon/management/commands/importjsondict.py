@@ -33,7 +33,7 @@ from lexicon.models import (
     TargetLanguageKeyword,
     SourceLanguageKeyword,
     ImportStamp,
-    RapidWords
+    RapidWords,
 )
 from lexicon.util import to_source_language_keyword
 
@@ -477,7 +477,6 @@ class Import:
                 )
 
                 for d, sources in definitions_and_sources:
-
                     translation = translate_single_definition(
                         inflected_wordform, d.text, self.translation_stats
                     )

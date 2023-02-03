@@ -46,7 +46,6 @@ class SerializedWordform(TypedDict):
     rw_classes: List[SerializedRapidWordsClass]
 
 
-
 class SerializedLinguisticTag(TypedDict):
     # The tag in its original form, e.g., from the FST
     value: str

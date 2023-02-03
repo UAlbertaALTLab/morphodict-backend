@@ -4,25 +4,39 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('lexicon', '0009_create_semantic_tables'),
+        ("lexicon", "0009_create_semantic_tables"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='wordform',
-            name='rw_domains',
-            field=models.CharField(blank=True, help_text='\n                RapidWords domains for an entry, separated by a semicolon\n                ', max_length=2048, null=True),
+            model_name="wordform",
+            name="rw_domains",
+            field=models.CharField(
+                blank=True,
+                help_text="\n                RapidWords domains for an entry, separated by a semicolon\n                ",
+                max_length=2048,
+                null=True,
+            ),
         ),
         migrations.AddField(
-            model_name='wordform',
-            name='rw_indices',
-            field=models.CharField(blank=True, help_text='\n                    RapidWords indices for an entry, separated by a semicolon\n                    ', max_length=2048, null=True),
+            model_name="wordform",
+            name="rw_indices",
+            field=models.CharField(
+                blank=True,
+                help_text="\n                    RapidWords indices for an entry, separated by a semicolon\n                    ",
+                max_length=2048,
+                null=True,
+            ),
         ),
         migrations.AddField(
-            model_name='wordform',
-            name='wn_synsets_string',
-            field=models.CharField(blank=True, help_text='\n                    WordNet synsets for an entry, separated by a semicolon\n                    ', max_length=2048, null=True),
+            model_name="wordform",
+            name="wn_synsets_string",
+            field=models.CharField(
+                blank=True,
+                help_text="\n                    WordNet synsets for an entry, separated by a semicolon\n                    ",
+                max_length=2048,
+                null=True,
+            ),
         ),
     ]

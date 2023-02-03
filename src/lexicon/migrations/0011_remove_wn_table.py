@@ -4,26 +4,30 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('lexicon', '0010_keep_old_semantics_for_legacy_code'),
+        ("lexicon", "0010_keep_old_semantics_for_legacy_code"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='wordform',
-            name='wn_synsets_string',
+            model_name="wordform",
+            name="wn_synsets_string",
         ),
         migrations.RemoveField(
-            model_name='wordform',
-            name='wn_synsets',
+            model_name="wordform",
+            name="wn_synsets",
         ),
         migrations.AddField(
-            model_name='wordform',
-            name='wn_synsets',
-            field=models.CharField(blank=True, help_text='\n                    WordNet synsets for an entry, separated by a semicolon\n                    ', max_length=2048, null=True),
+            model_name="wordform",
+            name="wn_synsets",
+            field=models.CharField(
+                blank=True,
+                help_text="\n                    WordNet synsets for an entry, separated by a semicolon\n                    ",
+                max_length=2048,
+                null=True,
+            ),
         ),
         migrations.DeleteModel(
-            name='WordNet',
+            name="WordNet",
         ),
     ]

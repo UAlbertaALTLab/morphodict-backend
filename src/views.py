@@ -182,6 +182,7 @@ def word_details_api(request, slug: str):
 
     return Response(content)
 
+
 @api_view(["GET"])
 def semantic_api(request):
     """
@@ -191,7 +192,7 @@ def semantic_api(request):
     context = dict()
     if query:
         context["query"] = query
-        if '.' in query:
+        if "." in query:
             rw = RapidWords.objects.get(index=query)
         else:
             rw = RapidWords.objects.get(domain=query)
@@ -205,7 +206,6 @@ def semantic_api(request):
         context["hyponyms"] = rw.hyponyms
 
     return Response(context)
-
 
 
 @api_view(["GET"])
