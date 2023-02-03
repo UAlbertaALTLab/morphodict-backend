@@ -364,7 +364,7 @@ def serialize_wordform(
         if key not in result:
             result[key] = wordform.linguist_info[key]
 
-    result["rw_classes"] = [wn.serialize() for wn in wordform.rw_classes.all()]
+    result["rw_classes"] = wordform.rw_classes
 
     return result
 

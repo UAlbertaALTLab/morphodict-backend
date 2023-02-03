@@ -52,29 +52,51 @@ LFS or by asking the person helping you.
 
 
 ## Usage
-There's one public API endpoint you can use with four options for searching. 
+There are two public API endpoints you can use with a total of five options for searching.
 
-### name
+### search
+This option features the word `search` in the URL and has 3 optional arguments you can pass to it.
+
+#### name
 Accessed by typing the following: 
 `api.itwewina.altlab.dev/api/search/?name=<search_term>` where <search_term> 
 is a word in Plains Cree or in English.
 
 Returns a JSON object.
 
-### rw_index
+#### rw_index
 Accessed by typing the following: `api.itwewina.altlab.dev/api/search/?rw_index=<index>`
  where <index> is a string of numbers, such as `1.2.2` or `1.6`. Returns 
 all objects with a RapidWords index that equals or contains the index provided 
 as a JSON object.
 
-### rw_domain
+#### rw_domain
 Accessed by typing the following: 
 `api.itwewina.altlab.dev/api/search/?rw_domain=<domain>` where domain is a string. 
 Returns all objects where the RapidWords class is or contains the domain provided. 
 Return type is JSON.
 
-### wn_synset
+#### wn_synset
 Accessed by typing the following: 
 `api.itwewina.altlab.dev/api/search/?wn_synset=<synset>` where <synset> is a string. 
 Returns all objects where the WordNet synsets contains or matches the string provided. 
 Return type is JSON.
+
+### rapidwords
+In this option, you route to the `rapidwords` endpoint. It has one required argument.
+
+#### q
+`q`, short for "query" is added to the end of the URL. It can be used in two ways:
+
+1. `http://127.0.0.1:8000/api/rapidwords/?q=1.2.2` with a series of numbers separated 
+by a period. This will query for a RapidWords entry with the matching index.
+2. `http://127.0.0.1:8000/api/rapidwords/?q=Names%20of%20animals` with a string exactly matching 
+   (case sensitive) the domain of a RapidWords domain.
+   
+This endpoint returns a JSON object with the fields:
+* query
+* class
+* domain
+* index
+* hypernyms
+* hyponyms
