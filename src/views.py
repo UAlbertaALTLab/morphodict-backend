@@ -182,6 +182,7 @@ def word_details_api(request, slug: str):
 
     return Response(content)
 
+
 @api_view(["GET"])
 def semantic_api(request):
     """
@@ -207,7 +208,6 @@ def semantic_api(request):
 
     context["message"] = "Positional argument 'q' required"
     return Response(context)
-
 
 
 @api_view(["GET"])

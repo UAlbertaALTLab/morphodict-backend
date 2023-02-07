@@ -4,28 +4,37 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('lexicon', '0012_rw_index_unique'),
+        ("lexicon", "0012_rw_index_unique"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='rapidwords',
-            name='hypernyms',
+            model_name="rapidwords",
+            name="hypernyms",
         ),
         migrations.AddField(
-            model_name='rapidwords',
-            name='hypernyms',
-            field=models.CharField(blank=True, help_text='A string list of hypernym indexes and domains', max_length=1024, null=True),
+            model_name="rapidwords",
+            name="hypernyms",
+            field=models.CharField(
+                blank=True,
+                help_text="A string list of hypernym indexes and domains",
+                max_length=1024,
+                null=True,
+            ),
         ),
         migrations.RemoveField(
-            model_name='rapidwords',
-            name='hyponyms',
+            model_name="rapidwords",
+            name="hyponyms",
         ),
         migrations.AddField(
-            model_name='rapidwords',
-            name='hyponyms',
-            field=models.CharField(blank=True, help_text='A string list of hyponyms indexes and domains', max_length=1024, null=True),
+            model_name="rapidwords",
+            name="hyponyms",
+            field=models.CharField(
+                blank=True,
+                help_text="A string list of hyponyms indexes and domains",
+                max_length=1024,
+                null=True,
+            ),
         ),
     ]

@@ -4,14 +4,13 @@ from django.db import migrations
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('lexicon', '0014_add_serializers'),
+        ("lexicon", "0014_add_serializers"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='wordform',
-            name='rw_classes',
+            model_name="wordform",
+            name="rw_classes",
         ),
     ]

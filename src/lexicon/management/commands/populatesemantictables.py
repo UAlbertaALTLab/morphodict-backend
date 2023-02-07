@@ -26,17 +26,17 @@ class Command(BaseCommand):
                 continue
             split = line.split(" ")
             i = split[0]
-            domain = ' '.join(split[1:])
+            domain = " ".join(split[1:])
             cl = RapidWords.objects.create(
                 domain=domain,
                 index=i,
             )
-            parts = i.split('.')
+            parts = i.split(".")
             hypernym = ""
             for j in range(0, len(parts) - 1):
                 hypernym += parts[j]
                 if j != len(parts) - 2:
-                    hypernym += '.'
+                    hypernym += "."
             if not hypernym:
                 continue
             hypernym_object = RapidWords.objects.get(index=hypernym)

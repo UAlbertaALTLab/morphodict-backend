@@ -4,15 +4,16 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('lexicon', '0011_remove_wn_table'),
+        ("lexicon", "0011_remove_wn_table"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='rapidwords',
-            name='index',
-            field=models.CharField(help_text='The index of this class', max_length=64, unique=True),
+            model_name="rapidwords",
+            name="index",
+            field=models.CharField(
+                help_text="The index of this class", max_length=64, unique=True
+            ),
         ),
     ]

@@ -49,30 +49,25 @@ class DiacriticPreservingJsonEncoder(DjangoJSONEncoder):
 
 class RapidWords(models.Model):
     domain = models.CharField(
-        max_length=2048,
-        null=False,
-        help_text="The domain of this class"
+        max_length=2048, null=False, help_text="The domain of this class"
     )
 
     index = models.CharField(
-        max_length=64,
-        null=False,
-        help_text="The index of this class",
-        unique=True
+        max_length=64, null=False, help_text="The index of this class", unique=True
     )
 
     hypernyms = models.CharField(
         max_length=1024,
         null=True,
         blank=True,
-        help_text="A string list of hypernym indexes and domains"
+        help_text="A string list of hypernym indexes and domains",
     )
 
     hyponyms = models.CharField(
         max_length=1024,
         null=True,
         blank=True,
-        help_text="A string list of hyponyms indexes and domains"
+        help_text="A string list of hyponyms indexes and domains",
     )
 
     def __str__(self):
@@ -85,10 +80,7 @@ class RapidWords(models.Model):
         """
         :return: json parsable format
         """
-        return {
-            "domain": self.domain,
-            "index": self.index
-        }
+        return {"domain": self.domain, "index": self.index}
 
 
 class Wordform(models.Model):
@@ -164,7 +156,7 @@ class Wordform(models.Model):
         null=True,
         help_text="""
                 RapidWords domains for an entry, separated by a semicolon
-                """
+                """,
     )
 
     rw_indices = models.CharField(
@@ -173,7 +165,7 @@ class Wordform(models.Model):
         null=True,
         help_text="""
                     RapidWords indices for an entry, separated by a semicolon
-                    """
+                    """,
     )
 
     wn_synsets = models.CharField(
@@ -182,7 +174,7 @@ class Wordform(models.Model):
         null=True,
         help_text="""
                     WordNet synsets for an entry, separated by a semicolon
-                    """
+                    """,
     )
 
     import_hash = models.CharField(

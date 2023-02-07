@@ -4,15 +4,16 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('lexicon', '0013_change_related_fields_to_string_fields'),
+        ("lexicon", "0013_change_related_fields_to_string_fields"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='wordform',
-            name='rw_classes',
-            field=models.ManyToManyField(blank=True, related_name='rw_classes', to='lexicon.RapidWords'),
+            model_name="wordform",
+            name="rw_classes",
+            field=models.ManyToManyField(
+                blank=True, related_name="rw_classes", to="lexicon.RapidWords"
+            ),
         ),
     ]
