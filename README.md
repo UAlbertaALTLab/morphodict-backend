@@ -81,6 +81,9 @@ Accessed by typing the following:
 `api.itwewina.altlab.dev/api/search/?wn_synset=<synset>` where <synset> is a string. 
 Returns all objects where the WordNet synsets contains or matches the string provided. 
 Return type is JSON.
+**Note:** There **must** be a space between the last word of the synset and 
+the number of the synset. For example: `(n) dog 1` (with spaces, just like that) 
+is correct. Incorrect variants include: `(n) dog1` and `(n) dog#1`.
 
 ### rapidwords
 In this option, you route to the `rapidwords` endpoint. It has one required argument.
