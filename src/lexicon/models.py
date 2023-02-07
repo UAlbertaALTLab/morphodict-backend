@@ -150,8 +150,6 @@ class Wordform(models.Model):
         """,
     )
 
-    rw_classes = models.ManyToManyField(RapidWords)
-
     rw_domains = models.CharField(
         max_length=2048,
         blank=True,
