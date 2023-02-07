@@ -329,17 +329,17 @@ class Import:
                 fst_lemma = analysis[1]
 
             if "rw_domains" in entry:
-                rw_domains = ' ' + "; ".join(entry["rw_domains"]) + ';'
+                rw_domains = " " + "; ".join(entry["rw_domains"]) + ";"
             else:
                 rw_domains = ""
 
             if "rw_indices" in entry:
-                rw_indices_string = ' ' + "; ".join(entry["rw_indices"]) + ';'
+                rw_indices_string = " " + "; ".join(entry["rw_indices"]) + ";"
             else:
                 rw_indices_string = ""
 
             if "wn_synsets" in entry:
-                wn_synsets = ' ' + "; ".join(entry["wn_synsets"]) + ';'
+                wn_synsets = " " + "; ".join(entry["wn_synsets"]) + ";"
             else:
                 wn_synsets = ""
 
