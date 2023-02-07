@@ -42,13 +42,13 @@ def fetch_results(search_run: core.SearchRun):
         if search_run.rw_index:
             filters.append(Q(rw_indices__icontains=f" {search_run.rw_index};"))
         if search_run.wn_synset:
-            search_synset_list = search_run.wn_synset.split(' ')
+            search_synset_list = search_run.wn_synset.split(" ")
             search_synset_list[-1] = "#" + search_synset_list[-1]
             search_synset = ""
             for i, s in enumerate(search_synset_list):
                 search_synset += s
                 if i < len(search_synset_list) - 2:
-                    search_synset += ' '
+                    search_synset += " "
 
             filters.append(Q(wn_synsets__icontains=f"{search_synset}"))
         db_matches = list(Wordform.objects.filter(reduce(operator.or_, filters)))

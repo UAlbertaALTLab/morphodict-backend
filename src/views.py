@@ -192,7 +192,7 @@ def semantic_api(request):
     context = dict()
     if query:
         context["query"] = query
-        if '.' in query:
+        if "." in query:
             rw = RapidWords.objects.filter(index=query).first()
         else:
             rw = RapidWords.objects.filter(domain=query).first()
