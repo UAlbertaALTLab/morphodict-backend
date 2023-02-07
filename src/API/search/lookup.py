@@ -38,11 +38,11 @@ def fetch_results(search_run: core.SearchRun):
     if search_run.rw_index or search_run.rw_domain or search_run.wn_synset:
         filters = []
         if search_run.rw_domain:
-            filters.append(Q(rw_domains__contains=search_run.rw_domain))
+            filters.append(Q(rw_domains__contains=f" {search_run.rw_domain};"))
         if search_run.rw_index:
-            filters.append(Q(rw_indices__contains=search_run.rw_index))
+            filters.append(Q(rw_indices__contains=f" {search_run.rw_index};"))
         if search_run.wn_synset:
-            filters.append(Q(wn_synsets__contains=search_run.wn_synset))
+            filters.append(Q(wn_synsets__contains=f" {search_run.wn_synset};"))
         db_matches = list(Wordform.objects.filter(reduce(operator.or_, filters)))
 
     for wf in db_matches:

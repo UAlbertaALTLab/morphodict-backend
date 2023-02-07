@@ -8,6 +8,7 @@ from django.core.serializers.json import DjangoJSONEncoder
 from django.db import models
 from django.urls import reverse
 from django.utils.functional import cached_property
+from django.db.models import Lookup, Field
 
 from API.schema import SerializedDefinition
 from shared_res_dir import (
@@ -158,8 +159,6 @@ class Wordform(models.Model):
         """,
     )
 
-    rw_classes = models.ManyToManyField(RapidWords)
-
     rw_domains = models.CharField(
         max_length=2048,
         blank=True,
@@ -241,6 +240,19 @@ class Wordform(models.Model):
         # FIXME: will return '/word/None' if no slug
         return reverse("cree-dictionary-index-with-lemma", kwargs={"slug": self.slug})
 
+
+@Field.register_lookup
+class Matches(Lookup):
+    lookup_name = "matches"
+
+    def as_sql(self, compiler, connection):
+        lhs, lhs_params = self.process_lhs(compiler, connection)
+        rhs, rhs_params = self.process_rhs(compiler, connection)
+        params = lhs_params + rhs_params
+        print("LOOK HERE:::", lhs_params, rhs_params, params)
+        to_match = rhs_params[0]
+        print(lhs, to_match)
+        return "%s == %s" % (lhs, to_match), params
 
 class DictionarySource(models.Model):
     """

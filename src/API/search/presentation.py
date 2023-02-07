@@ -190,13 +190,6 @@ class PresentationResult:
         self.friendly_linguistic_breakdown_tail = replace_user_friendly_tags(
             to_list_of_fst_tags(self.linguistic_breakdown_tail)
         )
-        if self._result.rw_classes:
-            # self.rw_classes = [f"{cl.index} {cl.domain}" for cl in self._result.rw_classes]
-            self.rw_classes = self._result.rw_classes.objects.all().serialize()
-        else:
-            self.rw_classes = []
-
-        print(self.rw_classes)
 
     def serialize(self) -> SerializedPresentationResult:
         ret: SerializedPresentationResult = {
@@ -218,7 +211,6 @@ class PresentationResult:
             ),
             "lexical_info": self.lexical_info,
             "wn_synsets": self._result.wn_synsets,
-            "rw_classes": self.rw_classes,
             "preverbs": self.preverbs,
             "friendly_linguistic_breakdown_head": self.friendly_linguistic_breakdown_head,
             "friendly_linguistic_breakdown_tail": self.friendly_linguistic_breakdown_tail,
@@ -363,8 +355,6 @@ def serialize_wordform(
     for key in wordform.linguist_info or []:
         if key not in result:
             result[key] = wordform.linguist_info[key]
-
-    result["rw_classes"] = wordform.rw_classes
 
     return result
 
