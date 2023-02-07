@@ -192,11 +192,12 @@ def semantic_api(request):
     context = dict()
     if query:
         context["query"] = query
-        if "." in query:
-            rw = RapidWords.objects.get(index=query)
+        if '.' in query:
+            rw = RapidWords.objects.filter(index=query).first()
         else:
-            rw = RapidWords.objects.get(domain=query)
+            rw = RapidWords.objects.filter(domain=query).first()
         if not rw:
+            context["response"] = "No results found"
             return Response(context)
 
         context["class"] = f"{rw.index} {rw.domain}"
@@ -205,6 +206,7 @@ def semantic_api(request):
         context["hypernyms"] = rw.hypernyms
         context["hyponyms"] = rw.hyponyms
 
+    context["message"] = "Positional argument 'q' required"
     return Response(context)
 
 
