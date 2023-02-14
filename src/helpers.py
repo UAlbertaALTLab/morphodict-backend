@@ -14,7 +14,6 @@ from urllib.parse import ParseResult, urlencode, urlunparse
 
 import urllib
 import logging
-import paradigm_panes
 from typing import Optional
 
 import requests
@@ -68,43 +67,6 @@ def get_dict_source(request):
             ret = dictionary_source.split("+")
             ret = [r.upper() for r in ret]
             return ret
-    return None
-
-
-def paradigm_for(wordform: Wordform, paradigm_size: str) -> Optional[Paradigm]:
-    """
-    Returns a paradigm for the given wordform at the desired size.
-
-    If a paradigm cannot be found, None is returned
-
-    :param wordform:
-    :param paradigm_size:
-    :return:
-    """
-    fst_dir = settings.BASE_DIR / "res" / "fst" / settings.STRICT_GENERATOR_FST_FILENAME
-    layout_dir = shared_res_dir / "layouts"
-    site_specific_layout_dir = settings.BASE_DIR / "res" / "layouts"
-    if site_specific_layout_dir.exists():
-        layout_dir = site_specific_layout_dir
-
-    pg = paradigm_panes.PaneGenerator()
-    pg.set_layouts_dir(layout_dir)
-    pg.set_fst_filepath(fst_dir)
-
-    if name := wordform.paradigm:
-        fst_lemma = wordform.lemma.text
-
-        if settings.MORPHODICT_ENABLE_FST_LEMMA_SUPPORT:
-            fst_lemma = wordform.lemma.fst_lemma
-
-        if paradigm := pg.generate_pane(fst_lemma, name, paradigm_size):
-            return paradigm
-        logger.warning(
-            "Could not retrieve static paradigm %r " "associated with wordform %r",
-            name,
-            wordform,
-        )
-
     return None
 
 
@@ -245,28 +207,31 @@ def divide_chunks(terms, size):
 
 
 def inflect_paradigm(paradigm):
-    for pane in paradigm["panes"]:
-        for row in pane["tr_rows"]:
-            if not row["is_header"]:
-                for cell in row["cells"]:
-                    if cell["is_inflection"] and not cell["is_missing"]:
-                        analysis = rich_analyze_strict(cell["inflection"])
-                        if analysis:
-                            analysis = analysis[0]
-                            parts = analysis.generate_with_morphemes(cell["inflection"])
-                            morphemes = {}
-                            for part in parts:
-                                part = wordform_orth_text(part)
-                                print(part)
-                                for orth in part:
-                                    if orth not in morphemes:
-                                        morphemes[orth] = []
-                                    morphemes[orth].append(part[orth])
-                            if not morphemes:
-                                for orth in ORTHOGRAPHY.available:
-                                    morphemes[orth] = [cell["inflection"]]
-                            cell["morphemes"] = morphemes
-                        cell["wordform_text"] = wordform_orth_text(cell["inflection"])
+    for header in paradigm:
+        if "rows" in paradigm[header]:
+            for row in paradigm[header]["rows"]:
+                if "subheader" in row:
+                    continue
+                for entry in paradigm[header]["rows"]:
+                    if "inflections" in entry:
+                        for inflection in entry["inflections"]:
+                            wordform = inflection["wordform"]
+                            analysis = rich_analyze_strict(wordform)
+                            if analysis:
+                                analysis = analysis[0]
+                                parts = analysis.generate_with_morphemes(wordform)
+                                morphemes = {}
+                                for part in parts:
+                                    part = wordform_orth_text(part)
+                                    for orth in part:
+                                        if orth not in morphemes:
+                                            morphemes[orth] = []
+                                        morphemes[orth].append(part[orth])
+                                if not morphemes:
+                                    for orth in ORTHOGRAPHY.available:
+                                        morphemes[orth] = [wordform]
+                                inflection["morphemes"] = morphemes
+                            inflection["wordform_text"] = wordform_orth_text(wordform)
 
     return paradigm
 
@@ -283,7 +248,7 @@ def get_recordings_from_paradigm(paradigm, request):
     if request.COOKIES.get("paradigm_audio") == "no":
         return paradigm
 
-    query_terms = []
+    query_terms = paradigm.get_all_wordforms()
     matched_recordings = {}
     if source := request.COOKIES.get("audio_source"):
         if source != "both":
@@ -298,25 +263,12 @@ def get_recordings_from_paradigm(paradigm, request):
     if request.COOKIES.get("synthesized_audio_in_paradigm") == "yes":
         speech_db_eq.insert(0, "synth")
 
-    for pane in paradigm["panes"]:
-        for row in pane["tr_rows"]:
-            if not row["is_header"]:
-                for cell in row["cells"]:
-                    if "inflection" in cell:
-                        query_terms.append(cell["inflection"])
-
     for search_terms in divide_chunks(query_terms, 30):
         for source in speech_db_eq:
             url = f"https://speech-db.altlab.app/{source}/api/bulk_search"
             matched_recordings.update(get_recordings_from_url(search_terms, url))
 
-    for pane in paradigm["panes"]:
-        for row in pane["tr_rows"]:
-            if not row["is_header"]:
-                for cell in row["cells"]:
-                    if "inflection" in cell:
-                        if cell["inflection"] in matched_recordings:
-                            cell["recording"] = matched_recordings[cell["inflection"]]
+    paradigm = paradigm.bulk_add_recordings(matched_recordings)
 
     return paradigm
 
