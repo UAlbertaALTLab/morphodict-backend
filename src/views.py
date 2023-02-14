@@ -143,6 +143,7 @@ def word_details_api(request, slug: str):
         paradigm_manager.generate()
         paradigm = get_recordings_from_paradigm(paradigm_manager, request)
         paradigm = inflect_paradigm(paradigm)
+        paradigm = relabel_paradigm(paradigm)
 
     content = {
         "entry": {

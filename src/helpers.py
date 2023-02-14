@@ -15,6 +15,7 @@ from urllib.parse import ParseResult, urlencode, urlunparse
 import urllib
 import logging
 from typing import Optional
+from pathlib import Path
 
 import requests
 from django.conf import settings
@@ -25,6 +26,7 @@ from lexicon.models import Wordform
 
 from paradigm.panes import Paradigm
 from morphodict.templatetags.morphodict_orth import ORTHOGRAPHY
+from relabelling import Relabelling, read_labels
 
 from shared_res_dir import shared_res_dir
 
@@ -212,27 +214,62 @@ def inflect_paradigm(paradigm):
             for row in paradigm[header]["rows"]:
                 if "subheader" in row:
                     continue
-                for entry in paradigm[header]["rows"]:
-                    if "inflections" in entry:
-                        for inflection in entry["inflections"]:
-                            wordform = inflection["wordform"]
-                            analysis = rich_analyze_strict(wordform)
-                            if analysis:
-                                analysis = analysis[0]
-                                parts = analysis.generate_with_morphemes(wordform)
-                                morphemes = {}
-                                for part in parts:
-                                    part = wordform_orth_text(part)
-                                    for orth in part:
-                                        if orth not in morphemes:
-                                            morphemes[orth] = []
-                                        morphemes[orth].append(part[orth])
-                                if not morphemes:
-                                    for orth in ORTHOGRAPHY.available:
-                                        morphemes[orth] = [wordform]
-                                inflection["morphemes"] = morphemes
-                            inflection["wordform_text"] = wordform_orth_text(wordform)
+                if "inflections" in row:
+                    for inflection in row["inflections"]:
+                        wordform = inflection["wordform"]
+                        analysis = rich_analyze_strict(wordform)
+                        if analysis:
+                            analysis = analysis[0]
+                            parts = analysis.generate_with_morphemes(wordform)
+                            morphemes = {}
+                            for part in parts:
+                                part = wordform_orth_text(part)
+                                for orth in part:
+                                    if orth not in morphemes:
+                                        morphemes[orth] = []
+                                    morphemes[orth].append(part[orth])
+                            if not morphemes:
+                                for orth in ORTHOGRAPHY.available:
+                                    morphemes[orth] = [wordform]
+                            inflection["morphemes"] = morphemes
+                        inflection["wordform_text"] = wordform_orth_text(wordform)
 
+    return paradigm
+
+
+def label_setting_to_relabeller(label_setting: str):
+    labels = read_labels()
+
+    return {
+        "english": labels.english,
+        "linguistic": labels.linguistic_short,
+        "source_language": labels.source_language,
+    }.get(label_setting, labels.english)
+
+
+def relabel_paradigm(paradigm):
+    with open(Path(settings.RESOURCES_DIR / "altlabel.tsv")) as f:
+        labels = Relabelling.from_tsv(f)
+    if not labels:
+        return paradigm
+
+    for header in paradigm:
+        if "rows" in paradigm[header]:
+            for row in paradigm[header]["rows"]:
+                if "subheader" in row:
+                    subheader = row["subheader"]
+                    row["subheader"] = {}
+                    row["subheader"]["ling_long"] = labels.linguistic_long[subheader]
+                    row["subheader"]["ling_short"] = labels.linguistic_short[subheader]
+                    row["subheader"]["plain_english"] = labels.english[subheader]
+                    row["subheader"]["source_language"] = labels.source_language[subheader]
+                elif "label" in row:
+                    label = row["label"]
+                    row["label"] = {}
+                    row["label"]["ling_long"] = labels.linguistic_long[label]
+                    row["label"]["ling_short"] = labels.linguistic_short[label]
+                    row["label"]["plain_english"] = labels.english[label]
+                    row["label"]["source_language"] = labels.source_language[label]
     return paradigm
 
 
