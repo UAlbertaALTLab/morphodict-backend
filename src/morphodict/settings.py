@@ -378,6 +378,7 @@ STRICT_GENERATOR_FST_FILENAME = "generator-gt-norm.hfstol"
 # Default path for layouts directory
 LAYOUTS_DIR = BASE_DIR / "res" / "layouts"
 RESOURCES_DIR = BASE_DIR / "res"
+SHARED_RES_DIR = BASE_DIR.parent / "shared_resources"
 
 # Show a big banner at the top warning that the dictionary is a work in
 # progress. Set this to false once it’s gone through a reasonable amount of

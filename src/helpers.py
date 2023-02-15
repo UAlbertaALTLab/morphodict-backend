@@ -247,8 +247,17 @@ def label_setting_to_relabeller(label_setting: str):
     }.get(label_setting, labels.english)
 
 
+def update_field(labels, row, title, part):
+    row[title]["ling_long"] += " " + labels.linguistic_long[part] if labels.linguistic_long[part] else str(part)
+    row[title]["ling_short"] += " " + labels.linguistic_short[part] if labels.linguistic_short[part] else " " + labels.linguistic_long[part] if " " + labels.linguistic_long[part] else str(part)
+    row[title]["plain_english"] += " " + labels.english[part] if labels.english[part] else str(part)
+    row[title]["source_language"] += " " + labels.source_language[part] if labels.source_language[part] else str(part)
+    return row
+
+
 def relabel_paradigm(paradigm):
-    with open(Path(settings.RESOURCES_DIR / "altlabel.tsv")) as f:
+    print(settings.SHARED_RES_DIR)
+    with open(Path(settings.SHARED_RES_DIR / "altlabel.tsv")) as f:
         labels = Relabelling.from_tsv(f)
     if not labels:
         return paradigm
@@ -256,35 +265,78 @@ def relabel_paradigm(paradigm):
     for header in paradigm:
         paradigm[header]["relabelled_header"] = {}
         fixed_header = header.replace("*", "")
+        fixed_header = fixed_header.replace("+", " ")
         fixed_header = fixed_header.strip()
         split_header = fixed_header.split(" ")
+        tuple_header = tuple(s for s in split_header if s)
         paradigm[header]["relabelled_header"]["ling_long"] = ""
         paradigm[header]["relabelled_header"]["ling_short"] = ""
         paradigm[header]["relabelled_header"]["plain_english"] = ""
         paradigm[header]["relabelled_header"]["source_language"] = ""
-        for part in split_header:
-            if part:
-                paradigm[header]["relabelled_header"]["ling_long"] += " " + labels.linguistic_long[part]
-                paradigm[header]["relabelled_header"]["ling_short"] += " " + labels.linguistic_short[part]
-                paradigm[header]["relabelled_header"]["plain_english"] += " " + labels.english[part]
-                paradigm[header]["relabelled_header"]["source_language"] += " " + labels.source_language[part]
+        # for part in split_header:
+        #     if part:
+        try:
+            paradigm[header] = update_field(labels, paradigm[header], "relabelled_header", tuple_header)
+        except KeyError as e:
+            for part in split_header:
+                if part:
+                    paradigm[header] = update_field(labels, paradigm[header], "relabelled_header", tuple([part]))
 
         if "rows" in paradigm[header]:
             for row in paradigm[header]["rows"]:
                 if "subheader" in row:
                     subheader = row["subheader"]
+                    # subheader = tuple(subheader)
                     row["subheader"] = {}
-                    row["subheader"]["ling_long"] = labels.linguistic_long[subheader]
-                    row["subheader"]["ling_short"] = labels.linguistic_short[subheader]
-                    row["subheader"]["plain_english"] = labels.english[subheader]
-                    row["subheader"]["source_language"] = labels.source_language[subheader]
+                    subheader_parts = subheader.split('+')
+                    subheader_tuple = tuple(subheader_parts)
+                    row["subheader"]["ling_long"] = ""
+                    row["subheader"]["ling_short"] = ""
+                    row["subheader"]["plain_english"] = ""
+                    row["subheader"]["source_language"] = ""
+                    # for part in subheader_parts:
+                    try:
+                        row = update_field(labels, row, "subheader", subheader_tuple)
+                    except KeyError as e:
+                        for part in subheader_parts:
+                            try:
+                                row = update_field(labels, row, "subheader", tuple([part]))
+                            except KeyError as e:
+                                row["subheader"]["ling_long"] += " " + part
+                                row["subheader"]["ling_short"] += " " + part
+                                row["subheader"]["plain_english"] += " " + part
+                                row["subheader"]["source_language"] += " " + part
+
+
                 elif "label" in row:
                     label = row["label"]
+                    # label = label.strip()
+                    # label = label.replace(' ', '+')
+                    label = label.split(' ')
+                    label = tuple(label)
                     row["label"] = {}
-                    row["label"]["ling_long"] = labels.linguistic_long[label]
-                    row["label"]["ling_short"] = labels.linguistic_short[label]
-                    row["label"]["plain_english"] = labels.english[label]
-                    row["label"]["source_language"] = labels.source_language[label]
+                    # label_parts = label.split(' ')
+                    row["label"]["ling_long"] = ""
+                    row["label"]["ling_short"] = ""
+                    row["label"]["plain_english"] = ""
+                    row["label"]["source_language"] = ""
+                    # for part in label_parts:
+                    try:
+                        row = update_field(labels, row, "label", label)
+                    except KeyError as e:
+                        print(e)
+                        print("In the catch")
+                        part_parts = list(label)
+                        for part in part_parts:
+                            try:
+                                row = update_field(labels, row, "label", part)
+                            except KeyError as e:
+                                row["label"]["ling_long"] += " " + part
+                                row["label"]["ling_short"] += " " + part
+                                row["label"]["plain_english"] += " " + part
+                                row["label"]["source_language"] += " " + part
+
+
     return paradigm
 
 

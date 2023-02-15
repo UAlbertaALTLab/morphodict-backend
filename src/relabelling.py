@@ -115,7 +115,7 @@ class _RelabelFetcher:
         self._friendliness = label
 
     def __getitem__(self, key: FSTTag) -> Optional[Label]:
-        return self._data[(key,)][self._friendliness]
+        return self._data[key][self._friendliness]
 
     def get(self, key: FSTTag, default: Optional[Label] = None) -> Optional[Label]:
         """
