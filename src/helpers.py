@@ -254,6 +254,21 @@ def relabel_paradigm(paradigm):
         return paradigm
 
     for header in paradigm:
+        paradigm[header]["relabelled_header"] = {}
+        fixed_header = header.replace("*", "")
+        fixed_header = fixed_header.strip()
+        split_header = fixed_header.split(" ")
+        paradigm[header]["relabelled_header"]["ling_long"] = ""
+        paradigm[header]["relabelled_header"]["ling_short"] = ""
+        paradigm[header]["relabelled_header"]["plain_english"] = ""
+        paradigm[header]["relabelled_header"]["source_language"] = ""
+        for part in split_header:
+            if part:
+                paradigm[header]["relabelled_header"]["ling_long"] += " " + labels.linguistic_long[part]
+                paradigm[header]["relabelled_header"]["ling_short"] += " " + labels.linguistic_short[part]
+                paradigm[header]["relabelled_header"]["plain_english"] += " " + labels.english[part]
+                paradigm[header]["relabelled_header"]["source_language"] += " " + labels.source_language[part]
+
         if "rows" in paradigm[header]:
             for row in paradigm[header]["rows"]:
                 if "subheader" in row:
