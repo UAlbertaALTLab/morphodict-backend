@@ -13,7 +13,7 @@ import json
 from http import HTTPStatus
 from django.http import JsonResponse, HttpResponse
 from rest_framework.decorators import api_view
-import paradigm_panes
+from paradigm_manager.manager import ParadigmManager
 from rest_framework.response import Response
 
 from relabelling import Relabelling
@@ -118,9 +118,6 @@ def word_details_api(request, slug: str):
         return HttpResponse(status=HTTPStatus.MULTIPLE_CHOICES)
 
     lemma = lemma.get()
-
-    paradigm_size = ""
-    paradigm_sizes = []
     paradigm = lemma.paradigm
 
     wordform = presentation.serialize_wordform(
@@ -140,42 +137,19 @@ def word_details_api(request, slug: str):
 
     if paradigm is not None:
         FST_DIR = settings.BASE_DIR / "res" / "fst"
-        paradigm_manager = default_paradigm_manager()
-        pane_generator = paradigm_panes.PaneGenerator()
-        pane_generator.set_layouts_dir(settings.LAYOUTS_DIR)
-        pane_generator.set_fst_filepath(
-            FST_DIR / settings.STRICT_GENERATOR_FST_FILENAME
-        )
-        try:
-            paradigm_sizes = list(paradigm_manager.sizes_of(paradigm))
-        except ParadigmDoesNotExistError:
-            return HttpResponseNotFound("bad paradigm size")
-
-        if "full" in paradigm_sizes:
-            default_size = "full"
-        else:
-            default_size = paradigm_sizes[0]
-
-        if len(paradigm_sizes) <= 1:
-            paradigm_size = default_size
-        else:
-            paradigm_size = request.GET.get("paradigm-size")
-            if paradigm_size:
-                paradigm_size = paradigm_size.lower()
-            if paradigm_size not in paradigm_sizes:
-                paradigm_size = default_size
-
-        paradigm = pane_generator.generate_pane(lemma, paradigm, paradigm_size)
-        paradigm = get_recordings_from_paradigm(paradigm, request)
+        paradigm_manager = ParadigmManager(layout_directory=settings.LAYOUTS_DIR, generation_fst=FST_DIR / settings.STRICT_GENERATOR_FST_FILENAME)
+        paradigm_manager.set_lemma(lemma.text)
+        paradigm_manager.set_paradigm(paradigm)
+        paradigm_manager.generate()
+        paradigm = get_recordings_from_paradigm(paradigm_manager, request)
         paradigm = inflect_paradigm(paradigm)
+        paradigm = relabel_paradigm(paradigm)
 
     content = {
         "entry": {
             "lemma_id": lemma.id,
             "wordform": wordform,
             "paradigm": paradigm,
-            "paradigm_size": paradigm_size,
-            "paradigm_sizes": paradigm_sizes,
             "recordings": recordings,
         }
     }
