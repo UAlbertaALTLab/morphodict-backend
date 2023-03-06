@@ -137,7 +137,10 @@ def word_details_api(request, slug: str):
 
     if paradigm is not None:
         FST_DIR = settings.BASE_DIR / "res" / "fst"
-        paradigm_manager = ParadigmManager(layout_directory=settings.LAYOUTS_DIR, generation_fst=FST_DIR / settings.STRICT_GENERATOR_FST_FILENAME)
+        paradigm_manager = ParadigmManager(
+            layout_directory=settings.LAYOUTS_DIR,
+            generation_fst=FST_DIR / settings.STRICT_GENERATOR_FST_FILENAME,
+        )
         paradigm_manager.set_lemma(lemma.text)
         paradigm_manager.set_paradigm(paradigm)
         paradigm_manager.generate()
