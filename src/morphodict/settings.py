@@ -229,7 +229,6 @@ else:
             | env.dj_db_url("DATABASE_URL", default=defaultDatabasePath())
         )
     }
-
 # Django sites framework
 
 # See: https://docs.djangoproject.com/en/2.2/ref/contrib/sites/#enabling-the-sites-framework

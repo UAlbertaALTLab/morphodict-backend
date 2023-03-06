@@ -8,9 +8,9 @@ from typing import Sequence
 from django import template
 from django.template import Context
 
-from utils import read_labels
+from relabelling import read_labels
 from morphodict.templatetags.morphodict_orth import orth_tag
-from types import FSTTag
+from morphodict_types import FSTTag
 from crkeng.app.preferences import DisplayMode
 
 logger = logging.getLogger(__name__)

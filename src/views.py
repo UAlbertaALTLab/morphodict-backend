@@ -42,10 +42,6 @@ from paradigm.manager import ParadigmDoesNotExistError
 from paradigm.panes import Paradigm
 from helpers import url_for_query
 
-# The index template expects to be rendered in the following "modes";
-# The mode dictates which variables MUST be present in the context.
-IndexPageMode = Literal["home-page", "search-page", "word-detail", "info-page"]
-
 logger = logging.getLogger(__name__)
 
 # "pragma: no cover" works with coverage.

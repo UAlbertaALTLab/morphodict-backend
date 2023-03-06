@@ -3,6 +3,7 @@ from django.urls import reverse
 from django.utils.html import format_html
 
 from lexicon.models import (
+    RapidWords,
     Definition,
     DictionarySource,
     TargetLanguageKeyword,
@@ -67,6 +68,11 @@ def add_short_description(func, short_description):
     # function objects
     # https://github.com/python/mypy/issues/2087
     func.short_description = short_description
+
+
+@admin.register(RapidWords)
+class RapidWordsAdmin(CustomModelAdmin):
+    pass
 
 
 @admin.register(Definition)

@@ -8,13 +8,13 @@ from django import template
 from django.http import HttpRequest
 from django.urls import reverse
 from django.utils.html import escape, format_html
-from django.safestring import mark_safe
+from django.utils.safestring import mark_safe
 
 from paradigm.crkeng_corpus_frequency import (
     observed_wordforms,
 )
-from utils import read_labels
-from utils import url_for_query
+from relabelling import read_labels
+from helpers import url_for_query
 from morphodict.templatetags.morphodict_orth import orth_tag
 from lexicon.models import Wordform
 

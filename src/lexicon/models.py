@@ -10,9 +10,7 @@ from django.urls import reverse
 from django.utils.functional import cached_property
 
 from API.schema import SerializedDefinition
-from shared_res_dir import (
-    shared_res_dir,
-)
+from shared_res_dir import shared_res_dir
 from analysis import RichAnalysis
 
 # How long a wordform or dictionary head can be. Not actually enforced in SQLite.
@@ -229,7 +227,7 @@ class Wordform(models.Model):
         """
         assert self.is_lemma, "There is no page for non-lemmas"
         # FIXME: will return '/word/None' if no slug
-        return reverse("cree-dictionary-index-with-lemma", kwargs={"slug": self.slug})
+        return reverse("word-details-api", kwargs={"slug": self.slug})
 
 
 class DictionarySource(models.Model):

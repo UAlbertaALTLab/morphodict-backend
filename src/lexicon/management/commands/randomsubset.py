@@ -11,7 +11,7 @@ from subprocess import check_call
 
 from django.core.management import BaseCommand
 
-from morphodict import morphodict_language_pair
+from helpers import get_morphodict_language_pair
 from lexicon import (
     DEFAULT_FULL_IMPORTJSON_FILE,
 )
@@ -35,7 +35,7 @@ class Command(BaseCommand):
             "--output-importjson",
             help="The test dictionary file to write out",
             default=DEFAULT_FULL_IMPORTJSON_FILE.with_stem(
-                f"{morphodict_language_pair()}_subset_dictionary"
+                f"{get_morphodict_language_pair()}_subset_dictionary"
             ),
         )
         parser.add_argument(

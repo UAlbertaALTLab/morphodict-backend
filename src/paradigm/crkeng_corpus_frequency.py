@@ -2,7 +2,7 @@ import logging
 from functools import cache
 
 from shared_res_dir import shared_res_dir
-from types import ConcatAnalysis
+from morphodict_types import ConcatAnalysis
 
 CORPUS_FREQUENCY_FILE = shared_res_dir / "corpus_frequency.txt"
 
