@@ -7,6 +7,7 @@ from pathlib import Path
 
 import numpy as np
 from typing import Any, Dict, Literal, Optional
+from nltk.corpus import wordnet as wn
 
 import json
 
@@ -254,6 +255,55 @@ def search_api(request):
             result["relabelled_fst_analysis"] = relabelFSTAnalysis(
                 result["relabelled_fst_analysis"]
             )
+
+    return Response(context)
+
+
+def make_wordnet_format(wn_class):
+    """
+    Accepts: wn_class of format (n) bear 1
+    No other formats are accepted.
+    Returns: the WordNet package compatible version of the classification
+        e.g. bear.n.01
+    """
+    parts = wn_class.split(" ")
+    # now we have ["(pos)", "word", "num"]
+    pos = parts[0].replace("(", "").replace(")", "")
+    word = parts[1]
+    num = int(parts[2])
+
+    return f"{word}.{pos}.{num:02d}"
+
+@api_view(["GET"])
+def wordnet_api(request, classification):
+    """
+    The React accessible endpoint for the nltk WordNet corpus
+    Accepts: wordnet classification in the form (for example):
+        (n) bear 1
+    Returns:
+        - the WordNet synset for that entry
+        - its sister terms (holonyms)
+        - its direct hyponyms
+        - its direct hypernyms
+    """
+    classification = make_wordnet_format(classification)
+    context = dict()
+
+    try:
+        wn_class = wn.synset(classification)
+    except:
+        context["search_term"] = classification
+        context["message"] = f"No synset found for {classification}"
+        return Response(context)
+
+    hypernyms = wn_class.hypernyms()
+    hyponyms = wn_class.hyponyms()
+    holonyms = wn_class.member_holonyms()
+
+    context["search_term"] = classification
+    context["hypernyms"] = [h.name() for h in hypernyms]
+    context["hyponyms"] = [h.name() for h in hyponyms]
+    context["holonyms"] = [h.name() for h in holonyms]
 
     return Response(context)
 

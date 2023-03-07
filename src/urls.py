@@ -44,6 +44,7 @@ urlpatterns = [
         views.word_details_api,
         name="cree-dictionary-index-with-lemma",
     ),  # returns details related to a spesific word
+    path("api/wordnet/<str:classification>", views.wordnet_api, name="wordnet-search-api"),
     # internal use to render boxes of search results
     # path(
     #     "_search_results/<str:query_string>/",

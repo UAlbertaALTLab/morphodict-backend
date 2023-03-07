@@ -22,7 +22,6 @@ pytest-env = "*"
 jupyterlab = "*"
 appnope = "*"
 nb_black = "*"
-pandas = "*"
 statsmodels = "*"
 pandas-stubs = "*"
 pytest-pythonpath = "*"
@@ -54,6 +53,7 @@ requests = "*"
 django-cors-headers = "*"
 djangorestframework = "*"
 paradigm-manager = "*"
+nltk = "*"
 
 [scripts]
 # unit tests
