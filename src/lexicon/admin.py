@@ -70,11 +70,6 @@ def add_short_description(func, short_description):
     func.short_description = short_description
 
 
-@admin.register(RapidWords)
-class RapidWordsAdmin(CustomModelAdmin):
-    pass
-
-
 @admin.register(Definition)
 class DefinitionAdmin(CustomModelAdmin):
     list_display = ("wordform_as_link",)
@@ -127,6 +122,11 @@ class SourceLanguageKeywordAdmin(CustomModelAdmin):
 
 @admin.register(DictionarySource)
 class DictionarySourceAdmin(CustomModelAdmin):
+    pass
+
+
+@admin.register(RapidWords)
+class RapidWordsAdmin(CustomModelAdmin):
     pass
 
 
