@@ -10,7 +10,7 @@ from django.urls import reverse
 from django.utils.functional import cached_property
 
 from API.schema import SerializedDefinition
-from shared_res_dir import shared_res_dir
+from shared_res_dir import shared_res_dir 
 from analysis import RichAnalysis
 
 # How long a wordform or dictionary head can be. Not actually enforced in SQLite.
@@ -406,8 +406,8 @@ class _WordformCache:
 
         lines = (
             Path(shared_res_dir / "CW_aggregate_morpheme_log_freqs.txt")
-            .read_text()
-            .splitlines()
+                .read_text()
+                .splitlines()
         )
         max = 65.04136
         for line in lines:

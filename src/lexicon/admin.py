@@ -70,7 +70,7 @@ def add_short_description(func, short_description):
     func.short_description = short_description
 
 
-@admin.register(Definition)
+# @admin.register(Definition)
 class DefinitionAdmin(CustomModelAdmin):
     list_display = ("wordform_as_link",)
     search_fields = ("text",)
@@ -88,7 +88,7 @@ class DefinitionAdmin(CustomModelAdmin):
     add_short_description(wordform_as_link, "Wordform")
 
 
-@admin.register(TargetLanguageKeyword)
+# @admin.register(TargetLanguageKeyword)
 class TargetLanguageKeywordAdmin(CustomModelAdmin):
     list_display = ("lemma_as_link",)
     search_fields = ("text",)
@@ -104,7 +104,7 @@ class TargetLanguageKeywordAdmin(CustomModelAdmin):
     add_short_description(lemma_as_link, "Lemma")
 
 
-@admin.register(SourceLanguageKeyword)
+# @admin.register(SourceLanguageKeyword)
 class SourceLanguageKeywordAdmin(CustomModelAdmin):
     list_display = ("lemma_as_link",)
     search_fields = ("text",)
@@ -120,12 +120,12 @@ class SourceLanguageKeywordAdmin(CustomModelAdmin):
     add_short_description(lemma_as_link, "Lemma")
 
 
-@admin.register(DictionarySource)
+# @admin.register(DictionarySource)
 class DictionarySourceAdmin(CustomModelAdmin):
     pass
 
 
-@admin.register(RapidWords)
+# @admin.register(RapidWords)
 class RapidWordsAdmin(CustomModelAdmin):
     pass
 
@@ -161,7 +161,7 @@ class WordformInline(admin.TabularInline):
         return None
 
 
-@admin.register(Wordform)
+# @admin.register(Wordform)
 class WordformAdmin(CustomModelAdmin):
     list_display = ("lemma_as_link",)
     search_fields = ("text", "raw_analysis")
