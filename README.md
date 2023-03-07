@@ -52,7 +52,7 @@ LFS or by asking the person helping you.
 
 
 ## Usage
-There are two public API endpoints you can use with a total of five options for searching.
+There are three public API endpoints you can use with a total of five options for searching.
 
 ### search
 This option features the word `search` in the URL and has 3 optional arguments you can pass to it.
@@ -91,9 +91,9 @@ In this option, you route to the `rapidwords` endpoint. It has one required argu
 #### q
 `q`, short for "query" is added to the end of the URL. It can be used in two ways:
 
-1. `http://127.0.0.1:8000/api/rapidwords/?q=1.2.2` with a series of numbers separated 
+1. `http://api.itwewina.dev/api/rapidwords/?q=1.2.2` with a series of numbers separated 
 by a period. This will query for a RapidWords entry with the matching index.
-2. `http://127.0.0.1:8000/api/rapidwords/?q=Names%20of%20animals` with a string exactly matching 
+2. `http://api.itwewina.dev/api/rapidwords/?q=Names%20of%20animals` with a string exactly matching 
    (case sensitive) the domain of a RapidWords domain.
    
 This endpoint returns a JSON object with the fields:
@@ -103,3 +103,41 @@ This endpoint returns a JSON object with the fields:
 * index
 * hypernyms
 * hyponyms
+
+### wordnet
+The React-accessible endpoint for the nltk WordNet corpus. Accessed at: 
+`api.itwewina.dev/api/wordnet/<wn_class>` where `wn_class` is a string following 
+this exact format: **(pos) word number**. For example: (n) dog 1. It returns for (n) dog 1:
+```json
+{
+    "search_term": "dog.n.01",
+    "hypernyms": [
+        "canine.n.02",
+        "domestic_animal.n.01"
+    ],
+    "hyponyms": [
+        "basenji.n.01",
+        "corgi.n.01",
+        "cur.n.01",
+        "dalmatian.n.02",
+        "great_pyrenees.n.01",
+        "griffon.n.02",
+        "hunting_dog.n.01",
+        "lapdog.n.01",
+        "leonberg.n.01",
+        "mexican_hairless.n.01",
+        "newfoundland.n.01",
+        "pooch.n.01",
+        "poodle.n.01",
+        "pug.n.01",
+        "puppy.n.01",
+        "spitz.n.01",
+        "toy_dog.n.01",
+        "working_dog.n.01"
+    ],
+    "holonyms": [
+        "canis.n.01",
+        "pack.n.06"
+    ]
+}
+```
