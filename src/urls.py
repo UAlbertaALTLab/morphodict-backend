@@ -29,6 +29,9 @@ urlpatterns = [
         views.word_details_api,
         name="word-details-api",
     ),
+    path(
+        "api/wordnet/<str:classification>", views.wordnet_api, name="wordnet-search-api"
+    ),
     ################################ Click in text #################################
     # cree word translation for click-in-text
     path(
