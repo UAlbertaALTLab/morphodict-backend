@@ -274,6 +274,7 @@ def make_wordnet_format(wn_class):
 
     return f"{word}.{pos}.{num:02d}"
 
+
 @api_view(["GET"])
 def wordnet_api(request, classification):
     """
