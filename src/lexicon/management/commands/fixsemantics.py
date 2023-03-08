@@ -37,9 +37,15 @@ class Command(BaseCommand):
                 wf = Wordform.objects.filter(text=item).first()
                 if wf:
                     # get all the info
-                    wn_entries = entry[item]["wordnet"].replace("h; ", "").split(" and ")
-                    rw_indices = entry[item]["rw_index"].replace("h; ", "").split(" and ")
-                    rw_domains = entry[item]["rw_domain"].replace("h; ", "").split(" and ")
+                    wn_entries = (
+                        entry[item]["wordnet"].replace("h; ", "").split(" and ")
+                    )
+                    rw_indices = (
+                        entry[item]["rw_index"].replace("h; ", "").split(" and ")
+                    )
+                    rw_domains = (
+                        entry[item]["rw_domain"].replace("h; ", "").split(" and ")
+                    )
 
                     # treat and store WN
                     treated_wn_entries = "; ".join(wn_entries)
@@ -54,9 +60,9 @@ class Command(BaseCommand):
                         if domain and domain[0] in lowercase_letters:
                             # if the domain starts with a lowercase letter,
                             # it likely belongs with the one before it.
-                            if i -1 >= 0:
-                                new_domain = rw_domains[i-1] + " and " + domain
-                                treated_domains.remove(rw_domains[i-1])
+                            if i - 1 >= 0:
+                                new_domain = rw_domains[i - 1] + " and " + domain
+                                treated_domains.remove(rw_domains[i - 1])
                                 treated_domains.append(new_domain)
                         else:
                             treated_domains.append(domain)
@@ -65,8 +71,8 @@ class Command(BaseCommand):
                     # we just want the part that comes before the comma
                     treated_indices = []
                     for ind in rw_indices:
-                        if ',' in ind:
-                            split_ind = ind.split(',')
+                        if "," in ind:
+                            split_ind = ind.split(",")
                             treated_indices.append(split_ind[0])
                         else:
                             treated_indices.append(ind)
@@ -87,5 +93,3 @@ class Command(BaseCommand):
                     wf.rw_domains = domains_to_add
                     wf.rw_indices = indices_to_add
                     wf.save()
-
-
