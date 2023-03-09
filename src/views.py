@@ -180,7 +180,8 @@ def semantic_api(request):
         context["hypernyms"] = rw.hypernyms
         context["hyponyms"] = rw.hyponyms
 
-    context["message"] = "Positional argument 'q' required"
+    else:
+        context["message"] = "Positional argument 'q' required"
     return Response(context)
 
 
