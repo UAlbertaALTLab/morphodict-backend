@@ -157,3 +157,9 @@ for now it needs a little more supervision. To deploy, follow these steps:
 Ideally, the `./deploy` script will handle all of the deployment steps 
 and then you can call that script from the deploy hook, like the legacy 
 app does. But for now, this is required.
+
+## Adding a new language pair
+You can add a new language pair by running `./crkeng-manage newdictsite 
+--port XXXX sss ttt` where `sss` is the ISO language code for the source language 
+and `ttt` is the ISO language code for the target language. This command will 
+make all the necessary files for a new backend.
