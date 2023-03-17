@@ -15,7 +15,7 @@
 ################################ Build stage #################################
 FROM python:3.9-slim-buster AS builder
 
-LABEL maintainer="Eddie Antonio Santos <Eddie.Santos@nrc-cnrc.gc.ca>"
+LABEL maintainer="Jolene Poulin <jcpoulin@ualberta.ca>"
 
 ARG MORPHODICT_UID_GID=60006
 ARG NODE_VERSION=v12.20.2
@@ -79,7 +79,7 @@ RUN set -eu \
 ############################# Application image ##############################
 
 FROM python:3.9-slim-buster
-LABEL maintainer="Eddie Antonio Santos <Eddie.Santos@nrc-cnrc.gc.ca>"
+LABEL maintainer="Jolene Poulin <jcpoulin@ualberta.ca>"
 
 # Choose an ID that will be consistent across all machines in the network
 # To avoid overlap with user IDs, use an ID over
