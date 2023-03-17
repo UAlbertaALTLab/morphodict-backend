@@ -2,17 +2,14 @@ from __future__ import annotations
 
 import json
 import logging
-import urllib
 from pathlib import Path
 
-import numpy as np
-from typing import Any, Dict, Literal, Optional
+from typing import Dict, Literal
 from nltk.corpus import wordnet as wn
 
-import json
 
 from http import HTTPStatus
-from django.http import JsonResponse, HttpResponse
+from django.http import HttpResponse
 from rest_framework.decorators import api_view
 from paradigm_manager.manager import ParadigmManager
 from rest_framework.response import Response
@@ -20,17 +17,13 @@ from rest_framework.response import Response
 from relabelling import Relabelling
 from helpers import *
 
-import requests
 from django.conf import settings
 from django.contrib.admin.views.decorators import staff_member_required
-from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseNotFound
+from django.http import HttpResponse, HttpResponseNotFound
 from django.shortcuts import redirect, render
-from django.views.decorators.http import require_GET
 
 import analysis
 from API.search import presentation, search_with_affixes
-from forms import WordSearchForm
-from paradigm.generation import default_paradigm_manager
 from phrase_translate.translate import (
     eng_noun_entry_to_inflected_phrase_fst,
     eng_phrase_to_crk_features_fst,
@@ -39,9 +32,6 @@ from phrase_translate.translate import (
 from crkeng.app.preferences import DisplayMode, AnimateEmoji, ShowEmoji
 from lexicon.models import Wordform, RapidWords
 
-from paradigm.manager import ParadigmDoesNotExistError
-from paradigm.panes import Paradigm
-from helpers import url_for_query
 
 # The index template expects to be rendered in the following "modes";
 # The mode dictates which variables MUST be present in the context.
