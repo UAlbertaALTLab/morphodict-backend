@@ -150,9 +150,10 @@ for now it needs a little more supervision. To deploy, follow these steps:
 2. ssh into the server, itw.altlab.dev
 3. Become morphodict: sudo -i -u morphodict. Note: you need permission to do this.
 4. `cd morphodict-backend`
-5. `cd docker`
-6. `docker-compose build`
-7. `./deploy`
+5. `git pull`
+6. `cd docker`
+7. `docker-compose build`
+8. `./deploy`
 
 Ideally, the `./deploy` script will handle all of the deployment steps 
 and then you can call that script from the deploy hook, like the legacy 
