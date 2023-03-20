@@ -40,7 +40,7 @@ USER morphodict
 
 WORKDIR /app/
 
-# Install Python and NodeJS dependencies
+# Install Python
 ADD Pipfile Pipfile.lock /app/
 # On Andrew’s linux machine, docker builds were sometimes ridiculously slow
 # without this option. npm would try to download/install(?) too many packages
@@ -51,10 +51,9 @@ RUN PIPENV_VENV_IN_PROJECT=1 pipenv install --deploy
 ADD --chown=morphodict . /app/
 
 # pre-compile all .py files
-RUN python -m compileall -q .
+# RUN python -m compileall -q .
 
 # Build the application:
-ENV NODE_ENV=production
 RUN ls /app/generated 2>&1 && echo 0 || mkdir /app/generated
 RUN ls /app/generated/frontend 2>&1 && echo 0 || mkdir /app/generated/frontend
 RUN set -eu \
