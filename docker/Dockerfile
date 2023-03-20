@@ -18,15 +18,6 @@ FROM python:3.9-slim-buster AS builder
 LABEL maintainer="Jolene Poulin <jcpoulin@ualberta.ca>"
 
 ARG MORPHODICT_UID_GID=60006
-ARG NODE_VERSION=v12.20.2
-
-# Install Node + npm
-# (note: default npm is too old for the apt install'd version of NodeJS??!?!?!)
-WORKDIR /tmp
-ADD https://nodejs.org/dist/${NODE_VERSION}/node-${NODE_VERSION}-linux-x64.tar.gz /tmp/node.tar.gz
-RUN tar xf node.tar.gz \
- && mv node-${NODE_VERSION}-linux-x64 /opt/node
-ENV PATH="/opt/node/bin:${PATH}"
 
 # Create the non-root user/group that will own the application code
 RUN groupadd --gid ${MORPHODICT_UID_GID} morphodict \
