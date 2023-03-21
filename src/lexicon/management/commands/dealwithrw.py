@@ -68,10 +68,12 @@ class Command(BaseCommand):
                         if rw_class:
                             indices_to_add += f" {ind};"
                             domains_to_add += f" {domain};"
-                            i += 1
+                            if i+1 < len(treated_indices):
+                                i += 1
                             j += 1
                         else:
-                            i += 1
+                            if i + 1 < len(treated_indices):
+                                i += 1
                 else:
                     indices_to_add = ";".join(treated_indices)
                     indices_to_add = f" {indices_to_add};"
