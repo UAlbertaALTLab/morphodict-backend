@@ -14,8 +14,8 @@ from urllib.parse import ParseResult, urlencode, urlunparse
 
 import urllib
 import logging
-import paradigm_panes
 from typing import Optional
+from pathlib import Path
 
 import requests
 from django.conf import settings
@@ -26,6 +26,7 @@ from lexicon.models import Wordform
 
 from paradigm.panes import Paradigm
 from morphodict.templatetags.morphodict_orth import ORTHOGRAPHY
+from relabelling import Relabelling, read_labels
 
 from shared_res_dir import shared_res_dir
 
@@ -68,43 +69,6 @@ def get_dict_source(request):
             ret = dictionary_source.split("+")
             ret = [r.upper() for r in ret]
             return ret
-    return None
-
-
-def paradigm_for(wordform: Wordform, paradigm_size: str) -> Optional[Paradigm]:
-    """
-    Returns a paradigm for the given wordform at the desired size.
-
-    If a paradigm cannot be found, None is returned
-
-    :param wordform:
-    :param paradigm_size:
-    :return:
-    """
-    fst_dir = settings.BASE_DIR / "res" / "fst" / settings.STRICT_GENERATOR_FST_FILENAME
-    layout_dir = shared_res_dir / "layouts"
-    site_specific_layout_dir = settings.BASE_DIR / "res" / "layouts"
-    if site_specific_layout_dir.exists():
-        layout_dir = site_specific_layout_dir
-
-    pg = paradigm_panes.PaneGenerator()
-    pg.set_layouts_dir(layout_dir)
-    pg.set_fst_filepath(fst_dir)
-
-    if name := wordform.paradigm:
-        fst_lemma = wordform.lemma.text
-
-        if settings.MORPHODICT_ENABLE_FST_LEMMA_SUPPORT:
-            fst_lemma = wordform.lemma.fst_lemma
-
-        if paradigm := pg.generate_pane(fst_lemma, name, paradigm_size):
-            return paradigm
-        logger.warning(
-            "Could not retrieve static paradigm %r " "associated with wordform %r",
-            name,
-            wordform,
-        )
-
     return None
 
 
@@ -245,28 +209,153 @@ def divide_chunks(terms, size):
 
 
 def inflect_paradigm(paradigm):
-    for pane in paradigm["panes"]:
-        for row in pane["tr_rows"]:
-            if not row["is_header"]:
-                for cell in row["cells"]:
-                    if cell["is_inflection"] and not cell["is_missing"]:
-                        analysis = rich_analyze_strict(cell["inflection"])
+    for header in paradigm:
+        if "rows" in paradigm[header]:
+            for row in paradigm[header]["rows"]:
+                if "subheader" in row:
+                    continue
+                if "inflections" in row:
+                    for inflection in row["inflections"]:
+                        wordform = inflection["wordform"]
+                        analysis = rich_analyze_strict(wordform)
                         if analysis:
                             analysis = analysis[0]
-                            parts = analysis.generate_with_morphemes(cell["inflection"])
+                            parts = analysis.generate_with_morphemes(wordform)
                             morphemes = {}
                             for part in parts:
                                 part = wordform_orth_text(part)
-                                print(part)
                                 for orth in part:
                                     if orth not in morphemes:
                                         morphemes[orth] = []
                                     morphemes[orth].append(part[orth])
                             if not morphemes:
                                 for orth in ORTHOGRAPHY.available:
-                                    morphemes[orth] = [cell["inflection"]]
-                            cell["morphemes"] = morphemes
-                        cell["wordform_text"] = wordform_orth_text(cell["inflection"])
+                                    morphemes[orth] = [wordform]
+                            inflection["morphemes"] = morphemes
+                        inflection["wordform_text"] = wordform_orth_text(wordform)
+
+    return paradigm
+
+
+def label_setting_to_relabeller(label_setting: str):
+    labels = read_labels()
+
+    return {
+        "english": labels.english,
+        "linguistic": labels.linguistic_short,
+        "source_language": labels.source_language,
+    }.get(label_setting, labels.english)
+
+
+def update_field(labels, row, title, part):
+    row[title]["ling_long"] += (
+        " " + labels.linguistic_long[part]
+        if labels.linguistic_long[part]
+        else str(part)
+    )
+    row[title]["ling_short"] += (
+        " " + labels.linguistic_short[part]
+        if labels.linguistic_short[part]
+        else " " + labels.linguistic_long[part]
+        if " " + labels.linguistic_long[part]
+        else str(part)
+    )
+    row[title]["plain_english"] += (
+        " " + labels.english[part] if labels.english[part] else str(part)
+    )
+    row[title]["source_language"] += (
+        " " + labels.source_language[part]
+        if labels.source_language[part]
+        else str(part)
+    )
+    return row
+
+
+def relabel_paradigm(paradigm):
+    print(settings.SHARED_RES_DIR)
+    with open(Path(settings.SHARED_RES_DIR / "altlabel.tsv")) as f:
+        labels = Relabelling.from_tsv(f)
+    if not labels:
+        return paradigm
+
+    for header in paradigm:
+        paradigm[header]["relabelled_header"] = {}
+        fixed_header = header.replace("*", "")
+        fixed_header = fixed_header.replace("+", " ")
+        fixed_header = fixed_header.strip()
+        split_header = fixed_header.split(" ")
+        tuple_header = tuple(s for s in split_header if s)
+        paradigm[header]["relabelled_header"]["ling_long"] = ""
+        paradigm[header]["relabelled_header"]["ling_short"] = ""
+        paradigm[header]["relabelled_header"]["plain_english"] = ""
+        paradigm[header]["relabelled_header"]["source_language"] = ""
+        # for part in split_header:
+        #     if part:
+        try:
+            paradigm[header] = update_field(
+                labels, paradigm[header], "relabelled_header", tuple_header
+            )
+        except KeyError as e:
+            for part in split_header:
+                if part:
+                    paradigm[header] = update_field(
+                        labels, paradigm[header], "relabelled_header", tuple([part])
+                    )
+
+        if "rows" in paradigm[header]:
+            for row in paradigm[header]["rows"]:
+                if "subheader" in row:
+                    subheader = row["subheader"]
+                    # subheader = tuple(subheader)
+                    row["subheader"] = {}
+                    subheader_parts = subheader.split("+")
+                    subheader_tuple = tuple(subheader_parts)
+                    row["subheader"]["ling_long"] = ""
+                    row["subheader"]["ling_short"] = ""
+                    row["subheader"]["plain_english"] = ""
+                    row["subheader"]["source_language"] = ""
+                    # for part in subheader_parts:
+                    try:
+                        row = update_field(labels, row, "subheader", subheader_tuple)
+                    except KeyError as e:
+                        for part in subheader_parts:
+                            try:
+                                row = update_field(
+                                    labels, row, "subheader", tuple([part])
+                                )
+                            except KeyError as e:
+                                row["subheader"]["ling_long"] += " " + part
+                                row["subheader"]["ling_short"] += " " + part
+                                row["subheader"]["plain_english"] += " " + part
+                                row["subheader"]["source_language"] += " " + part
+
+                elif "label" in row:
+                    label = row["label"]
+                    # label = label.strip()
+                    # label = label.replace(' ', '+')
+                    label = label.split(" ")
+                    label = tuple(label)
+                    row["label"] = {}
+                    # label_parts = label.split(' ')
+                    row["label"]["ling_long"] = ""
+                    row["label"]["ling_short"] = ""
+                    row["label"]["plain_english"] = ""
+                    row["label"]["source_language"] = ""
+                    # for part in label_parts:
+                    try:
+                        row = update_field(labels, row, "label", label)
+                    except KeyError as e:
+                        print(e)
+                        print("In the catch")
+                        part_parts = list(label)
+                        for part in part_parts:
+                            try:
+                                row = update_field(labels, row, "label", part)
+                            except KeyError as e:
+                                row["label"]["ling_long"] += " " + part
+                                row["label"]["ling_short"] += " " + part
+                                row["label"]["plain_english"] += " " + part
+                                row["label"]["source_language"] += " " + part
 
     return paradigm
 
@@ -283,7 +372,7 @@ def get_recordings_from_paradigm(paradigm, request):
     if request.COOKIES.get("paradigm_audio") == "no":
         return paradigm
 
-    query_terms = []
+    query_terms = paradigm.get_all_wordforms()
     matched_recordings = {}
     if source := request.COOKIES.get("audio_source"):
         if source != "both":
@@ -298,25 +387,12 @@ def get_recordings_from_paradigm(paradigm, request):
     if request.COOKIES.get("synthesized_audio_in_paradigm") == "yes":
         speech_db_eq.insert(0, "synth")
 
-    for pane in paradigm["panes"]:
-        for row in pane["tr_rows"]:
-            if not row["is_header"]:
-                for cell in row["cells"]:
-                    if "inflection" in cell:
-                        query_terms.append(cell["inflection"])
-
     for search_terms in divide_chunks(query_terms, 30):
         for source in speech_db_eq:
             url = f"https://speech-db.altlab.app/{source}/api/bulk_search"
             matched_recordings.update(get_recordings_from_url(search_terms, url))
 
-    for pane in paradigm["panes"]:
-        for row in pane["tr_rows"]:
-            if not row["is_header"]:
-                for cell in row["cells"]:
-                    if "inflection" in cell:
-                        if cell["inflection"] in matched_recordings:
-                            cell["recording"] = matched_recordings[cell["inflection"]]
+    paradigm = paradigm.bulk_add_recordings(matched_recordings)
 
     return paradigm
 

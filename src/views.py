@@ -7,13 +7,14 @@ from pathlib import Path
 
 import numpy as np
 from typing import Any, Dict, Literal, Optional
+from nltk.corpus import wordnet as wn
 
 import json
 
 from http import HTTPStatus
 from django.http import JsonResponse, HttpResponse
 from rest_framework.decorators import api_view
-import paradigm_panes
+from paradigm_manager.manager import ParadigmManager
 from rest_framework.response import Response
 
 from relabelling import Relabelling
@@ -118,9 +119,6 @@ def word_details_api(request, slug: str):
         return HttpResponse(status=HTTPStatus.MULTIPLE_CHOICES)
 
     lemma = lemma.get()
-
-    paradigm_size = ""
-    paradigm_sizes = []
     paradigm = lemma.paradigm
 
     wordform = presentation.serialize_wordform(
@@ -140,42 +138,22 @@ def word_details_api(request, slug: str):
 
     if paradigm is not None:
         FST_DIR = settings.BASE_DIR / "res" / "fst"
-        paradigm_manager = default_paradigm_manager()
-        pane_generator = paradigm_panes.PaneGenerator()
-        pane_generator.set_layouts_dir(settings.LAYOUTS_DIR)
-        pane_generator.set_fst_filepath(
-            FST_DIR / settings.STRICT_GENERATOR_FST_FILENAME
+        paradigm_manager = ParadigmManager(
+            layout_directory=settings.LAYOUTS_DIR,
+            generation_fst=FST_DIR / settings.STRICT_GENERATOR_FST_FILENAME,
         )
-        try:
-            paradigm_sizes = list(paradigm_manager.sizes_of(paradigm))
-        except ParadigmDoesNotExistError:
-            return HttpResponseNotFound("bad paradigm size")
-
-        if "full" in paradigm_sizes:
-            default_size = "full"
-        else:
-            default_size = paradigm_sizes[0]
-
-        if len(paradigm_sizes) <= 1:
-            paradigm_size = default_size
-        else:
-            paradigm_size = request.GET.get("paradigm-size")
-            if paradigm_size:
-                paradigm_size = paradigm_size.lower()
-            if paradigm_size not in paradigm_sizes:
-                paradigm_size = default_size
-
-        paradigm = pane_generator.generate_pane(lemma, paradigm, paradigm_size)
-        paradigm = get_recordings_from_paradigm(paradigm, request)
+        paradigm_manager.set_lemma(lemma.text)
+        paradigm_manager.set_paradigm(paradigm)
+        paradigm_manager.generate()
+        paradigm = get_recordings_from_paradigm(paradigm_manager, request)
         paradigm = inflect_paradigm(paradigm)
+        paradigm = relabel_paradigm(paradigm)
 
     content = {
         "entry": {
             "lemma_id": lemma.id,
             "wordform": wordform,
             "paradigm": paradigm,
-            "paradigm_size": paradigm_size,
-            "paradigm_sizes": paradigm_sizes,
             "recordings": recordings,
         }
     }
@@ -192,7 +170,7 @@ def semantic_api(request):
     context = dict()
     if query:
         context["query"] = query
-        if '.' in query:
+        if "." in query:
             rw = RapidWords.objects.filter(index=query).first()
         else:
             rw = RapidWords.objects.filter(domain=query).first()
@@ -206,7 +184,8 @@ def semantic_api(request):
         context["hypernyms"] = rw.hypernyms
         context["hyponyms"] = rw.hyponyms
 
-    context["message"] = "Positional argument 'q' required"
+    else:
+        context["message"] = "Positional argument 'q' required"
     return Response(context)
 
 
@@ -277,6 +256,56 @@ def search_api(request):
             result["relabelled_fst_analysis"] = relabelFSTAnalysis(
                 result["relabelled_fst_analysis"]
             )
+
+    return Response(context)
+
+
+def make_wordnet_format(wn_class):
+    """
+    Accepts: wn_class of format (n) bear 1
+    No other formats are accepted.
+    Returns: the WordNet package compatible version of the classification
+        e.g. bear.n.01
+    """
+    parts = wn_class.split(" ")
+    # now we have ["(pos)", "word", "num"]
+    pos = parts[0].replace("(", "").replace(")", "")
+    word = parts[1]
+    num = int(parts[2])
+
+    return f"{word}.{pos}.{num:02d}"
+
+
+@api_view(["GET"])
+def wordnet_api(request, classification):
+    """
+    The React accessible endpoint for the nltk WordNet corpus
+    Accepts: wordnet classification in the form (for example):
+        (n) bear 1
+    Returns:
+        - the WordNet synset for that entry
+        - its sister terms (holonyms)
+        - its direct hyponyms
+        - its direct hypernyms
+    """
+    classification = make_wordnet_format(classification)
+    context = dict()
+
+    try:
+        wn_class = wn.synset(classification)
+    except:
+        context["search_term"] = classification
+        context["message"] = f"No synset found for {classification}"
+        return Response(context)
+
+    hypernyms = wn_class.hypernyms()
+    hyponyms = wn_class.hyponyms()
+    holonyms = wn_class.member_holonyms()
+
+    context["search_term"] = classification
+    context["hypernyms"] = [h.name() for h in hypernyms]
+    context["hyponyms"] = [h.name() for h in hyponyms]
+    context["holonyms"] = [h.name() for h in holonyms]
 
     return Response(context)
 
