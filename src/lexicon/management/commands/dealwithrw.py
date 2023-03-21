@@ -12,8 +12,8 @@ def removeAnd(indices, domains):
     but the index does, remove that index. Increase the index of the index list, do not increase index of domains
     list.
     """
-    i = 0       # index for indices
-    j = 0       # index for domains
+    i = 0  # index for indices
+    j = 0  # index for domains
     treated_indices = []
     treated_domains = []
     while j < len(domains):
@@ -21,8 +21,8 @@ def removeAnd(indices, domains):
         domain = domains[j]
         ind = ind.strip()
         domain = domain.strip()
-        ind = ind.replace(';', '')
-        domain = domain.replace(';', '')
+        ind = ind.replace(";", "")
+        domain = domain.replace(";", "")
         if "and" in ind and "and" in domain:
             split_ind = ind.split(" and ")
             split_domain = domain.split(" and ")
@@ -51,20 +51,22 @@ class Command(BaseCommand):
         words = Wordform.objects.all()
         for word in tqdm(words):
             if word.rw_domains and word.rw_indices:
-                rw_indices = word.rw_indices.split(';')
-                rw_domains = word.rw_domains.split(';')
+                rw_indices = word.rw_indices.split(";")
+                rw_domains = word.rw_domains.split(";")
                 treated_indices, treated_domains = removeAnd(rw_indices, rw_domains)
                 indices_to_add = ""
                 domains_to_add = ""
                 if len(treated_indices) != len(treated_domains):
                     # there are either more indices, or more domains. Either way, something is wrong.
                     # we default to assuming the domains are the right length
-                    i = 0       # index for indices
-                    j = 0       # index for domains
+                    i = 0  # index for indices
+                    j = 0  # index for domains
                     while j < len(treated_domains):
                         ind = treated_indices[i]
                         domain = treated_domains[j]
-                        rw_class = RapidWords.objects.filter(domain=domain, index=ind).first()
+                        rw_class = RapidWords.objects.filter(
+                            domain=domain, index=ind
+                        ).first()
                         if rw_class:
                             indices_to_add += f" {ind};"
                             domains_to_add += f" {domain};"
