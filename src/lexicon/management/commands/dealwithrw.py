@@ -71,6 +71,7 @@ class Command(BaseCommand):
                             indices_to_add += f" {ind};"
                             domains_to_add += f" {domain};"
                             if (i+1) < len(treated_indices):
+
                                 i += 1
                             j += 1
                         else:
