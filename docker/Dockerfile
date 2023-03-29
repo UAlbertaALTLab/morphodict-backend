@@ -15,18 +15,9 @@
 ################################ Build stage #################################
 FROM python:3.9-slim-buster AS builder
 
-LABEL maintainer="Eddie Antonio Santos <Eddie.Santos@nrc-cnrc.gc.ca>"
+LABEL maintainer="Jolene Poulin <jcpoulin@ualberta.ca>"
 
 ARG MORPHODICT_UID_GID=60006
-ARG NODE_VERSION=v12.20.2
-
-# Install Node + npm
-# (note: default npm is too old for the apt install'd version of NodeJS??!?!?!)
-WORKDIR /tmp
-ADD https://nodejs.org/dist/${NODE_VERSION}/node-${NODE_VERSION}-linux-x64.tar.gz /tmp/node.tar.gz
-RUN tar xf node.tar.gz \
- && mv node-${NODE_VERSION}-linux-x64 /opt/node
-ENV PATH="/opt/node/bin:${PATH}"
 
 # Create the non-root user/group that will own the application code
 RUN groupadd --gid ${MORPHODICT_UID_GID} morphodict \
@@ -49,23 +40,20 @@ USER morphodict
 
 WORKDIR /app/
 
-# Install Python and NodeJS dependencies
-ADD Pipfile Pipfile.lock package.json package-lock.json /app/
+# Install Python
+ADD Pipfile Pipfile.lock /app/
 # On Andrew’s linux machine, docker builds were sometimes ridiculously slow
 # without this option. npm would try to download/install(?) too many packages
 # all at once and some sort of resource would get exhausted leading to hangs.
-RUN echo maxsockets=4 > ~/.npmrc
-RUN PIPENV_VENV_IN_PROJECT=1 pipenv install --deploy \
- && npm install --loglevel=verbose --only=production
+RUN PIPENV_VENV_IN_PROJECT=1 pipenv install --deploy
 
 # Add everything else now:
 ADD --chown=morphodict . /app/
 
 # pre-compile all .py files
-RUN python -m compileall -q .
+# RUN python -m compileall -q .
 
 # Build the application:
-ENV NODE_ENV=production
 RUN ls /app/generated 2>&1 && echo 0 || mkdir /app/generated
 RUN ls /app/generated/frontend 2>&1 && echo 0 || mkdir /app/generated/frontend
 RUN set -eu \
@@ -79,7 +67,7 @@ RUN set -eu \
 ############################# Application image ##############################
 
 FROM python:3.9-slim-buster
-LABEL maintainer="Eddie Antonio Santos <Eddie.Santos@nrc-cnrc.gc.ca>"
+LABEL maintainer="Jolene Poulin <jcpoulin@ualberta.ca>"
 
 # Choose an ID that will be consistent across all machines in the network
 # To avoid overlap with user IDs, use an ID over
