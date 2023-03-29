@@ -52,7 +52,7 @@ LFS or by asking the person helping you.
 
 
 ## Usage
-There are three public API endpoints you can use with a total of five options for searching.
+There are a number of public API endpoints you can use.
 
 ### search
 This option features the word `search` in the URL and has 3 optional arguments you can pass to it.
@@ -64,6 +64,8 @@ is a word in Plains Cree or in English.
 
 Returns a JSON object.
 
+This is the endpoint you use for the first search results page on the frontend.
+
 #### rw_index
 Accessed by typing the following: `api.itwewina.altlab.dev/api/search/?rw_index=<index>`
  where <index> is a string of numbers, such as `1.2.2` or `1.6`. Returns 
@@ -72,7 +74,7 @@ as a JSON object.
 
 #### rw_domain
 Accessed by typing the following: 
-`api.itwewina.altlab.dev/api/search/?rw_domain=<domain>` where domain is a string. 
+`api.itwewina.altlab.dev/api/search/?rw_domain=<domain>` where <domain> is a string. 
 Returns all objects where the RapidWords class is or contains the domain provided. 
 Return type is JSON.
 
@@ -84,6 +86,13 @@ Return type is JSON.
 **Note:** There **must** be a space between the last word of the synset and 
 the number of the synset. For example: `(n) dog 1` (with spaces, just like that) 
 is correct. Incorrect variants include: `(n) dog1` and `(n) dog#1`.
+
+### word
+`api.itwewina.altlab.dev/api/word/<slug>` where <slug> is a unique word identifier. 
+Returns all the details for that specific word as well as its paradigm and 
+recordings. This is the route you use for the paradigm page on the frontend.
+
+Returns a JSON object.
 
 ### rapidwords
 In this option, you route to the `rapidwords` endpoint. It has one required argument.
