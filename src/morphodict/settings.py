@@ -57,47 +57,47 @@ DEBUG = env.bool("DEBUG", default=False)
 # in the app list.
 # See: https://docs.djangoproject.com/en/3.2/ref/templates/api/#django.template.loaders.app_directories.Loader
 INSTALLED_APPS = [
-    # "API.apps.APIConfig",
-    # "apps.MorphodictConfig",
     # Django core apps:
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
-    "django.contrib.sites",
     "django.contrib.messages",
-    "django.contrib.admin",
-    # "django.contrib.sitemaps",
-    # "runserver",
+    "django.contrib.sites",
+    "django.contrib.sitemaps",
+    "runserver",
     # WhiteNoise nostatic HAS to come before Django's staticfiles
     # See: http://whitenoise.evans.io/en/stable/django.utils.html#using-whitenoise-in-development
-    # "whitenoise.runserver_nostatic",
-    # "django.contrib.staticfiles",
-    # "django_js_reverse",
+    "whitenoise.runserver_nostatic",
+    "django.contrib.staticfiles",
+    "django.contrib.humanize",
+    "django_js_reverse",
     # **New** Morphodict
-    # "corsheaders",
-    # "rest_framework",
+    "lexicon",
+    "corsheaders",
+    "rest_framework",
     # Internal apps
     # TODO: our internal app organization is kind of a mess 🙃
-    # "cvd",
-    # "search_quality",
-    # "phrase_translate",
+    "API.apps.APIConfig",
+    "apps.MorphodictConfig",
+    "cvd",
+    "search_quality",
+    "phrase_translate",
     # This comes last so that other apps can override templates
-    "lexicon",
-    "django.contrib.humanize",
+    "django.contrib.admin",
 ]
 
 MIDDLEWARE = [
-    "django.middleware.common.CommonMiddleware",
-    "django.contrib.sessions.middleware.SessionMiddleware",
-    "django.middleware.csrf.CsrfViewMiddleware",
     "django.middleware.security.SecurityMiddleware",
+    # Static files with WhiteNoise:
+    "whitenoise.middleware.WhiteNoiseMiddleware",
+    "django.contrib.sessions.middleware.SessionMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
+    "django.middleware.common.CommonMiddleware",
+    "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
-    "corsheaders.middleware.CorsMiddleware",
-    # Static files with WhiteNoise:
-    # "whitenoise.middleware.WhiteNoiseMiddleware",
-    # "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    # "morphodict.site.securemiddleware.set_secure_headers",
+    "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "morphodict.site.securemiddleware.set_secure_headers",
 ]
 
 ROOT_URLCONF = "urls"
