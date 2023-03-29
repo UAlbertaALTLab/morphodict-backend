@@ -1,0 +1,64 @@
+name: Test and deploy
+on: [ push, pull_request ]
+
+env:
+  # Version required to run itwêwina:
+  ACTIONS_PYTHON_VERSION: 3.9
+
+jobs:
+  # Run Pytest unit tests
+  unit-test:
+    runs-on: ubuntu-20.04
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: 🐍 Set up Python ${{ env.ACTIONS_PYTHON_VERSION }}
+        uses: actions/setup-python@v2
+        # actions/cache below uses this id to get the exact python version
+        id: setup-python
+        with:
+          python-version: ${{ env.ACTIONS_PYTHON_VERSION }}
+      - name: 🖥 Install system dependencies
+        run: sudo apt-get install -y libfoma0
+      - name: ☤ Install pipenv
+        run: python3 -m pip install pipenv==2021.11.9
+
+      # This started out life as a copy-paste from
+      # https://github.com/actions/cache/blob/main/examples.md#python---pipenv
+      - uses: actions/cache@v2
+        with:
+          path: ~/.local/share/virtualenvs
+          key: ${{ runner.os }}-python-${{ steps.setup-python.outputs.python-version }}-pipenv-${{ hashFiles('Pipfile.lock') }}
+      - name: 📥 Install dependencies
+        run: |
+          pipenv install --dev
+          # Install pytest plugin to show failed tests on the web
+          pipenv run pip install pytest-github-actions-annotate-failures
+      - name: Do LFS checkout
+        # actions/checkout@v2 has a `with: lfs: true` option, but it only
+        # knows how to talk to GitHub’s LFS server.
+        #
+        # These actions are automatic if you have run `git lfs install`
+        # even once on your dev machine.
+        run: git lfs install --local && git lfs fetch && git lfs checkout
+      - name: 🧶 Run linters/static-analysis
+        run: |
+          pipenv run mypy src
+      - name: 🩺 Run unit tests
+        env:
+          DEBUG: "True"
+        run: pipenv run test -v --cov=src --cov-report=xml
+      - name: Check working directory clean
+        run: ./libexec/check-git-status
+      - name: Check that generated files are up-to-date
+        # A few auto-generated files are checked in for convenience; ensure
+        # that they are up-to-date.
+        run: "pipenv run docker/helper.py make-yaml
+        && if ! ./libexec/check-git-status ; then
+            echo Error: running make-yaml resulted in changed files. When
+              changing template files, please ensure that updated generated
+              files get checked in too. 1>&2 ;
+            exit 1 ;
+        fi"
+      - name: 📤 Upload Codecov coverage report
+        uses: codecov/codecov-action@v1.5.0
