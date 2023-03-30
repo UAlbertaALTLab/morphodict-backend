@@ -2,12 +2,12 @@
 Definition of urls for CreeDictionary.
 """
 
-from django.conf import settings
-from django.contrib import admin
-from django.contrib.sitemaps.views import sitemap
-from django.contrib.staticfiles.urls import staticfiles_urlpatterns
-from django.urls import include, path
-from django_js_reverse.views import urls_js
+from django.conf import settings    # type: ignore
+from django.contrib import admin    # type: ignore
+from django.contrib.sitemaps.views import sitemap   # type: ignore
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns     # type: ignore
+from django.urls import include, path   # type: ignore
+from django_js_reverse.views import urls_js     # type: ignore
 
 import API.views as api_views
 import views
