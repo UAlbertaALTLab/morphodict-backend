@@ -1,9 +1,9 @@
-from io import StringIO
-from textwrap import dedent
+from io import StringIO     # type: ignore
+from textwrap import dedent     # type: ignore
 
-import pytest
+import pytest   # type: ignore
 
-from search_quality.combine_samples import iter_results, combine_results
+from search_quality.combine_samples import iter_results, combine_results    # type: ignore
 
 
 def test_iter_results_works_with_header():

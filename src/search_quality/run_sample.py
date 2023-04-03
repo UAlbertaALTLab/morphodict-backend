@@ -1,15 +1,15 @@
-import gzip
-import json
-import random
-from typing import Optional
+import gzip     # type: ignore
+import json     # type: ignore
+import random   # type: ignore
+from typing import Optional     # type: ignore
 
-import time
-from os import PathLike
+import time     # type: ignore
+from os import PathLike     # type: ignore
 
-from API.search import search_with_affixes
-from . import SampleSearchResultsJson, DEFAULT_SAMPLE_FILE
-from .analyze_results import count_results
-from .sample import load_sample_definition
+from API.search import search_with_affixes  # type: ignore
+from . import SampleSearchResultsJson, DEFAULT_SAMPLE_FILE  # type: ignore
+from .analyze_results import count_results  # type: ignore
+from .sample import load_sample_definition  # type: ignore
 
 
 def gen_run_sample(

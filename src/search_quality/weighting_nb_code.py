@@ -2,12 +2,12 @@
 These functions are for interactive use by `weighting.ipynb`.
 """
 
-import json
-from functools import cache
-from pathlib import Path
+import json     # type: ignore
+from functools import cache     # type: ignore
+from pathlib import Path    # type: ignore
 
-import pandas as pd
-import numpy as np
+import pandas as pd     # type: ignore
+import numpy as np  # type: ignore
 
 SEARCH_QUALITY_DIR = Path(__file__).parent
 BASE_DIR = SEARCH_QUALITY_DIR.parent

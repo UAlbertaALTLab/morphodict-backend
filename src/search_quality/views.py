@@ -1,26 +1,26 @@
-import logging
-import time
-from json import dumps
-from statistics import mean
+import logging  # type: ignore
+import time     # type: ignore
+from json import dumps  # type: ignore
+from statistics import mean     # type: ignore
 
-from django.contrib.admin.views.decorators import staff_member_required
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.admin.views.decorators import staff_member_required     # type: ignore
+from django.contrib.auth.mixins import LoginRequiredMixin      # type: ignore
 from django.http import (
     Http404,
     HttpResponse,
     StreamingHttpResponse,
     HttpResponseBadRequest,
-)
-from django.urls import reverse
-from django.utils.html import conditional_escape
-from django.utils.text import slugify
-from django.views.decorators.http import require_http_methods
-from django.views.generic import TemplateView
+)   # type: ignore
+from django.urls import reverse     # type: ignore
+from django.utils.html import conditional_escape    # type: ignore
+from django.utils.text import slugify   # type: ignore
+from django.views.decorators.http import require_http_methods   # type: ignore
+from django.views.generic import TemplateView   # type: ignore
 
-from . import RESULTS_DIR, DEFAULT_SAMPLE_FILE
-from .analyze_results import analyze, load_results_file, count_and_annotate_dupes
-from .run_sample import gen_run_sample
-from .sample import load_sample_definition
+from . import RESULTS_DIR, DEFAULT_SAMPLE_FILE  # type: ignore
+from .analyze_results import analyze, load_results_file, count_and_annotate_dupes   # type: ignore
+from .run_sample import gen_run_sample  # type: ignore
+from .sample import load_sample_definition  # type: ignore
 
 logger = logging.getLogger(__name__)
 

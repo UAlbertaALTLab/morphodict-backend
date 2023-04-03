@@ -1,8 +1,8 @@
 import re
 
-import pytest
+import pytest   # type: ignore
 
-from analysis.tag_map import TagMap, UnknownTagError
+from analysis.tag_map import TagMap, UnknownTagError    # type: ignore
 
 
 @pytest.fixture

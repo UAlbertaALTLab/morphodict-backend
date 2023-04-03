@@ -14,13 +14,13 @@ The algorithm is:
       1. Add up all the points for all the results across all lists
       2. Sort by highest points first
 """
-import csv
-from argparse import ArgumentParser, BooleanOptionalAction
-from collections import defaultdict
-from io import StringIO
-from pathlib import Path
+import csv  # type: ignore
+from argparse import ArgumentParser, BooleanOptionalAction  # type: ignore
+from collections import defaultdict     # type: ignore
+from io import StringIO     # type: ignore
+from pathlib import Path    # type: ignore
 
-from search_quality import SURVEY_DIR
+from search_quality import SURVEY_DIR   # type: ignore
 
 
 def iter_results(input_file):

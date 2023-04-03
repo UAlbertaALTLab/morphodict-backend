@@ -1,6 +1,6 @@
-import csv
+import csv  # type: ignore
 
-from typing import TypedDict
+from typing import TypedDict    # type: ignore
 
 
 class SampleCsvRow(TypedDict):

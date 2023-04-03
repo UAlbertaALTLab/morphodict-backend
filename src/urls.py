@@ -72,7 +72,7 @@ if settings.DEBUG:
     urlpatterns += staticfiles_urlpatterns()
 
 if settings.DEBUG and settings.ENABLE_DJANGO_DEBUG_TOOLBAR:
-    import debug_toolbar
+    import debug_toolbar    # type: ignore
 
     # necessary for debug_toolbar to work
     urlpatterns.append(path("__debug__/", include(debug_toolbar.urls)))

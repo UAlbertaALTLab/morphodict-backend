@@ -1,8 +1,8 @@
 import re
-from functools import cache
+from functools import cache     # type: ignore
 
-from django.conf import settings
-from hfst_optimized_lookup import TransducerFile, Analysis
+from django.conf import settings       # type: ignore
+from hfst_optimized_lookup import TransducerFile, Analysis  # type: ignore
 
 FST_DIR = settings.BASE_DIR / "res" / "fst"
 
