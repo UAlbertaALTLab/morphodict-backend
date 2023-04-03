@@ -1,7 +1,7 @@
 import re
 from typing import List, Tuple
 
-from morphodict_types import FSTLemma, FSTTag
+from morphodict_types import FSTLemma, FSTTag   # type: ignore
 
 analysis_pattern = re.compile(
     r"(?P<category>\+N\+A(\+D(?=\+))?|\+N\+I(\+D(?=\+))?|\+V\+AI|\+V\+T[AI]|\+V\+II|(\+Num)?\+Ipc|\+Pron).*?$"

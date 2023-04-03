@@ -1,4 +1,4 @@
-from django import forms
+from django import forms    # type: ignore
 
 
 class WordSearchForm(forms.Form):

@@ -1,7 +1,7 @@
 from search_quality.analyze_results import (
     count_and_annotate_dupes,
     DuplicateAnnotatedSearchResult,
-)
+)   # type: ignore
 
 
 def test_count_no_dupes_on_empty_list():

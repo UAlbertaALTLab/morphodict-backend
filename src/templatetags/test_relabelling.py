@@ -1,8 +1,8 @@
-from django.http import HttpRequest
-from django.template import Context, RequestContext, Template
+from django.http import HttpRequest     # type: ignore
+from django.template import Context, RequestContext, Template   # type: ignore
 
-from paradigm.panes import RowLabel
-from crkeng.app.preferences import DisplayMode
+from paradigm.panes import RowLabel     # type: ignore
+from crkeng.app.preferences import DisplayMode  # type: ignore
 
 
 def test_relabel_tag():

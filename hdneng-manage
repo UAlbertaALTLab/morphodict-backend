@@ -5,7 +5,7 @@ Command-line utility for administrative tasks.
 
 import os
 import sys
-from pathlib import Path
+from pathlib import Path    # type: ignore
 
 # sys.path[0] is initialized to the directory containing the script, which
 # isn’t right for our purposes.
@@ -14,6 +14,6 @@ sys.path[0] = os.fspath(Path(sys.path[0]) / "src")
 if __name__ == "__main__":
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "hdneng.site.settings")
 
-    from django.core.management import execute_from_command_line
+    from django.core.management import execute_from_command_line    # type: ignore
 
     execute_from_command_line(sys.argv)

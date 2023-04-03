@@ -1,20 +1,20 @@
 import logging
 import re
-from http import HTTPStatus
-from typing import Dict, Optional
+from http import HTTPStatus # type: ignore
+from typing import Dict, Optional   # type: ignore
 
-import pytest
+import pytest   # type: ignore
 from django.http import (
     HttpResponseBadRequest,
     HttpResponseNotAllowed,
     HttpResponseNotFound,
-)
-from django.test import Client
-from django.urls import reverse
-from pytest_django.asserts import assertInHTML
+)   # type: ignore
+from django.test import Client  # type: ignore
+from django.urls import reverse # type: ignore
+from pytest_django.asserts import assertInHTML  # type: ignore
 
-from crkeng.app.preferences import DisplayMode
-from lexicon.models import Wordform
+from crkeng.app.preferences import DisplayMode  # type: ignore
+from lexicon.models import Wordform # type: ignore
 
 # The test wants an ID that never exists. Never say never; I have no idea if we'll
 # have over two billion wordforms, however, we'll most likely run into problems once

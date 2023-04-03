@@ -32,7 +32,7 @@ have to determine this dynamically.
 """
 from importlib import import_module
 
-from django.apps import apps
+from django.apps import apps    # type: ignore
 
 
 def get_next_runserver_command(module_name):

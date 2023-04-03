@@ -9,9 +9,9 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns     # type: 
 from django.urls import include, path   # type: ignore
 from django_js_reverse.views import urls_js     # type: ignore
 
-import API.views as api_views
-import views
-from sitemaps import sitemaps
+import API.views as api_views   # type: ignore
+import views    # type: ignore
+from sitemaps import sitemaps   # type: ignore
 
 # TODO: use URL namespaces:
 # e.g., cree-dictionary:index instead of cree-dictionary-index

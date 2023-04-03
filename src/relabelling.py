@@ -1,15 +1,15 @@
-from __future__ import annotations
+from __future__ import annotations  # type: ignore
 
-import csv
-from enum import IntEnum
-from threading import Lock
-from typing import Iterable, Optional, TextIO, Tuple, TypedDict
+import csv  # type: ignore
+from enum import IntEnum    # type: ignore
+from threading import Lock  # type: ignore
+from typing import Iterable, Optional, TextIO, Tuple, TypedDict # type: ignore
 
-from django.conf import settings
+from django.conf import settings    # type: ignore
 
-from shared_res_dir import shared_res_dir
-from morphodict_types import FSTTag, Label, cast_away_optional
-from morphodict.site.util import cache_unless
+from shared_res_dir import shared_res_dir   # type: ignore
+from morphodict_types import FSTTag, Label, cast_away_optional  # type: ignore
+from morphodict.site.util import cache_unless   # type: ignore
 
 
 def _find_altlabel_file():

@@ -1,7 +1,7 @@
 from pathlib import Path
 from typing import TypedDict
 
-from API.schema import SerializedSearchResult
+from API.schema import SerializedSearchResult   # type: ignore
 
 
 class SearchResult(TypedDict):
