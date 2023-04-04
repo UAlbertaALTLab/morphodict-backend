@@ -2,7 +2,7 @@ import re
 
 from django.conf import settings    # type: ignore
 
-from API.search.affix import (
+from affix import (
     do_source_language_affix_search,
     do_target_language_affix_search,
     query_would_return_too_many_results,
@@ -14,7 +14,7 @@ from API.search.glossary_count import get_glossary_count    # type: ignore
 from API.search.espt import EsptSearch  # type: ignore
 from API.search.lookup import fetch_results     # type: ignore
 from API.search.pos_matches import find_pos_matches     # type: ignore
-from API.search.query import CvdSearchType  # type: ignore
+from query import CvdSearchType  # type: ignore
 from API.search.api_types import Result     # type: ignore
 from API.search.util import first_non_none_value    # type: ignore
 from morphodict_types import cast_away_optional     # type: ignore
