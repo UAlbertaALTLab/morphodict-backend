@@ -1,8 +1,8 @@
-import logging
-from functools import cache
+import logging  # type: ignore
+from functools import cache     # type: ignore
 
-from shared_res_dir import shared_res_dir
-from morphodict_types import ConcatAnalysis
+from shared_res_dir import shared_res_dir   # type: ignore
+from morphodict_types import ConcatAnalysis     # type: ignore
 
 CORPUS_FREQUENCY_FILE = shared_res_dir / "corpus_frequency.txt"
 

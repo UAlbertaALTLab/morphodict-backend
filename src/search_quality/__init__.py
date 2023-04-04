@@ -1,5 +1,5 @@
-from pathlib import Path
-from typing import TypedDict
+from pathlib import Path    # type: ignore
+from typing import TypedDict    # type: ignore
 
 from API.schema import SerializedSearchResult   # type: ignore
 

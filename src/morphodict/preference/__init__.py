@@ -3,15 +3,15 @@ Preferences framework.
 
 Allows for generic site-wide preferences stored in cookies.
 """
-from __future__ import annotations
+from __future__ import annotations  # type: ignore
 
-from dataclasses import dataclass
-from functools import cache
-from typing import Union
+from dataclasses import dataclass   # type: ignore
+from functools import cache     # type: ignore
+from typing import Union    # type: ignore
 
-from django.http import HttpRequest
-from django.template import Context
-from django.utils.text import camel_case_to_spaces
+from django.http import HttpRequest     # type: ignore
+from django.template import Context     # type: ignore
+from django.utils.text import camel_case_to_spaces      # type: ignore
 
 
 class PreferenceConfigurationError(Exception):

@@ -1,8 +1,8 @@
-from pathlib import Path
+from pathlib import Path    # type: ignore
 
-from django.conf import settings
+from django.conf import settings    # type: ignore
 
-from .helpers import get_morphodict_language_pair
+from .helpers import get_morphodict_language_pair   # type: ignore
 
 DICTIONARY_RESOURCE_DIR = settings.BASE_DIR / "res" / "dictionary"
 

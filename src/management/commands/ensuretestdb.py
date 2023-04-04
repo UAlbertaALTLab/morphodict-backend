@@ -1,9 +1,9 @@
-from django.conf import settings
-from django.core.management import call_command
-from django.core.management.base import BaseCommand
+from django.conf import settings    # type: ignore
+from django.core.management import call_command     # type: ignore
+from django.core.management.base import BaseCommand     # type: ignore
 
-from cvd import definition_vectors_path
-from lexicon import DEFAULT_TEST_IMPORTJSON_FILE
+from cvd import definition_vectors_path     # type: ignore
+from lexicon import DEFAULT_TEST_IMPORTJSON_FILE    # type: ignore
 
 
 class Command(BaseCommand):
@@ -15,7 +15,7 @@ class Command(BaseCommand):
     """
 
     def handle(self, *args, **options):
-        from lexicon.models import Wordform
+        from lexicon.models import Wordform     # type: ignore
 
         assert settings.USE_TEST_DB
 

@@ -1,23 +1,23 @@
 import re
 
-from django.conf import settings
+from django.conf import settings    # type: ignore
 
 from API.search.affix import (
     do_source_language_affix_search,
     do_target_language_affix_search,
     query_would_return_too_many_results,
-)
-from API.search.core import SearchRun
-from API.search.cvd_search import do_cvd_search
-from API.search.lemma_freq import get_lemma_freq
-from API.search.glossary_count import get_glossary_count
-from API.search.espt import EsptSearch
-from API.search.lookup import fetch_results
-from API.search.pos_matches import find_pos_matches
-from API.search.query import CvdSearchType
-from API.search.api_types import Result
-from API.search.util import first_non_none_value
-from morphodict_types import cast_away_optional
+)   # type: ignore
+from API.search.core import SearchRun   # type: ignore
+from API.search.cvd_search import do_cvd_search     # type: ignore
+from API.search.lemma_freq import get_lemma_freq    # type: ignore
+from API.search.glossary_count import get_glossary_count    # type: ignore
+from API.search.espt import EsptSearch  # type: ignore
+from API.search.lookup import fetch_results     # type: ignore
+from API.search.pos_matches import find_pos_matches     # type: ignore
+from API.search.query import CvdSearchType  # type: ignore
+from API.search.api_types import Result     # type: ignore
+from API.search.util import first_non_none_value    # type: ignore
+from morphodict_types import cast_away_optional     # type: ignore
 
 CREE_LONG_VOWEL = re.compile("[êîôâēīōā]")
 

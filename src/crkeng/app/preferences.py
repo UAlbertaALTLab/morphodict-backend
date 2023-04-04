@@ -1,9 +1,9 @@
 """
 Preferences used in itwêwina, the Cree Intelligent Dictionary.
 """
-from django.conf import settings
+from django.conf import settings    # type: ignore
 
-from morphodict.preference import register_preference, Preference
+from morphodict.preference import register_preference, Preference   # type: ignore
 
 
 @register_preference

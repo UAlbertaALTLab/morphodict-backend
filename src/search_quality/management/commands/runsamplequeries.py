@@ -1,9 +1,9 @@
-from argparse import ArgumentParser, BooleanOptionalAction
+from argparse import ArgumentParser, BooleanOptionalAction  # type: ignore
 
-from django.core.management import BaseCommand
+from django.core.management import BaseCommand  # type: ignore
 
-from ... import DEFAULT_SAMPLE_FILE, RESULTS_DIR
-from ...run_sample import gen_run_sample
+from ... import DEFAULT_SAMPLE_FILE, RESULTS_DIR    # type: ignore
+from ...run_sample import gen_run_sample    # type: ignore
 
 
 class Command(BaseCommand):

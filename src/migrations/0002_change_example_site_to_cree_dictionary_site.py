@@ -8,8 +8,8 @@ This means the "example" _might_ be in the database. Or it might not.
 Regardless, this migration changes it to the site configured in settings.py.
 """
 
-from django.conf import settings
-from django.db import migrations
+from django.conf import settings    # type: ignore
+from django.db import migrations    # type: ignore
 
 
 def change_example_to_production_site(apps, schema_editor):

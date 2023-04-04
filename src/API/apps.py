@@ -1,10 +1,10 @@
-import logging
-import os
+import logging  # type: ignore
+import os   # type: ignore
 
-from django.apps import AppConfig
-from django.conf import settings
+from django.apps import AppConfig   # type: ignore
+from django.conf import settings    # type: ignore
 
-import cvd
+import cvd  # type: ignore
 
 logger = logging.getLogger(__name__)
 
@@ -32,8 +32,8 @@ class APIConfig(AppConfig):
             self.perform_time_consuming_initializations()
 
     def perform_time_consuming_initializations(self):
-        from API.search import affix
-        from lexicon.models import wordform_cache
+        from API.search import affix    # type: ignore
+        from lexicon.models import wordform_cache   # type: ignore
 
         logger.debug("preloading caches")
         affix.cache.preload()

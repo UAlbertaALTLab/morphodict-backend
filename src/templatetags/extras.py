@@ -1,22 +1,22 @@
 """
 Template tags related to the Cree Dictionary specifically.
 """
-from urllib.parse import quote
-from weakref import WeakKeyDictionary
+from urllib.parse import quote  # type: ignore
+from weakref import WeakKeyDictionary   # type: ignore
 
-from django import template
-from django.http import HttpRequest
-from django.urls import reverse
-from django.utils.html import escape, format_html
-from django.utils.safestring import mark_safe
+from django import template     # type: ignore
+from django.http import HttpRequest     # type: ignore
+from django.urls import reverse     # type: ignore
+from django.utils.html import escape, format_html   # type: ignore
+from django.utils.safestring import mark_safe   # type: ignore
 
 from paradigm.crkeng_corpus_frequency import (
     observed_wordforms,
-)
-from relabelling import read_labels
-from helpers import url_for_query
-from morphodict.templatetags.morphodict_orth import orth_tag
-from lexicon.models import Wordform
+)   # type: ignore
+from relabelling import read_labels     # type: ignore
+from helpers import url_for_query   # type: ignore
+from morphodict.templatetags.morphodict_orth import orth_tag    # type: ignore
+from lexicon.models import Wordform     # type: ignore
 
 register = template.Library()
 

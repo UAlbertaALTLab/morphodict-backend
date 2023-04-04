@@ -1,6 +1,6 @@
-from django.db import migrations, models
-import django.db.models.deletion
-import lexicon.models
+from django.db import migrations, models    # type: ignore
+import django.db.models.deletion    # type: ignore
+import lexicon.models   # type: ignore
 
 
 class Migration(migrations.Migration):

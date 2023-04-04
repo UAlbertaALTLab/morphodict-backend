@@ -1,5 +1,5 @@
-from lexicon.models import Wordform
-from API.search.api_types import Result
+from lexicon.models import Wordform     # type: ignore
+from API.search.api_types import Result     # type: ignore
 
 
 def test_result_adding_cvd():

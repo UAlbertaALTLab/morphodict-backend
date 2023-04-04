@@ -1,9 +1,9 @@
-import pytest
-from django.http import HttpRequest
-from django.template import RequestContext, Template
-from pytest_django.asserts import assertHTMLEqual
+import pytest   # type: ignore
+from django.http import HttpRequest     # type: ignore
+from django.template import RequestContext, Template    # type: ignore
+from pytest_django.asserts import assertHTMLEqual   # type: ignore
 
-from morphodict.preference import register_preference
+from morphodict.preference import register_preference   # type: ignore
 
 
 @pytest.fixture(autouse=True)

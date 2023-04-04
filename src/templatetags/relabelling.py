@@ -2,16 +2,16 @@
 Access to relabelling from templates.
 """
 
-import logging
-from typing import Sequence
+import logging  # type: ignore
+from typing import Sequence     # type: ignore
 
-from django import template
-from django.template import Context
+from django import template     # type: ignore
+from django.template import Context     # type: ignore
 
-from relabelling import read_labels
-from morphodict.templatetags.morphodict_orth import orth_tag
-from morphodict_types import FSTTag
-from crkeng.app.preferences import DisplayMode
+from relabelling import read_labels     # type: ignore
+from morphodict.templatetags.morphodict_orth import orth_tag    # type: ignore
+from morphodict_types import FSTTag     # type: ignore
+from crkeng.app.preferences import DisplayMode  # type: ignore
 
 logger = logging.getLogger(__name__)
 register = template.Library()

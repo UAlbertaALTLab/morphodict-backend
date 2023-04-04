@@ -1,21 +1,21 @@
-import json
-import logging
-import os
-import random
+import json     # type: ignore
+import logging  # type: ignore
+import os   # type: ignore
+import random   # type: ignore
 from argparse import (
     ArgumentParser,
     ArgumentDefaultsHelpFormatter,
-)
-from pathlib import Path
-from subprocess import check_call
+)   # type: ignore
+from pathlib import Path    # type: ignore
+from subprocess import check_call   # type: ignore
 
-from django.core.management import BaseCommand
+from django.core.management import BaseCommand  # type: ignore
 
-from helpers import get_morphodict_language_pair
+from helpers import get_morphodict_language_pair    # type: ignore
 from lexicon import (
     DEFAULT_FULL_IMPORTJSON_FILE,
-)
-from lexicon.management.commands.buildtestimportjson import entry_sort_key
+)   # type: ignore
+from lexicon.management.commands.buildtestimportjson import entry_sort_key  # type: ignore
 
 logger = logging.getLogger(__name__)
 

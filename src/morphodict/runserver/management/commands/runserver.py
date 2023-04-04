@@ -5,14 +5,14 @@ This repo contains multiple django sites. To allow developers to more easily run
 several of them at once, we extend the default runserver command to optionally
 take its default port from settings.
 """
-from argparse import BooleanOptionalAction
+from argparse import BooleanOptionalAction  # type: ignore
 
-from django.conf import settings
-from django.core.management.commands import runserver
-from django.core.servers.basehttp import WSGIServer
+from django.conf import settings    # type: ignore
+from django.core.management.commands import runserver   # type: ignore
+from django.core.servers.basehttp import WSGIServer     # type: ignore
 
-from morphodict.runserver.get_next_runserver import get_next_runserver_command
-from morphodict.runserver.mobile_run_handler import custom_run
+from morphodict.runserver.get_next_runserver import get_next_runserver_command  # type: ignore
+from morphodict.runserver.mobile_run_handler import custom_run  # type: ignore
 
 Runserver = get_next_runserver_command(__name__)
 
@@ -25,7 +25,7 @@ class TriggeringWSGIServer(WSGIServer):
     """
 
     def serve_forever(self, *args, **kwargs):
-        import morphodict_mobile
+        import morphodict_mobile    # type: ignore
 
         print("sending serve trigger")
         morphodict_mobile.trigger("serve")

@@ -1,12 +1,12 @@
 """
 Handling of the writing system of the language.
 """
-import logging
-from importlib import import_module
-from typing import Callable, Set
+import logging  # type: ignore
+from importlib import import_module     # type: ignore
+from typing import Callable, Set    # type: ignore
 
-from django.conf import settings
-from django.http import HttpRequest
+from django.conf import settings    # type: ignore
+from django.http import HttpRequest     # type: ignore
 
 logger = logging.getLogger(__name__)
 

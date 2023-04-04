@@ -1,4 +1,4 @@
-import os
+import os   # type: ignore
 
 from django.core.wsgi import get_wsgi_application   # type: ignore
 

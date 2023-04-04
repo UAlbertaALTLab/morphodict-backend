@@ -1,18 +1,18 @@
-from typing import Iterable, Callable, Any, Optional
+from typing import Iterable, Callable, Any, Optional    # type: ignore
 
-from django.db.models import prefetch_related_objects
+from django.db.models import prefetch_related_objects   # type: ignore
 
 from crkeng.app.preferences import (
     DisplayMode,
     AnimateEmoji,
     DictionarySource,
     ShowEmoji,
-)
-from lexicon.models import WordformKey
-from . import api_types, presentation
-from .query import Query
-from .api_types import Result
-from .util import first_non_none_value
+)   # type: ignore
+from lexicon.models import WordformKey      # type: ignore
+from . import api_types, presentation   # type: ignore
+from .query import Query    # type: ignore
+from .api_types import Result   # type: ignore
+from .util import first_non_none_value  # type: ignore
 
 
 class SearchRun:

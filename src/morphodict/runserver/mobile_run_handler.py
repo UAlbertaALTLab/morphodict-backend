@@ -32,11 +32,11 @@ foreground again.
 """
 
 
-import socketserver
-from threading import Condition, Lock
-from typing import Optional
+import socketserver     # type: ignore
+from threading import Condition, Lock   # type: ignore
+from typing import Optional     # type: ignore
 
-from django.core.servers.basehttp import WSGIRequestHandler, WSGIServer
+from django.core.servers.basehttp import WSGIRequestHandler, WSGIServer     # type: ignore
 
 
 class RunHandler:

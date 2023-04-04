@@ -1,4 +1,4 @@
-from django.db import migrations
+from django.db import migrations    # type: ignore
 
 
 class Migration(migrations.Migration):

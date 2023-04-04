@@ -1,8 +1,8 @@
 """
 Unit tests for the paradigm pane module.
 """
-import pytest
-from more_itertools import first, ilen, last, one
+import pytest   # type: ignore
+from more_itertools import first, ilen, last, one   # type: ignore
 
 from paradigm.panes import (
     CompoundRow,
@@ -12,7 +12,7 @@ from paradigm.panes import (
     RowLabel,
     SuppressOutputCell,
     WordformCell,
-)
+)   # type: ignore
 
 
 def test_compound_rows():

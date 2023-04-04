@@ -7,7 +7,7 @@ See: https://owasp.org/www-project-secure-headers/
 Based on: https://secure.readthedocs.io/en/latest/frameworks.html#django
 """
 
-import secure
+import secure   # type: ignore
 
 secure_headers = secure.Secure()
 

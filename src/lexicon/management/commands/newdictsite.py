@@ -9,12 +9,12 @@ is better than nothing.
 # In theory there could be a detailed integration test to run this command to
 # create a new site, and then run some smoke tests against it.
 
-from argparse import ArgumentParser
-from pathlib import Path
+from argparse import ArgumentParser     # type: ignore
+from pathlib import Path    # type: ignore
 
-from django.conf import settings
-from django.core.management import BaseCommand
-from django.template import Template, Context
+from django.conf import settings    # type: ignore
+from django.core.management import BaseCommand  # type: ignore
+from django.template import Template, Context   # type: ignore
 
 
 def make_python_dir(path):

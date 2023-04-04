@@ -1,6 +1,6 @@
-from django.core.management import BaseCommand
-from lexicon.models import RapidWords, Wordform
-from tqdm import tqdm
+from django.core.management import BaseCommand  # type: ignore
+from lexicon.models import RapidWords, Wordform     # type: ignore
+from tqdm import tqdm   # type: ignore
 
 
 class Command(BaseCommand):

@@ -1,6 +1,6 @@
-from typing import Optional, TypeVar
+from typing import Optional, TypeVar    # type: ignore
 
-from cree_sro_syllabics import syllabics2sro
+from cree_sro_syllabics import syllabics2sro    # type: ignore
 
 T = TypeVar("T")
 

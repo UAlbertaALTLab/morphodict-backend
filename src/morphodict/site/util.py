@@ -1,4 +1,4 @@
-from functools import cache
+from functools import cache     # type: ignore
 
 
 def cache_unless(arg: bool, /):

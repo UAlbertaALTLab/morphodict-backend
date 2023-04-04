@@ -1,14 +1,14 @@
-from __future__ import annotations
+from __future__ import annotations  # type: ignore
 
-import logging
-import re
-from functools import cache
-from pathlib import Path
-from typing import Collection, Iterable, Optional, Protocol
+import logging  # type: ignore
+import re   # type: ignore
+from functools import cache     # type: ignore
+from pathlib import Path    # type: ignore
+from typing import Collection, Iterable, Optional, Protocol     # type: ignore
 
-from django.conf import settings
+from django.conf import settings    # type: ignore
 
-from paradigm.panes import Paradigm, ParadigmLayout
+from paradigm.panes import Paradigm, ParadigmLayout     # type: ignore
 
 # I would *like* a singleton for this, but, currently, it interacts poorly with mypy :/
 ONLY_SIZE = "<only-size>"

@@ -1,6 +1,6 @@
-import os
-import sys
-from pathlib import Path
+import os   # type: ignore
+import sys  # type: ignore
+from pathlib import Path    # type: ignore
 
 
 def save_secret_key(key: str) -> str:

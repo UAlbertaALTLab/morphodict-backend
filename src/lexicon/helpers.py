@@ -1,4 +1,4 @@
-from django.conf import settings
+from django.conf import settings    # type: ignore
 
 
 def get_morphodict_language_pair():

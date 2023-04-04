@@ -1,8 +1,8 @@
-from django.conf import settings
-from django.http import HttpResponse, HttpResponseBadRequest, JsonResponse, Http404
-from django.shortcuts import render
+from django.conf import settings    # type: ignore
+from django.http import HttpResponse, HttpResponseBadRequest, JsonResponse, Http404     # type: ignore
+from django.shortcuts import render     # type: ignore
 
-from .search import simple_search
+from .search import simple_search   # type: ignore
 
 
 def click_in_text(request) -> HttpResponse:

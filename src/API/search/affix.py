@@ -9,23 +9,23 @@ tab-completion. It uses tries to expand queries, so that searching for ‘snowm�
 also returns results for ‘snowmobile’
 """
 
-from collections import defaultdict
-from functools import cached_property
-from itertools import chain
-from typing import Dict, Iterable, List, NewType, Tuple
+from collections import defaultdict     # type: ignore
+from functools import cached_property   # type: ignore
+from itertools import chain     # type: ignore
+from typing import Dict, Iterable, List, NewType, Tuple     # type: ignore
 
-import dawg
-from django.conf import settings
+import dawg     # type: ignore
+from django.conf import settings    # type: ignore
 
-from lexicon.models import Wordform, TargetLanguageKeyword
-from cree_lev_dist import get_modified_distance
-from cree_lev_dist import remove_cree_diacritics
-from lexicon.util import to_source_language_keyword
+from lexicon.models import Wordform, TargetLanguageKeyword  # type: ignore
+from cree_lev_dist import get_modified_distance     # type: ignore
+from cree_lev_dist import remove_cree_diacritics    # type: ignore
+from lexicon.util import to_source_language_keyword     # type: ignore
 from .api_types import (
     InternalForm,
     Result,
-)
-from . import core
+)   # type: ignore
+from . import core  # type: ignore
 
 # A simplified form intended to be used within the affix search trie.
 SimplifiedForm = NewType("SimplifiedForm", str)

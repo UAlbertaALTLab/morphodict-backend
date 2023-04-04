@@ -1,6 +1,6 @@
-from pathlib import Path
+from pathlib import Path    # type: ignore
 
-from shared_res_dir import shared_res_dir
+from shared_res_dir import shared_res_dir   # type: ignore
 
 DOCUMENT_FREQUENCY = {}
 

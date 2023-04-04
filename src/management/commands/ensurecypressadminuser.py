@@ -1,11 +1,11 @@
-import json
-import logging
-import secrets
-from argparse import ArgumentParser, BooleanOptionalAction
+import json     # type: ignore
+import logging  # type: ignore
+import secrets  # type: ignore
+from argparse import ArgumentParser, BooleanOptionalAction  # type: ignore
 
-from django.conf import settings
-from django.contrib.auth.models import User
-from django.core.management.base import BaseCommand
+from django.conf import settings    # type: ignore
+from django.contrib.auth.models import User     # type: ignore
+from django.core.management.base import BaseCommand     # type: ignore
 
 logger = logging.getLogger(__name__)
 

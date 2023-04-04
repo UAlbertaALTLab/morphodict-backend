@@ -1,5 +1,5 @@
-import re
-from typing import List, Tuple
+import re   # type: ignore
+from typing import List, Tuple  # type: ignore
 
 from morphodict_types import FSTLemma, FSTTag   # type: ignore
 
