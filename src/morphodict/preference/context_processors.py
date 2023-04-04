@@ -1,10 +1,10 @@
-from __future__ import annotations
+from __future__ import annotations  # type: ignore
 
-from typing import Union
+from typing import Union    # type: ignore
 
-from django.http import HttpRequest
+from django.http import HttpRequest     # type: ignore
 
-from morphodict.preference import Preference, all_preferences
+from morphodict.preference import Preference, all_preferences   # type: ignore
 
 
 def preferences(request):

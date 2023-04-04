@@ -1,6 +1,6 @@
-import pytest
+import pytest   # type: ignore
 
-from lexicon.util import to_source_language_keyword
+from lexicon.util import to_source_language_keyword     # type: ignore
 
 COMBINING_CIRCUMFLEX = "̂"
 COMBINING_MACRON = "̄"

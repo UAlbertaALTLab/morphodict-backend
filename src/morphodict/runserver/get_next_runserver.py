@@ -30,9 +30,9 @@ There is some unpleasant hackery here because we don't know which command class
 to subclass until runtime as it depends on which INSTALLED_APPS we have, so we
 have to determine this dynamically.
 """
-from importlib import import_module
+from importlib import import_module     # type: ignore
 
-from django.apps import apps
+from django.apps import apps    # type: ignore
 
 
 def get_next_runserver_command(module_name):

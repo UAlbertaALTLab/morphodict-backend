@@ -2,7 +2,7 @@
 Ensure the database -- especially the test database -- has certain requisite data.
 """
 
-import logging
+import logging  # type: ignore
 
 logger = logging.getLogger(__name__)
 

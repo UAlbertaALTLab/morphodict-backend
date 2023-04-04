@@ -3,8 +3,8 @@
 Command-line utility for administrative tasks.
 """
 
-import os
-import sys
+import os   # type: ignore
+import sys  # type: ignore
 from pathlib import Path   # type: ignore
 
 # sys.path[0] is initialized to the directory containing the script, which

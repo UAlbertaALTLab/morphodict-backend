@@ -1,6 +1,6 @@
-from pathlib import Path
+from pathlib import Path    # type: ignore
 
-from .app import App
+from .app import App    # type: ignore
 
 # The directory containing the docker-compose file
 DOCKER_COMPOSE_DIR = Path(__file__).parent.parent

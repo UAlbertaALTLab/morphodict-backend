@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 # -*- coding: UTF-8 -*-
 
-from http import HTTPStatus
+from http import HTTPStatus     # type: ignore
 
-from django.http import HttpResponse
-from django.views import View
+from django.http import HttpResponse    # type: ignore
+from django.views import View   # type: ignore
 
-from .orthography import ORTHOGRAPHY
+from .orthography import ORTHOGRAPHY    # type: ignore
 
 
 class ChangeOrthography(View):

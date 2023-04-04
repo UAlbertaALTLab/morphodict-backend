@@ -5,7 +5,7 @@
 Some dummy tests just to make sure everything is working properly
 """
 
-from django.apps import AppConfig
+from django.apps import AppConfig   # type: ignore
 
 
 def test_default_config_exists():

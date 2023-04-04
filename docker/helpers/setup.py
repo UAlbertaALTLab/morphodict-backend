@@ -1,11 +1,11 @@
-import re
-from os import chmod, fspath, getuid
-from pathlib import Path
-from pwd import getpwuid
-from shutil import chown
-from subprocess import check_call
+import re   # type: ignore
+from os import chmod, fspath, getuid    # type: ignore
+from pathlib import Path    # type: ignore
+from pwd import getpwuid    # type: ignore
+from shutil import chown    # type: ignore
+from subprocess import check_call   # type: ignore
 
-from .settings import APPS, DOCKER_COMPOSE_DIR
+from .settings import APPS, DOCKER_COMPOSE_DIR  # type: ignore
 
 # Note the extra g+s bit. inode(7) says, “for that directory: files
 # created there inherit their group ID from the directory, not from

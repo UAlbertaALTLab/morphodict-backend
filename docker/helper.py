@@ -14,15 +14,15 @@ Handles things like:
 # the YAML files point at the right places because they are both created by code
 # that ultimately gets their location from the same variable.
 
-import argparse
-import itertools
-import subprocess
-from argparse import ArgumentParser, ArgumentDefaultsHelpFormatter
-from os import fspath, execvp, chdir
+import argparse     # type: ignore
+import itertools    # type: ignore
+import subprocess   # type: ignore
+from argparse import ArgumentParser, ArgumentDefaultsHelpFormatter      # type: ignore
+from os import fspath, execvp, chdir    # type: ignore
 
-from helpers.settings import DOCKER_COMPOSE_DIR, APPS
-from helpers.setup import do_setup
-from helpers.yaml import make_yaml
+from helpers.settings import DOCKER_COMPOSE_DIR, APPS   # type: ignore
+from helpers.setup import do_setup  # type: ignore
+from helpers.yaml import make_yaml  # type: ignore
 
 
 def main():

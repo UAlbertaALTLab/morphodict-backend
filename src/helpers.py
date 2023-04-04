@@ -1,4 +1,4 @@
-from __future__ import annotations
+from __future__ import annotations  # type: ignore
 
 #!/usr/bin/env python3
 # -*- coding: UTF-8 -*-
@@ -12,8 +12,8 @@ Helper functions for the views file.
 
 from urllib.parse import ParseResult, urlencode, urlunparse     # type: ignore
 
-import urllib
-import logging
+import urllib   # type: ignore
+import logging  # type: ignore
 from typing import Optional     # type: ignore
 from pathlib import Path    # type: ignore
 

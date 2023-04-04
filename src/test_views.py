@@ -1,5 +1,5 @@
-import logging
-import re
+import logging  # type: ignore
+import re   # type: ignore
 from http import HTTPStatus # type: ignore
 from typing import Dict, Optional   # type: ignore
 

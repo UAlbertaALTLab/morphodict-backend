@@ -1,5 +1,5 @@
-from django.db import migrations
-from django.db.migrations import RunPython
+from django.db import migrations    # type: ignore
+from django.db.migrations import RunPython  # type: ignore
 
 
 def populate_fst_lemma(apps, schema_editor):

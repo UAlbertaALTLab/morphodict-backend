@@ -1,4 +1,4 @@
-import re
+import re   # type: ignore
 
 import pytest   # type: ignore
 
