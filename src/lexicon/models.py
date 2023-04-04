@@ -74,7 +74,7 @@ class RapidWords(models.Model):
     def __repr__(self):
         return f"{self.index} {self.domain}"
 
-    def serialize(self) -> SerializedRapidWordsClass:
+    def serialize(self):
         """
         :return: json parsable format
         """
