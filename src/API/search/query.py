@@ -1,11 +1,11 @@
-import unicodedata
-from enum import Enum
-from typing import Optional
+import unicodedata  # type: ignore
+from enum import Enum   # type: ignore
+from typing import Optional     # type: ignore
 
-import marshmallow.fields
+import marshmallow.fields   # type: ignore
 
-from API.search import runner
-from API.search.util import to_sro_circumflex
+from API.search import runner   # type: ignore
+from API.search.util import to_sro_circumflex   # type: ignore
 
 
 class CvdSearchType(Enum):

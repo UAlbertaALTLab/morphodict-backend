@@ -1,4 +1,4 @@
-from API.search.query import Query
+from query import Query     # type: ignore
 
 
 def test_basic_query():

@@ -1,4 +1,4 @@
-import re
+import re   # type: ignore
 
 from django.conf import settings    # type: ignore
 
