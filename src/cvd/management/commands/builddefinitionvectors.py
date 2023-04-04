@@ -1,21 +1,21 @@
-import json
-import logging
-from argparse import ArgumentParser
-from contextlib import contextmanager
-from os import fspath
+import json     # type: ignore
+import logging  # type: ignore
+from argparse import ArgumentParser     # type: ignore
+from contextlib import contextmanager   # type: ignore
+from os import fspath   # type: ignore
 
-from django.core.management import BaseCommand
-from gensim.models import KeyedVectors
-from tqdm import tqdm
+from django.core.management import BaseCommand  # type: ignore
+from gensim.models import KeyedVectors  # type: ignore
+from tqdm import tqdm   # type: ignore
 
 from cvd import (
     google_news_vectors,
     extract_keyed_words,
     vector_for_keys,
     definition_vectors_path,
-)
-from cvd.definition_keys import definition_to_cvd_key
-from lexicon.models import Definition
+)   # type: ignore
+from cvd.definition_keys import definition_to_cvd_key   # type: ignore
+from lexicon.models import Definition   # type: ignore
 
 logger = logging.getLogger(__name__)
 

@@ -1,23 +1,23 @@
-from __future__ import annotations
+from __future__ import annotations     # type: ignore
 
-import logging
+import logging  # type: ignore
 
-from django.db.models import Q
+from django.db.models import Q  # type: ignore
 
 from cree_lev_dist import (
     get_modified_distance,
-)
-from english_keyword_extraction import stem_keywords
+)   # type: ignore
+from english_keyword_extraction import stem_keywords    # type: ignore
 from analysis import (
     strict_generator,
     rich_analyze_relaxed,
-)
-from lexicon.models import Wordform, SourceLanguageKeyword
-from lexicon.util import to_source_language_keyword
-from . import core
-from .api_types import Result
-from functools import reduce
-import operator
+)   # type: ignore
+from lexicon.models import Wordform, SourceLanguageKeyword  # type: ignore
+from lexicon.util import to_source_language_keyword     # type: ignore
+from . import core  # type: ignore
+from .api_types import Result   # type: ignore
+from functools import reduce    # type: ignore
+import operator     # type: ignore
 
 logger = logging.getLogger(__name__)
 

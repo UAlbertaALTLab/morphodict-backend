@@ -1,41 +1,37 @@
-from __future__ import annotations
+from __future__ import annotations  # type: ignore
 
-import json
-import logging
-from pathlib import Path
+import json     # type: ignore
+import logging  # type: ignore
+from pathlib import Path    # type: ignore
 
-from typing import Dict, Literal
-from nltk.corpus import wordnet as wn
+from typing import Dict, Literal    # type: ignore
+from nltk.corpus import wordnet as wn   # type: ignore
 
 
-from http import HTTPStatus
-from django.http import HttpResponse
-from rest_framework.decorators import api_view
-from paradigm_manager.manager import ParadigmManager
-from rest_framework.response import Response
+from http import HTTPStatus     # type: ignore
+from django.http import HttpResponse    # type: ignore
+from rest_framework.decorators import api_view  # type: ignore
+from paradigm_manager.manager import ParadigmManager    # type: ignore
+from rest_framework.response import Response    # type: ignore
 
-from relabelling import Relabelling
-from helpers import *
+from relabelling import Relabelling     # type: ignore
+from helpers import *   # type: ignore
 
-from django.conf import settings
-from django.contrib.admin.views.decorators import staff_member_required
-from django.http import HttpResponse, HttpResponseNotFound
-from django.shortcuts import redirect, render
+from django.conf import settings    # type: ignore
+from django.contrib.admin.views.decorators import staff_member_required     # type: ignore
+from django.http import HttpResponse, HttpResponseNotFound  # type: ignore
+from django.shortcuts import redirect, render   # type: ignore
 
-import analysis
-from API.search import presentation, search_with_affixes
+import analysis     # type: ignore
+from API.search import presentation, search_with_affixes    # type: ignore
 from phrase_translate.translate import (
     eng_noun_entry_to_inflected_phrase_fst,
     eng_phrase_to_crk_features_fst,
     eng_verb_entry_to_inflected_phrase_fst,
-)
-from crkeng.app.preferences import DisplayMode, AnimateEmoji, ShowEmoji
-from lexicon.models import Wordform, RapidWords
+)   # type: ignore
+from crkeng.app.preferences import DisplayMode, AnimateEmoji, ShowEmoji     # type: ignore
+from lexicon.models import Wordform, RapidWords     # type: ignore
 
-
-# The index template expects to be rendered in the following "modes";
-# The mode dictates which variables MUST be present in the context.
-IndexPageMode = Literal["home-page", "search-page", "word-detail", "info-page"]
 
 logger = logging.getLogger(__name__)
 

@@ -1,8 +1,8 @@
-from django import template
-from django.conf import settings
-from django.utils.html import format_html
+from django import template     # type: ignore
+from django.conf import settings    # type: ignore
+from django.utils.html import format_html   # type: ignore
 
-from ..orthography import ORTHOGRAPHY
+from ..orthography import ORTHOGRAPHY   # type: ignore
 
 register = template.Library()
 

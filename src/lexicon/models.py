@@ -1,19 +1,17 @@
-from __future__ import annotations
+from __future__ import annotations  # type: ignore
 
-import logging
-from pathlib import Path
-from typing import Dict, Literal, Union
+import logging  # type: ignore
+from pathlib import Path    # type: ignore
+from typing import Dict, Literal, Union     # type: ignore
 
-from django.core.serializers.json import DjangoJSONEncoder
-from django.db import models
-from django.urls import reverse
-from django.utils.functional import cached_property
+from django.core.serializers.json import DjangoJSONEncoder  # type: ignore
+from django.db import models    # type: ignore
+from django.urls import reverse     # type: ignore
+from django.utils.functional import cached_property     # type: ignore
 
-from API.schema import SerializedDefinition
-from shared_res_dir import (
-    shared_res_dir,
-)
-from analysis import RichAnalysis
+from API.schema import SerializedDefinition     # type: ignore
+from shared_res_dir import shared_res_dir   # type: ignore
+from analysis import RichAnalysis   # type: ignore
 
 # How long a wordform or dictionary head can be. Not actually enforced in SQLite.
 MAX_WORDFORM_LENGTH = 60
@@ -76,7 +74,7 @@ class RapidWords(models.Model):
     def __repr__(self):
         return f"{self.index} {self.domain}"
 
-    def serialize(self) -> SerializedRapidWordsClass:
+    def serialize(self):
         """
         :return: json parsable format
         """
@@ -229,7 +227,7 @@ class Wordform(models.Model):
         """
         assert self.is_lemma, "There is no page for non-lemmas"
         # FIXME: will return '/word/None' if no slug
-        return reverse("cree-dictionary-index-with-lemma", kwargs={"slug": self.slug})
+        return reverse("word-details-api", kwargs={"slug": self.slug})
 
 
 class DictionarySource(models.Model):
@@ -408,8 +406,8 @@ class _WordformCache:
 
         lines = (
             Path(shared_res_dir / "CW_aggregate_morpheme_log_freqs.txt")
-            .read_text()
-            .splitlines()
+                .read_text()
+                .splitlines()
         )
         max = 65.04136
         for line in lines:

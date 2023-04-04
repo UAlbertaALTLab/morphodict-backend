@@ -1,7 +1,7 @@
 import re
 from typing import Set
 
-import snowballstemmer
+import snowballstemmer  # type: ignore
 
 word_pattern = re.compile(r"[\w.\-/']+")
 

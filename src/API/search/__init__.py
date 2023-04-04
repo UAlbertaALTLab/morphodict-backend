@@ -1,4 +1,4 @@
-from .runner import search
+from .runner import search  # type: ignore
 
 
 def search_with_affixes(

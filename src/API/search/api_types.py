@@ -1,16 +1,16 @@
-from __future__ import annotations
+from __future__ import annotations  # type: ignore
 
-import dataclasses
-import json
-from dataclasses import dataclass, field
-from enum import Enum
-from typing import NewType, Optional, Protocol, cast, Iterable, Tuple
+import dataclasses  # type: ignore
+import json     # type: ignore
+from dataclasses import dataclass, field    # type: ignore
+from enum import Enum   # type: ignore
+from typing import NewType, Optional, Protocol, cast, Iterable, Tuple   # type: ignore
 
-from API.schema import SerializedLinguisticTag
-from morphodict_types import FSTTag, Label
-from lexicon.models import Wordform, wordform_cache
-from API.search import ranking
-from relabelling import LABELS
+from API.schema import SerializedLinguisticTag  # type: ignore
+from morphodict_types import FSTTag, Label  # type: ignore
+from lexicon.models import Wordform, wordform_cache     # type: ignore
+from API.search import ranking  # type: ignore
+from relabelling import LABELS  # type: ignore
 
 
 Preverb = Wordform

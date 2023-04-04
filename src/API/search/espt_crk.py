@@ -1,7 +1,7 @@
 """
 Cree-specific data for English Inflected Phrase search
 """
-from analysis.tag_map import TagMap
+from analysis.tag_map import TagMap     # type: ignore
 
 # tags needed for FST generator
 crk_noun_tags = ["+N", "+A", "+I", "+D"]

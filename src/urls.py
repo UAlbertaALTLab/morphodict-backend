@@ -9,59 +9,29 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.urls import include, path
 from django_js_reverse.views import urls_js
 
-import API.views as api_views
-import views
-from sitemaps import sitemaps
+import API.views as api_views   # type: ignore
+import views    # type: ignore
+from sitemaps import sitemaps   # type: ignore
 
 # TODO: use URL namespaces:
 # e.g., cree-dictionary:index instead of cree-dictionary-index
 # See: https://docs.djangoproject.com/en/2.2/topics/http/urls/#url-namespaces
 
 urlpatterns = [
-    ################################# Primary URLs #################################
-    # path("", views.index, name="cree-dictionary-index"),
-    # path("search", views.index, name="cree-dictionary-search"),
-    # "word" is a user-friendly alternative for the linguistic term "lemma"
-    # path(
-    #     "word/<str:slug>/",
-    #     views.entry_details,
-    #     name="cree-dictionary-index-with-lemma",
-    # ),
-    # path("about", views.about, name="cree-dictionary-about"),
-    # path("contact-us", views.contact_us, name="cree-dictionary-contact-us"),
-    # path("query-help", views.query_help, name="cree-dictionary-query-help"),
-    # path("legend", views.legend, name="cree-dictionary-legend"),
-    # path("settings", views.settings_page, name="settings"),
-    # path("admin/fst-tool", views.fst_tool, name="cree-dictionary-fst-tool"),
     ################################# Internal API #################################
-    path("api/", views.search_api, name="cree-dictionary-search"),  # main page
+    path("api/", views.search_api, name="search-api"),  # main page
     path(
-        "api/search/", views.search_api, name="cree-dictionary-search"
+        "api/search/", views.search_api, name="full-search-api"
     ),  # word_search returns wordforms as json
-    path("api/rapidwords/", views.semantic_api, name="semantic-search"),
+    path("api/rapidwords/", views.semantic_api, name="rw-semantic-search-api"),
     path(
         "api/word/<str:slug>/",
         views.word_details_api,
-        name="cree-dictionary-index-with-lemma",
-    ),  # returns details related to a spesific word
+        name="word-details-api",
+    ),
     path(
         "api/wordnet/<str:classification>", views.wordnet_api, name="wordnet-search-api"
     ),
-    # internal use to render boxes of search results
-    # path(
-    #     "_search_results/<str:query_string>/",
-    #     views.search_results,
-    #     name="cree-dictionary-search-results",
-    # ),
-    # internal use to render paradigm and only the paradigm
-    # path(
-    #     "_paradigm_details/",
-    #     views.paradigm_internal,
-    #     name="cree-dictionary-paradigm-detail",
-    # ),
-    # See morphodict.preference.urls for all available views
-    # Hint: You will probably use preference:change the most!
-    path("_preference/", include("morphodict.preference.urls", namespace="preference")),
     ################################ Click in text #################################
     # cree word translation for click-in-text
     path(
@@ -102,7 +72,7 @@ if settings.DEBUG:
     urlpatterns += staticfiles_urlpatterns()
 
 if settings.DEBUG and settings.ENABLE_DJANGO_DEBUG_TOOLBAR:
-    import debug_toolbar
+    import debug_toolbar    # type: ignore
 
     # necessary for debug_toolbar to work
     urlpatterns.append(path("__debug__/", include(debug_toolbar.urls)))

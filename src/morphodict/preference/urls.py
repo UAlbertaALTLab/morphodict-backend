@@ -10,9 +10,9 @@ In your site URLConf, include() these URLs:
         path("preferences", include("morphodict.preference.urls")),
     ]
 """
-from django.urls import path
+from django.urls import path    # type: ignore
 
-from . import views
+from . import views     # type: ignore
 
 app_name = "morphodict-preference"
 urlpatterns = [

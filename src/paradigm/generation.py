@@ -2,15 +2,13 @@
 Handles paradigm generation.
 """
 
-from django.conf import settings
+from django.conf import settings    # type: ignore
 
-import analysis
-from paradigm.manager import (
-    ParadigmManager,
-    ParadigmManagerWithExplicitSizes,
-)
-from shared_res_dir import shared_res_dir
-from morphodict.site.util import cache_unless
+import analysis     # type: ignore
+
+from shared_res_dir import shared_res_dir   # type: ignore
+from morphodict.site.util import cache_unless   # type: ignore
+from manager import ParadigmManager, ParadigmManagerWithExplicitSizes   # type: ignore
 
 
 @cache_unless(settings.DEBUG_PARADIGM_TABLES)

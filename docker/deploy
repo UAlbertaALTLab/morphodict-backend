@@ -2,10 +2,10 @@
 
 # This script is called by the deploy.altlab.dev webhook
 
-import os
-from argparse import ArgumentParser
-from pathlib import Path
-from subprocess import check_call
+import os   # type: ignore
+from argparse import ArgumentParser     # type: ignore
+from pathlib import Path    # type: ignore
+from subprocess import check_call   # type: ignore
 
 
 def main():
@@ -25,7 +25,7 @@ def main():
     # The rest of the deploy is separated out into a different script that is
     # only loaded *after* the git pull. Otherwise we’d be running some old
     # version of the script from a commit that is not the one being deployed.
-    import inner_deploy
+    import inner_deploy     # type: ignore
 
     inner_deploy.run(call=call)
 

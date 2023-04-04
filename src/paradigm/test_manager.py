@@ -1,11 +1,11 @@
-import logging
-import random
-import secrets
-from pathlib import Path
-from typing import Iterable
+import logging  # type: ignore
+import random   # type: ignore
+import secrets  # type: ignore
+from pathlib import Path    # type: ignore
+from typing import Iterable     # type: ignore
 
-import pytest
-from more_itertools import first
+import pytest   # type: ignore
+from more_itertools import first    # type: ignore
 
 from paradigm.manager import (
     ONLY_SIZE,
@@ -13,7 +13,7 @@ from paradigm.manager import (
     ParadigmManager,
     ParadigmManagerWithExplicitSizes,
     Transducer,
-)
+)   # type: ignore
 
 
 def test_one_size(paradigm_manager: ParadigmManager):

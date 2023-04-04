@@ -1,10 +1,10 @@
-import pytest
-from pytest import approx
+import pytest   # type: ignore
+from pytest import approx   # type: ignore
 
-from API.search import search
-from API.search.ranking import assign_relevance_score
-from API.search.api_types import Result
-from lexicon.models import Wordform
+from API.search import search   # type: ignore
+from API.search.ranking import assign_relevance_score   # type: ignore
+from API.search.api_types import Result     # type: ignore
+from lexicon.models import Wordform     # type: ignore
 
 
 def build_result(

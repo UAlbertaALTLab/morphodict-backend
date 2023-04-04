@@ -1,12 +1,12 @@
-import logging
-import re
-from functools import cache
-from os import fspath
+import logging  # type: ignore
+import re   # type: ignore
+from functools import cache     # type: ignore
+from os import fspath   # type: ignore
 
-from django.conf import settings
-from gensim.models import KeyedVectors
+from django.conf import settings    # type: ignore
+from gensim.models import KeyedVectors  # type: ignore
 
-from lexicon import MORPHODICT_LEXICON_RESOURCE_DIR
+from lexicon import MORPHODICT_LEXICON_RESOURCE_DIR     # type: ignore
 
 logger = logging.getLogger(__name__)
 

@@ -1,30 +1,30 @@
-from __future__ import annotations
+from __future__ import annotations  # type: ignore
 
-import re
-from dataclasses import dataclass
-from typing import Any, Dict, Iterable, List, Literal, Optional, TypedDict, cast, Tuple
+import re   # type: ignore
+from dataclasses import dataclass   # type: ignore
+from typing import Any, Dict, Iterable, List, Literal, Optional, TypedDict, cast, Tuple     # type: ignore
 
-from django.conf import settings
-from django.forms import model_to_dict
+from django.conf import settings    # type: ignore
+from django.forms import model_to_dict  # type: ignore
 
-from API.search import core, api_types
-from relabelling import read_labels, LABELS
-from cree_lev_dist import get_modified_distance
-from fst_analysis_parser import partition_analysis
-from .api_types import Preverb, LinguisticTag, linguistic_tag_from_fst_tags
-from morphodict_types import ConcatAnalysis, FSTTag, Label
+from API.search import core, api_types  # type: ignore
+from relabelling import read_labels, LABELS     # type: ignore
+from cree_lev_dist import get_modified_distance     # type: ignore
+from fst_analysis_parser import partition_analysis  # type: ignore
+from .api_types import Preverb, LinguisticTag, linguistic_tag_from_fst_tags     # type: ignore
+from morphodict_types import ConcatAnalysis, FSTTag, Label  # type: ignore
 from crkeng.app.preferences import (
     DisplayMode,
     AnimateEmoji,
     DictionarySource,
     ShowEmoji,
-)
-from analysis import RichAnalysis
-from lexicon.models import Wordform, SourceLanguageKeyword
+)   # type: ignore
+from analysis import RichAnalysis   # type: ignore
+from lexicon.models import Wordform, SourceLanguageKeyword  # type: ignore
 
-from ..schema import SerializedDefinition, SerializedWordform, SerializedLinguisticTag
-from .api_types import Preverb
-from morphodict.orthography import ORTHOGRAPHY
+from ..schema import SerializedDefinition, SerializedWordform, SerializedLinguisticTag  # type: ignore
+from .api_types import Preverb  # type: ignore
+from morphodict.orthography import ORTHOGRAPHY  # type: ignore
 
 
 class AbstractResult:

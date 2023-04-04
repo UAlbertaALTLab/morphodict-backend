@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: UTF-8 -*-
 
-import pytest
-from morphodict.templatetags.morphodict_orth import orth
+import pytest   # type: ignore
+from morphodict.templatetags.morphodict_orth import orth    # type: ignore
 
 
 def test_orth_requires_two_arguments():

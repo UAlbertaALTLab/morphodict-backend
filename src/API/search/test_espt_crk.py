@@ -1,9 +1,9 @@
-import pytest
+import pytest   # type: ignore
 
-from API.search.core import SearchRun
-from API.search.espt import EsptSearch, PhraseAnalyzedQuery
-from API.search.api_types import Result
-from lexicon.models import Wordform
+from API.search.core import SearchRun   # type: ignore
+from API.search.espt import EsptSearch, PhraseAnalyzedQuery     # type: ignore
+from API.search.api_types import Result     # type: ignore
+from lexicon.models import Wordform     # type: ignore
 
 
 @pytest.mark.parametrize(

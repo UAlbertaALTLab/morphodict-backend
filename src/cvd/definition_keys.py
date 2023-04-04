@@ -9,11 +9,11 @@ This file has functions to turn definitions into string keys that:
 """
 
 
-import json
-import logging
-from typing import TypedDict, cast, Optional
+import json     # type: ignore
+import logging  # type: ignore
+from typing import TypedDict, cast, Optional    # type: ignore
 
-from lexicon.models import Wordform, Definition
+from lexicon.models import Wordform, Definition     # type: ignore
 
 logger = logging.getLogger(__name__)
 

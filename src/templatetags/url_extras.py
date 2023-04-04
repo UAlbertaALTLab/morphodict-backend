@@ -2,11 +2,11 @@
 Get absolute URLs for static assets.
 """
 
-from urllib.parse import ParseResult, urlparse, urlunparse
+from urllib.parse import ParseResult, urlparse, urlunparse  # type: ignore
 
-from django import template
-from django.templatetags.static import StaticNode
-from django.urls import reverse
+from django import template     # type: ignore
+from django.templatetags.static import StaticNode   # type: ignore
+from django.urls import reverse     # type: ignore
 
 register = template.Library()
 

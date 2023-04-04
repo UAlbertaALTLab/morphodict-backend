@@ -5,6 +5,6 @@
 Detect which host we're running on.
 """
 
-import socket
+import socket   # type: ignore
 
 HOSTNAME = socket.gethostname()

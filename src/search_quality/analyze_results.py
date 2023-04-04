@@ -3,16 +3,16 @@
 # outputs generated today using the latest everything to previously-generated
 # outputs using old versions of the code and old versions of the dictionary.
 
-from __future__ import annotations
+from __future__ import annotations  # type: ignore
 
-import gzip
-from json import load
-from os import PathLike
-from typing import cast, TypedDict, Optional
+import gzip     # type: ignore
+from json import load   # type: ignore
+from os import PathLike     # type: ignore
+from typing import cast, TypedDict, Optional    # type: ignore
 
-from API.schema import SerializedSearchResult
-from . import DEFAULT_SAMPLE_FILE, SampleSearchResultsJson
-from .sample import load_sample_definition, SampleDefinition
+from API.schema import SerializedSearchResult   # type: ignore
+from . import DEFAULT_SAMPLE_FILE, SampleSearchResultsJson      # type: ignore
+from .sample import load_sample_definition, SampleDefinition    # type: ignore
 
 
 class DuplicateInfo(TypedDict):

@@ -1,31 +1,31 @@
-import argparse
-import hashlib
-import json
-import logging
-import time
+import argparse     # type: ignore
+import hashlib  # type: ignore
+import json     # type: ignore
+import logging  # type: ignore
+import time     # type: ignore
 from argparse import (
     ArgumentParser,
     BooleanOptionalAction,
     ArgumentDefaultsHelpFormatter,
-)
-from collections import defaultdict
-from pathlib import Path
+)   # type: ignore
+from collections import defaultdict     # type: ignore
+from pathlib import Path    # type: ignore
 
-from django.conf import settings
-from django.core.management import BaseCommand, call_command
-from django.db import transaction
-from django.db.models import Max
-from tqdm import tqdm
+from django.conf import settings    # type: ignore
+from django.core.management import BaseCommand, call_command    # type: ignore
+from django.db import transaction   # type: ignore
+from django.db.models import Max    # type: ignore
+from tqdm import tqdm   # type: ignore
 
-from paradigm.generation import default_paradigm_manager
+from paradigm.generation import default_paradigm_manager    # type: ignore
 from phrase_translate.translate import (
     translate_single_definition,
     TranslationStats,
-)
-from english_keyword_extraction import stem_keywords
-from analysis import RichAnalysis, strict_generator
-from lexicon import DEFAULT_IMPORTJSON_FILE
-from lexicon.management.commands.buildtestimportjson import entry_sort_key
+)   # type: ignore
+from english_keyword_extraction import stem_keywords    # type: ignore
+from analysis import RichAnalysis, strict_generator     # type: ignore
+from lexicon import DEFAULT_IMPORTJSON_FILE     # type: ignore
+from lexicon.management.commands.buildtestimportjson import entry_sort_key  # type: ignore
 from lexicon.models import (
     Wordform,
     Definition,
@@ -34,8 +34,8 @@ from lexicon.models import (
     SourceLanguageKeyword,
     ImportStamp,
     RapidWords,
-)
-from lexicon.util import to_source_language_keyword
+)   # type: ignore
+from lexicon.util import to_source_language_keyword     # type: ignore
 
 logger = logging.getLogger(__name__)
 

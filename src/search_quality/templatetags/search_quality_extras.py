@@ -1,4 +1,4 @@
-from django import template
+from django import template     # type: ignore
 
 register = template.Library()
 

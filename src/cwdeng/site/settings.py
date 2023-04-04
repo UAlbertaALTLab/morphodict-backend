@@ -8,15 +8,15 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
-from pathlib import Path
+from pathlib import Path    # type: ignore
 
-from morphodict.site import base_dir_setup
+from morphodict.site import base_dir_setup  # type: ignore
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 base_dir_setup.set_base_dir(BASE_DIR)
 
-from morphodict.site.settings import *
+from morphodict.site.settings import *  # type: ignore
 
 # Where this application should be deployed:
 PRODUCTION_HOST = "api.itwiwina.altlab.dev"
@@ -24,6 +24,8 @@ PRODUCTION_HOST = "api.itwiwina.altlab.dev"
 DEFAULT_RUNSERVER_PORT = 8005
 
 ALLOWED_HOSTS.append(PRODUCTION_HOST)
+
+INSTALLED_APPS.insert(0, "cwdeng.app")
 
 FST_TOOL_SAMPLES = [
     "kika-nîminaw",

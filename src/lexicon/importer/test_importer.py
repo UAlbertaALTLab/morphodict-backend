@@ -1,15 +1,15 @@
-from pathlib import Path
+from pathlib import Path    # type: ignore
 
-import pytest
-from django.core.management import call_command
-from django.db import IntegrityError
-from pytest_django.fixtures import _django_db_fixture_helper
+import pytest   # type: ignore
+from django.core.management import call_command     # type: ignore
+from django.db import IntegrityError    # type: ignore
+from pytest_django.fixtures import _django_db_fixture_helper    # type: ignore
 
 from lexicon.models import (
     Wordform,
     TargetLanguageKeyword,
     SourceLanguageKeyword,
-)
+)   # type: ignore
 
 TESTDATA_DIR = Path(__file__).parent / "testdata"
 

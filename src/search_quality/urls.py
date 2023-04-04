@@ -1,6 +1,6 @@
-from django.urls import path, re_path
+from django.urls import path, re_path   # type: ignore
 
-from . import views
+from . import views     # type: ignore
 
 app_name = "search_quality"
 urlpatterns = [

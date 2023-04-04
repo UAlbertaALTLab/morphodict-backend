@@ -3,7 +3,7 @@
 # webapp, but is being put here temporarily.
 # https://github.com/UAlbertaALTLab/morphodict/issues/709
 
-import re
+import re   # type: ignore
 
 _RE_UNWANTED_ENDING = re.compile(" (Also|Or|Animate|Inanimate).*")
 

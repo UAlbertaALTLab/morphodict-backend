@@ -1,11 +1,11 @@
 """
 this file contains `TypedDict` classes that effectively serves as json schema for serialized objects
 """
-from typing import List, Optional, Sequence, Tuple, Union
+from typing import List, Optional, Sequence, Tuple, Union   # type: ignore
 
-from typing_extensions import Literal, TypedDict
+from typing_extensions import Literal, TypedDict    # type: ignore
 
-from morphodict_types import FSTTag
+from morphodict_types import FSTTag     # type: ignore
 
 
 class SerializedDefinition(TypedDict):

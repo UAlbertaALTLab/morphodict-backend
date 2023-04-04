@@ -1,6 +1,6 @@
-import pytest
+import pytest   # type: ignore
 
-from phrase_translate.translate import inflect_english_phrase
+from phrase_translate.translate import inflect_english_phrase   # type: ignore
 
 WAPAMEW_DEFINITION = "s/he sees s.o."
 

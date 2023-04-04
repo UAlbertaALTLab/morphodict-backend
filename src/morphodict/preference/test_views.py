@@ -1,11 +1,11 @@
-import secrets
+import secrets  # type: ignore
 
-import pytest
-from django.http import Http404
-from django.test import RequestFactory
+import pytest   # type: ignore
+from django.http import Http404     # type: ignore
+from django.test import RequestFactory  # type: ignore
 
-from morphodict.preference import register_preference, Preference, registry
-from morphodict.preference.views import change_preference
+from morphodict.preference import register_preference, Preference, registry     # type: ignore
+from morphodict.preference.views import change_preference   # type: ignore
 
 
 def test_post_preference(rf: RequestFactory, pet_preference: Preference):

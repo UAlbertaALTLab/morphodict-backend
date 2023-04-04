@@ -1,13 +1,13 @@
-import random
+import random   # type: ignore
 
-import pytest
+import pytest   # type: ignore
 
-from lexicon.models import Wordform, Definition
-from cvd import extract_keyed_words
+from lexicon.models import Wordform, Definition     # type: ignore
+from cvd import extract_keyed_words     # type: ignore
 from cvd.definition_keys import (
     definition_to_cvd_key,
     cvd_key_to_wordform_query,
-)
+)   # type: ignore
 
 FAKE_WORD_SET = {"loose", "leaf", "paper", "news_paper", "you're", "that"}
 

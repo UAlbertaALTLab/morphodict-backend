@@ -1,17 +1,17 @@
-import hashlib
-import logging
-import os
-import shutil
-import subprocess
-from argparse import ArgumentParser, BooleanOptionalAction, RawDescriptionHelpFormatter
-from pathlib import Path
-from subprocess import check_call
-from time import strftime
-from typing import Optional
+import hashlib  # type: ignore
+import logging  # type: ignore
+import os   # type: ignore
+import shutil   # type: ignore
+import subprocess   # type: ignore
+from argparse import ArgumentParser, BooleanOptionalAction, RawDescriptionHelpFormatter     # type: ignore
+from pathlib import Path    # type: ignore
+from subprocess import check_call   # type: ignore
+from time import strftime   # type: ignore
+from typing import Optional     # type: ignore
 
-from django.core.management import BaseCommand
+from django.core.management import BaseCommand  # type: ignore
 
-from ... import DEFAULT_SAMPLE_FILE
+from ... import DEFAULT_SAMPLE_FILE     # type: ignore
 
 logger = logging.getLogger(__name__)
 

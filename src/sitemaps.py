@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 
-from lexicon.models import Wordform
-from django.contrib.sitemaps import Sitemap
-from django.urls import reverse
+from lexicon.models import Wordform     # type: ignore
+from django.contrib.sitemaps import Sitemap     # type: ignore
+from django.urls import reverse     # type: ignore
 
 
 class WordformSitemap(Sitemap):

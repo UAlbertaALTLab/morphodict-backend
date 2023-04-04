@@ -1,33 +1,33 @@
 #!/usr/bin/env python3
 
-from __future__ import annotations
+from __future__ import annotations  # type: ignore
 
-import logging
-import os
-import readline
-import sys
-import typing
+import logging  # type: ignore
+import os   # type: ignore
+import readline     # type: ignore
+import sys  # type: ignore
+import typing   # type: ignore
 from argparse import (
     ArgumentParser,
-)
-from argparse import BooleanOptionalAction
-from collections import Counter
-from dataclasses import dataclass, asdict, field
-from functools import cache
-from pathlib import Path
-from typing import Iterable
+)   # type: ignore
+from argparse import BooleanOptionalAction  # type: ignore
+from collections import Counter     # type: ignore
+from dataclasses import dataclass, asdict, field    # type: ignore
+from functools import cache     # type: ignore
+from pathlib import Path    # type: ignore
+from typing import Iterable     # type: ignore
 
-import django
-import foma
+import django   # type: ignore
+import foma     # type: ignore
 
-from phrase_translate.definition_processing import remove_parentheticals
-from analysis import RichAnalysis
-from analysis.tag_map import UnknownTagError
+from phrase_translate.definition_processing import remove_parentheticals    # type: ignore
+from analysis import RichAnalysis   # type: ignore
+from analysis.tag_map import UnknownTagError    # type: ignore
 
 if typing.TYPE_CHECKING:
     # When this file is run directly as __main__, importing Django models at
     # top-level will blow up because Django is not configured yet.
-    from lexicon.models import Wordform
+    from lexicon.models import Wordform     # type: ignore
 
 # Allow this script to be run directly from command line without pyproject.toml
 # https://stackoverflow.com/questions/14132789/relative-imports-for-the-billionth-time
@@ -39,9 +39,9 @@ if package_dir not in sys.path:
 from phrase_translate.crk_tag_map import (
     noun_wordform_to_phrase,
     verb_wordform_to_phrase,
-)
+)   # type: ignore
 
-from shared_res_dir import shared_fst_dir
+from shared_res_dir import shared_fst_dir   # type: ignore
 
 logger = logging.getLogger(__name__)
 
@@ -247,7 +247,7 @@ def main():
     django.setup()
     logger.setLevel(args.log_level)
 
-    from lexicon.models import Wordform
+    from lexicon.models import Wordform     # type: ignore
 
     def do_lookup(to_lookup: str):
         wordforms = Wordform.objects.filter(text=to_lookup)

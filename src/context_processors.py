@@ -2,9 +2,9 @@
 Django (template) context processors.
 """
 
-from django.http import HttpRequest
+from django.http import HttpRequest     # type: ignore
 
-from crkeng.app.preferences import DisplayMode
+from crkeng.app.preferences import DisplayMode  # type: ignore
 
 
 def display_options(request: HttpRequest):

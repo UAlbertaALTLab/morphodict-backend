@@ -8,15 +8,15 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
-from pathlib import Path
+from pathlib import Path    # type: ignore
 
-from morphodict import base_dir_setup
+from morphodict import base_dir_setup   # type: ignore
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 base_dir_setup.set_base_dir(BASE_DIR)
 
-from morphodict.settings import *
+from morphodict.settings import *   # type: ignore
 
 # Where this application should be deployed:
 PRODUCTION_HOST = "api.itwewina.altlab.dev"

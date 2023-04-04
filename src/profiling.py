@@ -1,7 +1,7 @@
 """measure and report function execution time"""
-import time
-from functools import wraps
-from typing import Any, Callable
+import time     # type: ignore
+from functools import wraps     # type: ignore
+from typing import Any, Callable    # type: ignore
 
 
 def timed(

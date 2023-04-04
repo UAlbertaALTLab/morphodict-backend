@@ -1,8 +1,8 @@
-from django.core.management import BaseCommand
-from lexicon.models import RapidWords, Wordform
-from pathlib import Path
-from tqdm import tqdm
-import csv
+from django.core.management import BaseCommand  # type: ignore
+from lexicon.models import RapidWords, Wordform     # type: ignore
+from pathlib import Path    # type: ignore
+from tqdm import tqdm   # type: ignore
+import csv  # type: ignore
 
 
 class Command(BaseCommand):

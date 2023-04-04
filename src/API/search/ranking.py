@@ -1,8 +1,8 @@
-from __future__ import annotations
+from __future__ import annotations  # type: ignore
 
-from math import log
+from math import log    # type: ignore
 
-from . import api_types
+from . import api_types     # type: ignore
 
 
 def _has_value(value):

@@ -1,6 +1,6 @@
-from API.search.core import SearchRun
-from phrase_translate.translate import eng_phrase_to_crk_features_fst
-from analysis import rich_analyze_relaxed
+from API.search.core import SearchRun   # type: ignore
+from phrase_translate.translate import eng_phrase_to_crk_features_fst   # type: ignore
+from analysis import rich_analyze_relaxed   # type: ignore
 
 
 def find_pos_matches(search_run: SearchRun) -> None:

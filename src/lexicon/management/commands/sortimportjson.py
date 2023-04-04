@@ -1,16 +1,16 @@
-import json
-import subprocess
+import json     # type: ignore
+import subprocess   # type: ignore
 from argparse import (
     ArgumentParser,
     ArgumentDefaultsHelpFormatter,
     BooleanOptionalAction,
-)
-from subprocess import check_call
+)   # type: ignore
+from subprocess import check_call   # type: ignore
 
-from django.core.management import BaseCommand
+from django.core.management import BaseCommand  # type: ignore
 
-from lexicon import DEFAULT_IMPORTJSON_FILE
-from lexicon.management.commands.buildtestimportjson import entry_sort_key
+from lexicon import DEFAULT_IMPORTJSON_FILE     # type: ignore
+from lexicon.management.commands.buildtestimportjson import entry_sort_key  # type: ignore
 
 
 class Command(BaseCommand):

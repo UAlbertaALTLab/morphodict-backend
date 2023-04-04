@@ -1,16 +1,16 @@
-import json
-import random
-from argparse import ArgumentParser, BooleanOptionalAction
-from contextlib import contextmanager
+import json     # type: ignore
+import random   # type: ignore
+from argparse import ArgumentParser, BooleanOptionalAction  # type: ignore
+from contextlib import contextmanager   # type: ignore
 
-import sys
-from django.core.management import BaseCommand
-from django.db.models import prefetch_related_objects
-from tqdm import tqdm
+import sys  # type: ignore
+from django.core.management import BaseCommand  # type: ignore
+from django.db.models import prefetch_related_objects   # type: ignore
+from tqdm import tqdm   # type: ignore
 
-from API.search import search
-from ... import DEFAULT_SAMPLE_FILE
-from ...sample import load_sample_definition
+from API.search import search   # type: ignore
+from ... import DEFAULT_SAMPLE_FILE     # type: ignore
+from ...sample import load_sample_definition    # type: ignore
 
 
 class Command(BaseCommand):

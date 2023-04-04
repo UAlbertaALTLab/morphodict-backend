@@ -1,4 +1,4 @@
-from .settings import *
+from .settings import *     # type: ignore
 
 STATICFILES_STORAGE = "django.contrib.staticfiles.storage.StaticFilesStorage"
 

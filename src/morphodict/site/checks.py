@@ -1,5 +1,5 @@
-from django.conf import settings
-from django.core.checks import Error, register
+from django.conf import settings    # type: ignore
+from django.core.checks import Error, register  # type: ignore
 
 _MORPHODICT_REQUIRED_SETTING_SENTINEL = object()
 

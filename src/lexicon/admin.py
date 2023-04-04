@@ -1,14 +1,15 @@
-from django.contrib import admin
-from django.urls import reverse
-from django.utils.html import format_html
+from django.contrib import admin    # type: ignore
+from django.urls import reverse     # type: ignore
+from django.utils.html import format_html   # type: ignore
 
 from lexicon.models import (
+    RapidWords,
     Definition,
     DictionarySource,
     TargetLanguageKeyword,
     Wordform,
     SourceLanguageKeyword,
-)
+)   # type: ignore
 
 
 # https://stackoverflow.com/a/1720961/14558
@@ -121,6 +122,11 @@ class SourceLanguageKeywordAdmin(CustomModelAdmin):
 
 @admin.register(DictionarySource)
 class DictionarySourceAdmin(CustomModelAdmin):
+    pass
+
+
+@admin.register(RapidWords)
+class RapidWordsAdmin(CustomModelAdmin):
     pass
 
 

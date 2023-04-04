@@ -1,9 +1,9 @@
-from http import HTTPStatus
+from http import HTTPStatus     # type: ignore
 
-from django.http import HttpResponse, HttpRequest, Http404
-from django.views.decorators.http import require_POST
+from django.http import HttpResponse, HttpRequest, Http404  # type: ignore
+from django.views.decorators.http import require_POST   # type: ignore
 
-from morphodict.preference import registry
+from morphodict.preference import registry  # type: ignore
 
 
 @require_POST

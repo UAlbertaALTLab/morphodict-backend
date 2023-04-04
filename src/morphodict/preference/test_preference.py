@@ -1,10 +1,10 @@
-import pytest
+import pytest   # type: ignore
 
 from morphodict.preference import (
     PreferenceConfigurationError,
     all_preferences,
     register_preference,
-)
+)   # type: ignore
 
 
 def test_create_preference_with_incorrect_default():

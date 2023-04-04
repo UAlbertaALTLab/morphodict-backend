@@ -1,4 +1,4 @@
-from analysis.tag_map import TagMap
+from analysis.tag_map import TagMap     # type: ignore
 
 COPY_TAG_NAME = TagMap.COPY_TAG_NAME
 

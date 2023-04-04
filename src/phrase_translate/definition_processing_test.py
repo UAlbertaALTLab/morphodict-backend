@@ -1,6 +1,6 @@
-import pytest
+import pytest   # type: ignore
 
-from phrase_translate.definition_processing import remove_parentheticals
+from phrase_translate.definition_processing import remove_parentheticals    # type: ignore
 
 SHOULD_NOT_CHANGE = object()
 

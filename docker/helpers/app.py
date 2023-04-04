@@ -1,5 +1,5 @@
-import os.path
-from pathlib import Path
+import os.path  # type: ignore
+from pathlib import Path    # type: ignore
 
 
 class App:

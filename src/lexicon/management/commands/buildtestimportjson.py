@@ -1,22 +1,22 @@
-import json
-import logging
-import os
+import json     # type: ignore
+import logging  # type: ignore
+import os   # type: ignore
 from argparse import (
     ArgumentParser,
     ArgumentDefaultsHelpFormatter,
-)
-from collections import defaultdict
-from pathlib import Path
-from subprocess import check_call
-from unicodedata import normalize
+)   # type: ignore
+from collections import defaultdict     # type: ignore
+from pathlib import Path    # type: ignore
+from subprocess import check_call   # type: ignore
+from unicodedata import normalize   # type: ignore
 
-from django.core.management import BaseCommand
+from django.core.management import BaseCommand  # type: ignore
 
 from lexicon import (
     DEFAULT_FULL_IMPORTJSON_FILE,
     DEFAULT_TEST_IMPORTJSON_FILE,
-)
-from lexicon.test_db import TEST_DB_TXT_FILE, get_test_words
+)   # type: ignore
+from lexicon.test_db import TEST_DB_TXT_FILE, get_test_words    # type: ignore
 
 logger = logging.getLogger(__name__)
 

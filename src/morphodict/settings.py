@@ -12,16 +12,16 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
-import os
-import secrets
-from typing import Optional
+import os   # type: ignore
+import secrets  # type: ignore
+from typing import Optional     # type: ignore
 
-from environs import Env
+from environs import Env    # type: ignore
 
-from . import base_dir_setup
-from .checks import _MORPHODICT_REQUIRED_SETTING_SENTINEL
-from .hostutils import HOSTNAME
-from .save_secret_key import save_secret_key
+from . import base_dir_setup    # type: ignore
+from .checks import _MORPHODICT_REQUIRED_SETTING_SENTINEL   # type: ignore
+from .hostutils import HOSTNAME     # type: ignore
+from .save_secret_key import save_secret_key    # type: ignore
 
 
 BASE_DIR = base_dir_setup.get_base_dir()
@@ -229,7 +229,6 @@ else:
             | env.dj_db_url("DATABASE_URL", default=defaultDatabasePath())
         )
     }
-
 # Django sites framework
 
 # See: https://docs.djangoproject.com/en/2.2/ref/contrib/sites/#enabling-the-sites-framework

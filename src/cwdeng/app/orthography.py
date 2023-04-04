@@ -1,7 +1,7 @@
-import logging
-from functools import cache
-from hfst_optimized_lookup import TransducerFile
-from django.conf import settings
+import logging  # type: ignore
+from functools import cache     # type: ignore
+from hfst_optimized_lookup import TransducerFile    # type: ignore
+from django.conf import settings    # type: ignore
 
 logger = logging.getLogger(__name__)
 

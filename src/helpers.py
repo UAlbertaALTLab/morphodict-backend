@@ -1,38 +1,36 @@
-from __future__ import annotations
+from __future__ import annotations  # type: ignore
 
 #!/usr/bin/env python3
 # -*- coding: UTF-8 -*-
-from hfst_optimized_lookup import Analysis
+from hfst_optimized_lookup import Analysis  # type: ignore
 
-from analysis import RichAnalysis, rich_analyze_strict
+from analysis import RichAnalysis, rich_analyze_strict  # type: ignore
 
 """
 Helper functions for the views file.
 """
 
-from urllib.parse import ParseResult, urlencode, urlunparse
+from urllib.parse import ParseResult, urlencode, urlunparse     # type: ignore
 
-import urllib
-import logging
-from typing import Optional
-from pathlib import Path
+import urllib   # type: ignore
+import logging  # type: ignore
+from typing import Optional     # type: ignore
+from pathlib import Path    # type: ignore
 
-import requests
-from django.conf import settings
+import requests     # type: ignore
+from django.conf import settings    # type: ignore
 
-from paradigm.generation import default_paradigm_manager
-from crkeng.app.preferences import DictionarySource
-from lexicon.models import Wordform
+from crkeng.app.preferences import DictionarySource # type: ignore
+from lexicon.models import Wordform # type: ignore
 
-from paradigm.panes import Paradigm
-from morphodict.templatetags.morphodict_orth import ORTHOGRAPHY
-from relabelling import Relabelling, read_labels
+from morphodict.templatetags.morphodict_orth import ORTHOGRAPHY # type: ignore
+from relabelling import Relabelling, read_labels    # type: ignore
 
-from shared_res_dir import shared_res_dir
+from shared_res_dir import shared_res_dir   # type: ignore
 
 
-from django.urls import reverse
-from django.conf import settings
+from django.urls import reverse # type: ignore
+from django.conf import settings    # type: ignore
 
 
 def get_morphodict_language_pair():

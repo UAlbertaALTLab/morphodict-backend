@@ -5,7 +5,7 @@
 Orthography conversion utilities.
 """
 
-from cree_sro_syllabics import sro2syllabics
+from cree_sro_syllabics import sro2syllabics    # type: ignore
 
 CIRCUMFLEX_TO_MACRON = str.maketrans("êîôâ", "ēīōā")
 

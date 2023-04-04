@@ -1,20 +1,20 @@
 """
 ESPT: English simple phrase translation
 """
-import logging
-import re
-from dataclasses import dataclass
+import logging  # type: ignore
+import re   # type: ignore
+from dataclasses import dataclass   # type: ignore
 
 from API.search.espt_crk import (
     verb_tag_map,
     noun_tag_map,
     crk_noun_tags,
-)
-from API.search.api_types import Result
-from phrase_translate.translate import eng_phrase_to_crk_features_fst
-from analysis import RichAnalysis
-from analysis.tag_map import UnknownTagError
-from lexicon.models import Wordform
+)   # type: ignore
+from API.search.api_types import Result     # type: ignore
+from phrase_translate.translate import eng_phrase_to_crk_features_fst   # type: ignore
+from analysis import RichAnalysis   # type: ignore
+from analysis.tag_map import UnknownTagError    # type: ignore
+from lexicon.models import Wordform     # type: ignore
 
 logger = logging.getLogger(__name__)
 

@@ -1,20 +1,20 @@
-import itertools
-import logging
+import itertools    # type: ignore
+import logging  # type: ignore
 
-from API.search.core import SearchRun
-from API.search.api_types import Result
+from API.search.core import SearchRun   # type: ignore
+from API.search.api_types import Result     # type: ignore
 from cvd import (
     definition_vectors,
     google_news_vectors,
     extract_keyed_words,
     vector_for_keys,
     DefinitionVectorsNotFoundException,
-)
+)   # type: ignore
 from cvd.definition_keys import (
     cvd_key_to_wordform_query,
     wordform_query_matches,
-)
-from lexicon.models import Wordform
+)   # type: ignore
+from lexicon.models import Wordform     # type: ignore
 
 logger = logging.getLogger(__name__)
 

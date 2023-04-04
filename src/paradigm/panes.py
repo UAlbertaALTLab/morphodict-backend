@@ -2,19 +2,19 @@
 Provides all classes for pane-based paradigms.
 """
 
-from __future__ import annotations
+from __future__ import annotations  # type: ignore
 
-import logging
-import re
-import string
-import urllib
-import requests
-from itertools import zip_longest
-from typing import Collection, Iterable, Mapping, Optional, Sequence, TextIO
+import logging  # type: ignore
+import re   # type: ignore
+import string   # type: ignore
+import urllib   # type: ignore
+import requests     # type: ignore
+from itertools import zip_longest   # type: ignore
+from typing import Collection, Iterable, Mapping, Optional, Sequence, TextIO    # type: ignore
 
-from more_itertools import ilen, one
+from more_itertools import ilen, one    # type: ignore
 
-from analysis import rich_analyze_strict
+from analysis import rich_analyze_strict    # type: ignore
 
 logger = logging.getLogger(__name__)
 

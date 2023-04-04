@@ -1,14 +1,14 @@
-from argparse import ArgumentParser
+from argparse import ArgumentParser     # type: ignore
 
-from django.core.management.base import BaseCommand
-from django.db import connection
+from django.core.management.base import BaseCommand     # type: ignore
+from django.db import connection    # type: ignore
 
 from lexicon.models import (
     Wordform,
     TargetLanguageKeyword,
     Definition,
     DictionarySource,
-)
+)   # type: ignore
 
 
 class Command(BaseCommand):
