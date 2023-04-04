@@ -5,12 +5,10 @@ Handles paradigm generation.
 from django.conf import settings    # type: ignore
 
 import analysis     # type: ignore
-from paradigm.manager import (
-    ParadigmManager,
-    ParadigmManagerWithExplicitSizes,
-)   # type: ignore
+
 from shared_res_dir import shared_res_dir   # type: ignore
 from morphodict.site.util import cache_unless   # type: ignore
+from manager import ParadigmManager, ParadigmManagerWithExplicitSizes   # type: ignore
 
 
 @cache_unless(settings.DEBUG_PARADIGM_TABLES)

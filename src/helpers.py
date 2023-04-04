@@ -20,11 +20,9 @@ from pathlib import Path    # type: ignore
 import requests     # type: ignore
 from django.conf import settings    # type: ignore
 
-from paradigm.generation import default_paradigm_manager    # type: ignore
 from crkeng.app.preferences import DictionarySource # type: ignore
 from lexicon.models import Wordform # type: ignore
 
-from paradigm.panes import Paradigm # type: ignore
 from morphodict.templatetags.morphodict_orth import ORTHOGRAPHY # type: ignore
 from relabelling import Relabelling, read_labels    # type: ignore
 
