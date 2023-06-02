@@ -298,7 +298,6 @@ def wordnet_api(request, classification):
     return Response(context)
 
 
-
 def relabelInflectionalCategory(ic):
     with open(Path(settings.RESOURCES_DIR / "altlabel.tsv")) as f:
         labels = Relabelling.from_tsv(f)

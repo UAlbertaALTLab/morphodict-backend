@@ -59,7 +59,7 @@ def do_cvd_search(search_run: SearchRun):
         text: list(wordforms)
         for text, wordforms in itertools.groupby(wordform_results, key=lambda x: x.text)
     }
-    
+
     print(wordforms_by_text)
 
     for similarity, wordform_query in zip(similarities, wordform_queries):
