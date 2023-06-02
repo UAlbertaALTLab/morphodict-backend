@@ -31,6 +31,7 @@ def do_cvd_search(search_run: SearchRun):
 
     search_run.add_verbose_message(cvd_extracted_keys=keys)
     query_vector = vector_for_keys(google_news_vectors(), keys)
+    print(query_vector)
 
     try:
         closest = definition_vectors().similar_by_vector(query_vector, 50)
@@ -41,20 +42,25 @@ def do_cvd_search(search_run: SearchRun):
     wordform_queries = [
         cvd_key_to_wordform_query(similarity) for similarity, weight in closest
     ]
+    print(wordform_queries)
     similarities = [similarity for cvd_key, similarity in closest]
-
+    print(similarities)
     # Get all possible wordforms in one big query. We will select more than we
     # need, then filter it down later, but this will have to do until we get
     # better homonym handling.
+    print(Wordform.objects.count())
     wordform_results = Wordform.objects.filter(
         text__in=set(wf["text"] for wf in wordform_queries)
     )
+    print(wordform_results)
 
     # Now match back up
     wordforms_by_text = {
         text: list(wordforms)
         for text, wordforms in itertools.groupby(wordform_results, key=lambda x: x.text)
     }
+    
+    print(wordforms_by_text)
 
     for similarity, wordform_query in zip(similarities, wordform_queries):
         # gensim uses the terminology, similarity = 1 - distance. Its
@@ -64,6 +70,7 @@ def do_cvd_search(search_run: SearchRun):
         distance = 1 - similarity
 
         wordforms_for_query = wordforms_by_text.get(wordform_query["text"], None)
+        print(wordforms_for_query)
         if wordforms_for_query is None:
             logger.warning(
                 f"Wordform {wordform_query['text']} not found in CVD; mismatch between definition vector model file and definitions in database?"

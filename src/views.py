@@ -3,7 +3,7 @@ from __future__ import annotations
 import json
 import logging
 from pathlib import Path
-
+import time
 from typing import Dict, Literal
 from nltk.corpus import wordnet as wn
 
@@ -187,6 +187,7 @@ def search_api(request):
     :param request:
     :return:
     """
+    start = time.time()
     query_string = request.GET.get("name")
     rw_index = request.GET.get("rw_index")
     rw_domain = request.GET.get("rw_domain")
@@ -227,10 +228,6 @@ def search_api(request):
             search_run.verbose_messages, indent=2, ensure_ascii=False
         )
 
-    context["search_results"] = fetch_single_recording(
-        context["search_results"], request
-    )
-
     for result in context["search_results"]:
         result["wordform_text"] = wordform_orth_text(result["wordform_text"])
         result["lemma_wordform"]["wordform_text"] = wordform_orth_text(
@@ -246,7 +243,8 @@ def search_api(request):
             result["relabelled_fst_analysis"] = relabelFSTAnalysis(
                 result["relabelled_fst_analysis"]
             )
-
+    end = time.time()
+    print(end - start)
     return Response(context)
 
 
@@ -299,29 +297,6 @@ def wordnet_api(request, classification):
 
     return Response(context)
 
-
-def fetch_single_recording(results, request):
-    query_terms = []
-    for result in results:
-        query_terms.append(result["wordform_text"])
-
-    speech_db_eq = settings.SPEECH_DB_EQ
-    matched_recordings = {}
-
-    for search_terms in divide_chunks(query_terms, 30):
-        for source in speech_db_eq:
-            url = f"https://speech-db.altlab.app/{source}/api/bulk_search"
-            matched_recordings.update(get_recordings_from_url(search_terms, url))
-
-    for result in results:
-        if result["wordform_text"] in matched_recordings:
-            result["recording"] = matched_recordings[result["wordform_text"]][
-                "recording_url"
-            ]
-        else:
-            result["recording"] = ""
-
-    return results
 
 
 def relabelInflectionalCategory(ic):
