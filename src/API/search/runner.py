@@ -29,8 +29,8 @@ def search(
     rw_domain: str,
     wn_synset: str,
     include_affixes=True,
-    include_auto_definitions=False,
-    inflect_english_phrases=False
+    include_auto_definitions=True,
+    inflect_english_phrases=True
 ) -> SearchRun:
     """
     Perform an actual search, using the provided options.
