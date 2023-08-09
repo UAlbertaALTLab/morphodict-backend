@@ -155,7 +155,7 @@ def word_details_api(request, slug: str):
             "recordings": recordings,
         }
     }
-    
+
     return Response(content)
 
 
@@ -195,7 +195,6 @@ def search_api(request):
     :param request:
     :return:
     """
-    
 
     query_string = request.GET.get("name")
     rw_index = request.GET.get("rw_index")
@@ -223,7 +222,7 @@ def search_api(request):
         query_string = ""
         search_results = []
         did_search = False
-    
+
     context.update(
         word_search_form=request.data.get("name"),
         query_string=query_string,
@@ -254,9 +253,8 @@ def search_api(request):
                 result["relabelled_fst_analysis"]
             )
     end = time.time()
-    print(end-start)
+    print(end - start)
     return Response(context)
-
 
 
 def make_wordnet_format(wn_class):
@@ -308,6 +306,7 @@ def wordnet_api(request, classification):
 
     return Response(context)
 
+
 def recordings(results, request):
     start = time.time()
     query_terms = []
@@ -329,7 +328,15 @@ def recordings(results, request):
     for search_terms in divide_chunks(query_terms, 30):
         for source in speech_db_eq:
             url = f"https://speech-db.altlab.app/{source}/api/bulk_search"
-            x = threading.Thread(target=get_recordings_from_url, args=(search_terms, url, temp, index,))
+            x = threading.Thread(
+                target=get_recordings_from_url,
+                args=(
+                    search_terms,
+                    url,
+                    temp,
+                    index,
+                ),
+            )
             threads.append(x)
             x.start()
             index += 1
@@ -340,7 +347,7 @@ def recordings(results, request):
     for item in temp:
         matched_recordings.update(item)
     end = time.time()
-    print(end-start)
+    print(end - start)
     for result in results:
         if result["wordform_text"] in matched_recordings:
             result["recording"] = matched_recordings[result["wordform_text"]][
@@ -349,6 +356,7 @@ def recordings(results, request):
         else:
             result["recording"] = ""
     return results
+
 
 def relabelInflectionalCategory(ic):
     with open(Path(settings.RESOURCES_DIR / "altlabel.tsv")) as f:
