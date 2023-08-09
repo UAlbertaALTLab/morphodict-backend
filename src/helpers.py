@@ -369,7 +369,7 @@ def should_inflect_phrases(request):
 
 
 def get_recordings_from_paradigm(paradigm, request):
-    start = time.time()
+    
     if request.COOKIES.get("paradigm_audio") == "no":
         return paradigm
 
@@ -387,24 +387,16 @@ def get_recordings_from_paradigm(paradigm, request):
 
     if request.COOKIES.get("synthesized_audio_in_paradigm") == "yes":
         speech_db_eq.insert(0, "synth")
-    query_terms = [
-        query_terms[0],
-        query_terms[1],
-        query_terms[2],
-        query_terms[3],
-        query_terms[4],
-    ]
+    query_terms = [query_terms[0], query_terms[1], query_terms[2], query_terms[3],query_terms[4] ]
     for search_terms in divide_chunks(query_terms, 30):
         for source in speech_db_eq:
             url = f"https://speech-db.altlab.app/{source}/api/bulk_search"
             matched_recordings.update(get_recordings_from_url(search_terms, url))
-    end = time.time()
-    print(end - start)
     paradigm = paradigm.bulk_add_recordings(matched_recordings)
     return paradigm
 
 
-def get_recordings_from_url(search_terms, url):
+def get_recordings_from_url(search_terms, url, temp, index):
     matched_recordings = {}
     query_params = [("q", term) for term in search_terms]
     response = requests.get(url + "?" + urllib.parse.urlencode(query_params))
@@ -416,8 +408,11 @@ def get_recordings_from_url(search_terms, url):
             matched_recordings[entry] = {}
             matched_recordings[entry]["recording_url"] = recording["recording_url"]
             matched_recordings[entry]["speaker"] = recording["speaker"]
-
-    return matched_recordings
+    print(matched_recordings)
+    temp[index] = matched_recordings
+    print("...............................................")
+    print(temp[index])
+    print("...............................................")
 
 
 def get_recordings_from_url_with_speaker_info(search_terms, url):
