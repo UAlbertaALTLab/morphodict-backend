@@ -3,7 +3,7 @@ from __future__ import annotations
 #!/usr/bin/env python3
 # -*- coding: UTF-8 -*-
 from hfst_optimized_lookup import Analysis
-
+import threading
 from analysis import RichAnalysis, rich_analyze_strict
 
 """
@@ -369,6 +369,13 @@ def should_inflect_phrases(request):
 
 
 def get_recordings_from_paradigm(paradigm, request):
+    start = time.time()
+    threads = []
+    temp = []
+
+    for search_terms in divide_chunks(query_terms, 30):
+        for source in speech_db_eq:
+            temp.append(None)
     if request.COOKIES.get("paradigm_audio") == "no":
         return paradigm
 
@@ -386,17 +393,23 @@ def get_recordings_from_paradigm(paradigm, request):
 
     if request.COOKIES.get("synthesized_audio_in_paradigm") == "yes":
         speech_db_eq.insert(0, "synth")
-    query_terms = [
-        query_terms[0],
-        query_terms[1],
-        query_terms[2],
-        query_terms[3],
-        query_terms[4],
-    ]
+    query_terms = [query_terms[0], query_terms[1], query_terms[2], query_terms[3],query_terms[4] ]
+    index = 0
     for search_terms in divide_chunks(query_terms, 30):
         for source in speech_db_eq:
             url = f"https://speech-db.altlab.app/{source}/api/bulk_search"
-            matched_recordings.update(get_recordings_from_url(search_terms, url))
+            x = threading.Thread(target=get_recordings_from_url, args=(search_terms, url, temp, index,))
+            threads.append(x)
+            x.start()
+            index += 1
+
+    for i in range(len(threads)):
+        threads[i].join()
+
+    for item in temp:
+        matched_recordings.update(item)
+    end = time.time()
+    print(end - start)
     paradigm = paradigm.bulk_add_recordings(matched_recordings)
     return paradigm
 
