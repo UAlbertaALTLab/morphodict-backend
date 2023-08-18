@@ -315,7 +315,6 @@ def recordings(results, request):
 
     speech_db_eq = settings.SPEECH_DB_EQ
     matched_recordings = {}
-    query_terms = query_terms[:-40]
 
     threads = []
     temp = []
