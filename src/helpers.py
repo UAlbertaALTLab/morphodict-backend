@@ -372,10 +372,6 @@ def get_recordings_from_paradigm(paradigm, request):
     start = time.time()
     threads = []
     temp = []
-
-    for search_terms in divide_chunks(query_terms, 30):
-        for source in speech_db_eq:
-            temp.append(None)
     if request.COOKIES.get("paradigm_audio") == "no":
         return paradigm
 
@@ -393,26 +389,15 @@ def get_recordings_from_paradigm(paradigm, request):
 
     if request.COOKIES.get("synthesized_audio_in_paradigm") == "yes":
         speech_db_eq.insert(0, "synth")
-    query_terms = [
-        query_terms[0],
-        query_terms[1],
-        query_terms[2],
-        query_terms[3],
-        query_terms[4],
-    ]
+    query_terms = [query_terms[0], query_terms[1], query_terms[2], query_terms[3],query_terms[4] ]
+    for search_terms in divide_chunks(query_terms, 30):
+        for source in speech_db_eq:
+            temp.append(None)
     index = 0
     for search_terms in divide_chunks(query_terms, 30):
         for source in speech_db_eq:
             url = f"https://speech-db.altlab.app/{source}/api/bulk_search"
-            x = threading.Thread(
-                target=get_recordings_from_url,
-                args=(
-                    search_terms,
-                    url,
-                    temp,
-                    index,
-                ),
-            )
+            x = threading.Thread(target=get_recordings_from_url, args=(search_terms, url, temp, index,))
             threads.append(x)
             x.start()
             index += 1
@@ -431,7 +416,9 @@ def get_recordings_from_paradigm(paradigm, request):
 def get_recordings_from_url(search_terms, url, temp, index):
     matched_recordings = {}
     query_params = [("q", term) for term in search_terms]
+    print(url)
     response = requests.get(url + "?" + urllib.parse.urlencode(query_params))
+    print("whyyyyyy")
     if response.status_code == 200:
         recordings = response.json()
 
@@ -440,6 +427,7 @@ def get_recordings_from_url(search_terms, url, temp, index):
             matched_recordings[entry] = {}
             matched_recordings[entry]["recording_url"] = recording["recording_url"]
             matched_recordings[entry]["speaker"] = recording["speaker"]
+    print("ahahahahahah")
     print(matched_recordings)
     temp[index] = matched_recordings
     print("...............................................")
@@ -449,7 +437,10 @@ def get_recordings_from_url(search_terms, url, temp, index):
 
 def get_recordings_from_url_with_speaker_info(search_terms, url):
     query_params = [("q", term) for term in search_terms]
+    print(query_params)
+    print(url)
     response = requests.get(url + "?" + urllib.parse.urlencode(query_params))
+    print("DHJJJDJJDJDJDJDJ")
     if response.status_code == 200:
         recordings = response.json()
         return recordings["matched_recordings"]
