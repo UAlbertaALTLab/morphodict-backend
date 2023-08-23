@@ -132,7 +132,7 @@ def word_details_api(request, slug: str):
         if matched_recs:
             recordings.extend(matched_recs)
     print("here we go")
-    if paradigm is not None:
+    if paradigm is not None: 
         FST_DIR = settings.BASE_DIR / "res" / "fst"
         paradigm_manager = ParadigmManager(
             layout_directory=settings.LAYOUTS_DIR,
@@ -154,6 +154,7 @@ def word_details_api(request, slug: str):
         }
     }
 
+    
     return Response(content)
 
 
@@ -193,6 +194,7 @@ def search_api(request):
     :param request:
     :return:
     """
+    
 
     query_string = request.GET.get("name")
     rw_index = request.GET.get("rw_index")
@@ -200,7 +202,7 @@ def search_api(request):
     wn_synset = request.GET.get("wn_synset")
     dict_source = get_dict_source(request)
     search_run = None
-    include_auto_definitions = request.user.is_authenticated
+    include_auto_definitions = should_include_auto_definitions(request)
     context = dict()
     if query_string or rw_index or rw_domain or wn_synset:
         search_run = search_with_affixes(
@@ -231,10 +233,11 @@ def search_api(request):
         context["verbose_messages"] = json.dumps(
             search_run.verbose_messages, indent=2, ensure_ascii=False
         )
-    p = Process(target=recordings, args=(context["search_results"], request))
-    p.start()
+    context["search_results"] = recordings(
+        context["search_results"], request
+    )
+
     for result in context["search_results"]:
-        start = time.time()
         result["wordform_text"] = wordform_orth_text(result["wordform_text"])
         result["lemma_wordform"]["wordform_text"] = wordform_orth_text(
             result["lemma_wordform"]["text"]
@@ -251,6 +254,7 @@ def search_api(request):
                 result["relabelled_fst_analysis"]
             )
     return Response(context)
+
 
 
 def make_wordnet_format(wn_class):
@@ -302,7 +306,6 @@ def wordnet_api(request, classification):
 
     return Response(context)
 
-
 def recordings(results, request):
     query_terms = []
     for result in results:
@@ -322,15 +325,7 @@ def recordings(results, request):
     for search_terms in divide_chunks(query_terms, 30):
         for source in speech_db_eq:
             url = f"https://speech-db.altlab.app/{source}/api/bulk_search"
-            x = threading.Thread(
-                target=get_recordings_from_url,
-                args=(
-                    search_terms,
-                    url,
-                    temp,
-                    index,
-                ),
-            )
+            x = threading.Thread(target=get_recordings_from_url, args=(search_terms, url, temp, index,))
             threads.append(x)
             x.start()
             index += 1
@@ -349,7 +344,6 @@ def recordings(results, request):
         else:
             result["recording"] = ""
     return results
-
 
 def relabelInflectionalCategory(ic):
     with open(Path(settings.RESOURCES_DIR / "altlabel.tsv")) as f:
