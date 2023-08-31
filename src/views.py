@@ -316,7 +316,7 @@ def recordings(results, request):
     for search_terms in divide_chunks(query_terms, 30):
         for source in speech_db_eq:
             temp.append(None)
-    query_terms = query_terms[:-40]
+    query_terms = [query_terms[0], query_terms[1], query_terms[2], query_terms[3],query_terms[4] ]
     index = 0
     for search_terms in divide_chunks(query_terms, 30):
         for source in speech_db_eq:
