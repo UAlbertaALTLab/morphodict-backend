@@ -42,7 +42,6 @@ def do_cvd_search(search_run: SearchRun):
         cvd_key_to_wordform_query(similarity) for similarity, weight in closest
     ]
     similarities = [similarity for cvd_key, similarity in closest]
-
     # Get all possible wordforms in one big query. We will select more than we
     # need, then filter it down later, but this will have to do until we get
     # better homonym handling.

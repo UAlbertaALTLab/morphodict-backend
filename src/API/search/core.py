@@ -30,14 +30,14 @@ class SearchRun:
         rw_index: str,
         rw_domain: str,
         wn_synset: str,
-        include_auto_definitions=None,
+        include_auto_definitions=True,
     ):
         self.query = Query(query)
         self.rw_index = rw_index
         self.rw_domain = rw_domain
         self.wn_synset = wn_synset
         self.include_auto_definitions = first_non_none_value(
-            self.query.auto, include_auto_definitions, default=False
+            self.query.auto, include_auto_definitions, default=True
         )
         self._results = {}
         self._verbose_messages = []

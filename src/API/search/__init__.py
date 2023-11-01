@@ -6,8 +6,8 @@ def search_with_affixes(
     rw_index: str,
     rw_domain: str,
     wn_synset: str,
-    include_auto_definitions=False,
-    inflect_english_phrases=False,
+    include_auto_definitions=True,
+    inflect_english_phrases=True,
 ):
     """
     Search for wordforms matching:
@@ -28,7 +28,7 @@ def search_with_affixes(
 
 
 def simple_search(
-    query: str, include_auto_definitions=False, inflect_english_phrases=False
+    query: str, include_auto_definitions=True, inflect_english_phrases=True
 ):
     """
     Search, trying to match full wordforms or keywords within definitions.

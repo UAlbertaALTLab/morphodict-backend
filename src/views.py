@@ -3,7 +3,7 @@ from __future__ import annotations
 import json
 import logging
 from pathlib import Path
-
+import time
 from typing import Dict, Literal
 from nltk.corpus import wordnet as wn
 
@@ -119,14 +119,18 @@ def word_details_api(request, slug: str):
     )
     wordform = wordform_morphemes(wordform)
     wordform = wordform_orth(wordform)
+
     recordings = []
+
+    print("here we go")
+    print(lemma)
     for source in settings.SPEECH_DB_EQ:
         url = f"https://speech-db.altlab.app/{source}/api/bulk_search"
         matched_recs = get_recordings_from_url_with_speaker_info([lemma], url)
         if matched_recs:
             recordings.extend(matched_recs)
-
-    if paradigm is not None:
+    print("here we go")
+    if paradigm is not None: 
         FST_DIR = settings.BASE_DIR / "res" / "fst"
         paradigm_manager = ParadigmManager(
             layout_directory=settings.LAYOUTS_DIR,
@@ -148,6 +152,7 @@ def word_details_api(request, slug: str):
         }
     }
 
+    
     return Response(content)
 
 
@@ -187,15 +192,16 @@ def search_api(request):
     :param request:
     :return:
     """
+    
+
     query_string = request.GET.get("name")
     rw_index = request.GET.get("rw_index")
     rw_domain = request.GET.get("rw_domain")
     wn_synset = request.GET.get("wn_synset")
     dict_source = get_dict_source(request)
     search_run = None
-    include_auto_definitions = request.user.is_authenticated
+    include_auto_definitions = should_include_auto_definitions(request)
     context = dict()
-
     if query_string or rw_index or rw_domain or wn_synset:
         search_run = search_with_affixes(
             query_string,
@@ -213,7 +219,6 @@ def search_api(request):
         query_string = ""
         search_results = []
         did_search = False
-
     context.update(
         word_search_form=request.data.get("name"),
         query_string=query_string,
@@ -226,11 +231,6 @@ def search_api(request):
         context["verbose_messages"] = json.dumps(
             search_run.verbose_messages, indent=2, ensure_ascii=False
         )
-
-    context["search_results"] = fetch_single_recording(
-        context["search_results"], request
-    )
-
     for result in context["search_results"]:
         result["wordform_text"] = wordform_orth_text(result["wordform_text"])
         result["lemma_wordform"]["wordform_text"] = wordform_orth_text(
@@ -246,8 +246,8 @@ def search_api(request):
             result["relabelled_fst_analysis"] = relabelFSTAnalysis(
                 result["relabelled_fst_analysis"]
             )
-
     return Response(context)
+
 
 
 def make_wordnet_format(wn_class):
@@ -298,31 +298,6 @@ def wordnet_api(request, classification):
     context["holonyms"] = [h.name() for h in holonyms]
 
     return Response(context)
-
-
-def fetch_single_recording(results, request):
-    query_terms = []
-    for result in results:
-        query_terms.append(result["wordform_text"])
-
-    speech_db_eq = settings.SPEECH_DB_EQ
-    matched_recordings = {}
-
-    for search_terms in divide_chunks(query_terms, 30):
-        for source in speech_db_eq:
-            url = f"https://speech-db.altlab.app/{source}/api/bulk_search"
-            matched_recordings.update(get_recordings_from_url(search_terms, url))
-
-    for result in results:
-        if result["wordform_text"] in matched_recordings:
-            result["recording"] = matched_recordings[result["wordform_text"]][
-                "recording_url"
-            ]
-        else:
-            result["recording"] = ""
-
-    return results
-
 
 def relabelInflectionalCategory(ic):
     with open(Path(settings.RESOURCES_DIR / "altlabel.tsv")) as f:

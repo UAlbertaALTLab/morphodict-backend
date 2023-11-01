@@ -360,7 +360,7 @@ def serialize_wordform(
 
 
 def serialize_definitions(
-    definitions, include_auto_definitions=False, dict_source=None
+    definitions, include_auto_definitions=True, dict_source=None
 ):
     ret = []
     for definition in definitions:
