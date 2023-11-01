@@ -359,9 +359,7 @@ def serialize_wordform(
     return result
 
 
-def serialize_definitions(
-    definitions, include_auto_definitions=True, dict_source=None
-):
+def serialize_definitions(definitions, include_auto_definitions=True, dict_source=None):
     ret = []
     for definition in definitions:
         serialized = definition.serialize()
