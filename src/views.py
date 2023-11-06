@@ -130,7 +130,7 @@ def word_details_api(request, slug: str):
         if matched_recs:
             recordings.extend(matched_recs)
     print("here we go")
-    if paradigm is not None:
+    if paradigm is not None: 
         FST_DIR = settings.BASE_DIR / "res" / "fst"
         paradigm_manager = ParadigmManager(
             layout_directory=settings.LAYOUTS_DIR,
@@ -152,6 +152,7 @@ def word_details_api(request, slug: str):
         }
     }
 
+    
     return Response(content)
 
 
@@ -247,6 +248,7 @@ def search_api(request):
     return Response(context)
 
 
+
 def make_wordnet_format(wn_class):
     """
     Accepts: wn_class of format (n) bear 1
@@ -295,7 +297,6 @@ def wordnet_api(request, classification):
     context["holonyms"] = [h.name() for h in holonyms]
 
     return Response(context)
-
 
 def relabelInflectionalCategory(ic):
     with open(Path(settings.RESOURCES_DIR / "altlabel.tsv")) as f:
