@@ -389,7 +389,13 @@ def get_recordings_from_paradigm(paradigm, request):
 
     if request.COOKIES.get("synthesized_audio_in_paradigm") == "yes":
         speech_db_eq.insert(0, "synth")
-    query_terms = [query_terms[0], query_terms[1], query_terms[2], query_terms[3],query_terms[4] ]
+    query_terms = [
+        query_terms[0],
+        query_terms[1],
+        query_terms[2],
+        query_terms[3],
+        query_terms[4],
+    ]
     for search_terms in divide_chunks(query_terms, 30):
         for source in speech_db_eq:
             temp.append(None)
@@ -397,7 +403,15 @@ def get_recordings_from_paradigm(paradigm, request):
     for search_terms in divide_chunks(query_terms, 30):
         for source in speech_db_eq:
             url = f"https://speech-db.altlab.app/{source}/api/bulk_search"
-            x = threading.Thread(target=get_recordings_from_url, args=(search_terms, url, temp, index,))
+            x = threading.Thread(
+                target=get_recordings_from_url,
+                args=(
+                    search_terms,
+                    url,
+                    temp,
+                    index,
+                ),
+            )
             threads.append(x)
             x.start()
             index += 1
