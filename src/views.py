@@ -192,7 +192,6 @@ def search_api(request):
     :param request:
     :return:
     """
-    
 
     query_string = request.GET.get("name")
     rw_index = request.GET.get("rw_index")
