@@ -130,11 +130,7 @@ def word_details_api(request, slug: str):
         if matched_recs:
             recordings.extend(matched_recs)
     print("here we go")
-<<<<<<< HEAD
     if paradigm is not None: 
-=======
-    if paradigm is not None:
->>>>>>> 8154cf57236c3fd90f884b57bf52dee7f01c378d
         FST_DIR = settings.BASE_DIR / "res" / "fst"
         paradigm_manager = ParadigmManager(
             layout_directory=settings.LAYOUTS_DIR,
@@ -196,10 +192,7 @@ def search_api(request):
     :param request:
     :return:
     """
-<<<<<<< HEAD
     
-=======
->>>>>>> 8154cf57236c3fd90f884b57bf52dee7f01c378d
 
     query_string = request.GET.get("name")
     rw_index = request.GET.get("rw_index")
@@ -306,10 +299,6 @@ def wordnet_api(request, classification):
 
     return Response(context)
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 8154cf57236c3fd90f884b57bf52dee7f01c378d
 def relabelInflectionalCategory(ic):
     with open(Path(settings.RESOURCES_DIR / "altlabel.tsv")) as f:
         labels = Relabelling.from_tsv(f)
