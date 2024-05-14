@@ -256,9 +256,11 @@ def update_field(labels, row, title, part):
     row[title]["ling_short"] += (
         " " + labels.linguistic_short[part]
         if labels.linguistic_short[part]
-        else " " + labels.linguistic_long[part]
-        if " " + labels.linguistic_long[part]
-        else str(part)
+        else (
+            " " + labels.linguistic_long[part]
+            if " " + labels.linguistic_long[part]
+            else str(part)
+        )
     )
     row[title]["plain_english"] += (
         " " + labels.english[part] if labels.english[part] else str(part)
