@@ -235,10 +235,10 @@ def search_api(request):
             result["lemma_wordform"]["text"]
         )
         if "inflectional_category" in result["lemma_wordform"]:
-            result["lemma_wordform"][
-                "inflectional_category_relabelled"
-            ] = relabelInflectionalCategory(
-                result["lemma_wordform"]["inflectional_category"]
+            result["lemma_wordform"]["inflectional_category_relabelled"] = (
+                relabelInflectionalCategory(
+                    result["lemma_wordform"]["inflectional_category"]
+                )
             )
         if "relabelled_fst_analysis" in result:
             result["relabelled_fst_analysis"] = relabelFSTAnalysis(
