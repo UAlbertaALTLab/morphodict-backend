@@ -27,9 +27,9 @@ services:
       - "../src/crkeng/res/:/app/src/crkeng/res/:ro"
       - "../src/crkeng/res/dictionary/:/app/src/crkeng/res/dictionary/:ro"
 
-      - "/data_local/application-data/crkeng/vector_models:/app/src/crkeng/res/vector_models/"
-      - "/data_local/application-data/crkeng/db:/app/src/crkeng/db/"
-      - "/data_local/application-data/crkeng/search_quality:/app/src/crkeng/CreeDictionary/search_quality/"
+      - "/data_local/application-data/crkeng2/vector_models:/app/src/crkeng/res/vector_models/"
+      - "/data_local/application-data/crkeng2/db:/app/src/crkeng/db/"
+      - "/data_local/application-data/crkeng2/search_quality:/app/src/crkeng/CreeDictionary/search_quality/"
   cwdeng:
     restart: always
     build:
@@ -52,9 +52,9 @@ services:
       - "../src/cwdeng/res/:/app/src/cwdeng/res/:ro"
       - "../src/cwdeng/res/dictionary/:/app/src/cwdeng/res/dictionary/:ro"
 
-      - "/data_local/application-data/cwdeng/vector_models:/app/src/cwdeng/res/vector_models/"
-      - "/data_local/application-data/cwdeng/db:/app/src/cwdeng/db/"
-      - "/data_local/application-data/cwdeng/search_quality:/app/src/cwdeng/CreeDictionary/search_quality/"
+      - "/data_local/application-data/cwdeng2/vector_models:/app/src/cwdeng/res/vector_models/"
+      - "/data_local/application-data/cwdeng2/db:/app/src/cwdeng/db/"
+      - "/data_local/application-data/cwdeng2/search_quality:/app/src/cwdeng/CreeDictionary/search_quality/"
   srseng:
     restart: always
     build:
@@ -77,9 +77,9 @@ services:
       - "../src/srseng/res/:/app/src/srseng/res/:ro"
       - "../src/srseng/res/dictionary/:/app/src/srseng/res/dictionary/:ro"
 
-      - "/data_local/application-data/srseng/vector_models:/app/src/srseng/res/vector_models/"
-      - "/data_local/application-data/srseng/db:/app/src/srseng/db/"
-      - "/data_local/application-data/srseng/search_quality:/app/src/srseng/CreeDictionary/search_quality/"
+      - "/data_local/application-data/srseng2/vector_models:/app/src/srseng/res/vector_models/"
+      - "/data_local/application-data/srseng2/db:/app/src/srseng/db/"
+      - "/data_local/application-data/srseng2/search_quality:/app/src/srseng/CreeDictionary/search_quality/"
   arpeng:
     restart: always
     build:
@@ -102,9 +102,9 @@ services:
       - "../src/arpeng/res/:/app/src/arpeng/res/:ro"
       - "../src/arpeng/res/dictionary/:/app/src/arpeng/res/dictionary/:ro"
 
-      - "/data_local/application-data/arpeng/vector_models:/app/src/arpeng/res/vector_models/"
-      - "/data_local/application-data/arpeng/db:/app/src/arpeng/db/"
-      - "/data_local/application-data/arpeng/search_quality:/app/src/arpeng/CreeDictionary/search_quality/"
+      - "/data_local/application-data/arpeng2/vector_models:/app/src/arpeng/res/vector_models/"
+      - "/data_local/application-data/arpeng2/db:/app/src/arpeng/db/"
+      - "/data_local/application-data/arpeng2/search_quality:/app/src/arpeng/CreeDictionary/search_quality/"
   hdneng:
     restart: always
     build:
@@ -127,6 +127,6 @@ services:
       - "../src/hdneng/res/:/app/src/hdneng/res/:ro"
       - "../src/hdneng/res/dictionary/:/app/src/hdneng/res/dictionary/:ro"
 
-      - "/data_local/application-data/hdneng/vector_models:/app/src/hdneng/res/vector_models/"
-      - "/data_local/application-data/hdneng/db:/app/src/hdneng/db/"
-      - "/data_local/application-data/hdneng/search_quality:/app/src/hdneng/CreeDictionary/search_quality/"
+      - "/data_local/application-data/hdneng2/vector_models:/app/src/hdneng/res/vector_models/"
+      - "/data_local/application-data/hdneng2/db:/app/src/hdneng/db/"
+      - "/data_local/application-data/hdneng2/search_quality:/app/src/hdneng/CreeDictionary/search_quality/"

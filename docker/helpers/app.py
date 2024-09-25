@@ -25,7 +25,7 @@ class App:
         ]
 
     def prod_data_dir(self):
-        return f"/data_local/application-data/{self.name}"
+        return f"/data_local/application-data/{self.name}2"
 
     def prod_db_file(self):
         return Path(self.prod_data_dir()) / "db" / "db.sqlite3"
